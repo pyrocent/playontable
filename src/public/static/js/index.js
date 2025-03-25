@@ -1,5 +1,5 @@
 $(() => {
-    let ita_deck = ["e/e9/01_Asso_di_denari.jpg/800px-01_Asso_di_denari"];
+    let ita_deck = ["e/e9/01_Asso_di_denari.jpg/800px-01_Asso_di_denari", "2/2e/02_Due_di_denari.jpg/800px-02_Due_di_denari"];
     let red_fra_deck = [];
     let blue_fra_deck = [];
 
