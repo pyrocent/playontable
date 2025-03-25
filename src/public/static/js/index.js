@@ -1,5 +1,5 @@
 $(() => {
-    let ita_deck = ["1B", "1C", "1D", "1S", "2B", "2C", "2D", "2S", "3B", "3C", "3D", "3S", "4B", "4C", "4D", "4S", "5B", "5C", "5D", "5S", "6B", "6C", "6D", "6S", "7B", "7C", "7D", "7S", "8B", "8C", "8D", "8S", "9B", "9C", "9D", "9S", "10B", "10C", "10D", "10S"];
+    let ita_deck = ["e/e9/01_Asso_di_denari.jpg/800px-01_Asso_di_denari"];
     let red_fra_deck = [];
     let blue_fra_deck = [];
 
@@ -9,7 +9,6 @@ $(() => {
         let chosen = "";
         const card = $(this);
         const face = card.attr("data-face");
-        const path = "/static/assets/decks";
 
         if (card.hasClass("ita")) {
             type = "ita";
@@ -23,8 +22,17 @@ $(() => {
         }
 
         if (face) {
-            if (card.attr("src") !== back) {card.attr("src", back);}
-            else {card.attr("src", `${path}/${type}/${face}.png`);}
+            if (card.attr("src") !== back) {
+                card.attr("src", back);
+            } else {
+                if (type === "ita") {
+                    card.attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Carte_Napoletane_retro.jpg/800px-Carte_Napoletane_retro.jpg");
+                } else if (type === "fra/red") {
+                    card.attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Carta_Francese_retro_Rosso.jpg/800px-Carta_Francese_retro_Rosso.jpg");
+                } else if (type === "fra/blue") {
+                    card.attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Carta_Francese_retro_Blu.jpg/800px-Carta_Francese_retro_Blu.jpg");
+                }
+            }
         } else {
             if (type === "ita" && ita_deck.length > 0) {
                 const index = Math.floor(Math.random() * ita_deck.length);
@@ -38,7 +46,7 @@ $(() => {
             }
 
             card.attr("data-face", chosen);
-            card.attr("src", `${path}/${type}/${chosen}.png`);
+            card.attr("src", `https://upload.wikimedia.org/wikipedia/commons/thumb/${chosen}.jpg`);
         }
     });
 });
