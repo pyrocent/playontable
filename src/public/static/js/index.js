@@ -4,9 +4,9 @@ $(() => {
     let blue_fra_deck = [];
 
     $(".card").on("click", function () {
+        let type = "";
+        let back = "";
         let chosen = "";
-        const type = "";
-        const back = "";
         const card = $(this);
         const face = card.attr("data-face");
         const path = "/static/assets/decks";
