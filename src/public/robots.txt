@@ -1,5 +1,5 @@
-Allow: /
 User-agent: *
+Allow: /
 
 Sitemap: https://playontable.com/sitemap.xml
 Sitemap: https://www.playontable.com/sitemap.xml
