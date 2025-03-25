@@ -4,19 +4,22 @@ $(() => {
     let blue_fra_deck = [];
 
     $(".card").on("click", function () {
+        let chosen = "";
+        const type = "";
+        const back = "";
         const card = $(this);
         const face = card.attr("data-face");
         const path = "/static/assets/decks";
 
         if (card.hasClass("ita")) {
-            const type = "ita";
-            const back = "/static/assets/decks/back/ita.png";
+            type = "ita";
+            back = "/static/assets/decks/back/ita.png";
         } else if (card.hasClass("fra") && card.hasClass("red")) {
-            const type = "fra/red";
-            const back = "/static/assets/decks/back/fra/red.png";
+            type = "fra/red";
+            back = "/static/assets/decks/back/fra/red.png";
         } else if (card.hasClass("fra") && card.hasClass("blue")) {
-            const type = "fra/blue";
-            const back = "/static/assets/decks/back/fra/blue.png";
+            type = "fra/blue";
+            back = "/static/assets/decks/back/fra/blue.png";
         }
 
         if (face) {
@@ -25,13 +28,13 @@ $(() => {
         } else {
             if (type === "ita" && ita_deck.length > 0) {
                 const index = Math.floor(Math.random() * ita_deck.length);
-                const chosen = ita_deck.splice(index, 1)[0];
+                chosen = ita_deck.splice(index, 1)[0];
             } else if (type === "fra/red" && red_fra_deck.length > 0) {
-                const index = Math.floor(Math.random() * red_fra_deck.length);
-                const chosen = red_fra_deck.splice(index, 1)[0];
+                index = Math.floor(Math.random() * red_fra_deck.length);
+                chosen = red_fra_deck.splice(index, 1)[0];
             } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
                 const index = Math.floor(Math.random() * blue_fra_deck.length);
-                const chosen = blue_fra_deck.splice(index, 1)[0];
+                chosen = blue_fra_deck.splice(index, 1)[0];
             }
 
             card.attr("data-face", chosen);
