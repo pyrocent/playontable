@@ -29,7 +29,6 @@ body main #table {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 body main #table * {
-  cursor: pointer;
   position: absolute;
 }
 body main .card:hover, body main .chips:hover, body main .chess:hover, body main .dama:hover {
