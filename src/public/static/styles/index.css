@@ -16,8 +16,7 @@ body main {
   display: flex;
   flex-direction: column;
 }
-
-#table {
+body main #table {
   gap: 10px;
   height: 100%;
   padding: 5px;
@@ -29,105 +28,77 @@ body main {
   border: 10px ridge rgb(239, 158, 87);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-
-#table * {
+body main #table * {
   cursor: pointer;
   position: absolute;
 }
-
-.card:hover,
-.fiche:hover,
-.chess:hover,
-.dama:hover {
+body main #table * .card:hover, body main #table * .chips:hover, body main #table * .chess:hover, body main #table * .dama:hover {
   transform: scale(1.075);
 }
-
-.card,
-.fiche,
-#board,
-.dama {
+body main #table * .card, body main #table * .chips, body main #table * #board, body main #table * .dama {
   border: 1px solid rgb(0, 0, 0);
 }
-
-.blue {
+body main #table * .blue {
   left: 35px;
 }
-
-.red {
+body main #table * .red {
   left: 75px;
 }
-
-.card {
+body main #table * .card {
   height: 50px;
   border-radius: 2.5px;
 }
-
-.fiche {
+body main #table * .chips {
   left: 120px;
   height: 35px;
   border-radius: 90%;
 }
-
-#gold_fiche {
+body main #table * #gold_chips {
   top: 45px;
 }
-
-#blue_fiche {
+body main #table * #blue_chips {
   top: 85px;
 }
-
-#red_fiche {
+body main #table * #red_chips {
   top: 125px;
 }
-
-#green_fiche {
+body main #table * #green_chips {
   top: 165px;
 }
-
-#board {
+body main #table * #board {
   left: 160px;
   width: 275px;
   height: 275px;
 }
-
-.chess {
+body main #table * .chess {
   height: 35px;
 }
-
-.chess.white {
+body main #table * .chess.white {
   left: 440px;
 }
-
-.chess.black {
+body main #table * .chess.black {
   left: 480px;
 }
-
-.queen {
+body main #table * .queen {
   top: 39px;
 }
-
-.bishop {
+body main #table * .bishop {
   top: 76px;
 }
-
-.knight {
+body main #table * .knight {
   top: 113px;
 }
-
-.rook {
+body main #table * .rook {
   top: 150px;
 }
-
-.pawn {
+body main #table * .pawn {
   top: 187px;
 }
-
-.dama {
+body main #table * .dama {
   left: 520px;
   height: 30px;
   border-radius: 90%;
 }
-
-.dama.white {
+body main #table * .dama.black {
   top: 43px;
 }/*# sourceMappingURL=index.css.map */
