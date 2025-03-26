@@ -1,4 +1,5 @@
 $(() => {
+    gsap.registerPlugin(Draggable);
     Draggable.create("#table *", {});
 
     let ita_deck = [
