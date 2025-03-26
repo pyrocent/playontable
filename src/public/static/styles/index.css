@@ -32,73 +32,73 @@ body main #table * {
   cursor: pointer;
   position: absolute;
 }
-body main #table * .card:hover, body main #table * .chips:hover, body main #table * .chess:hover, body main #table * .dama:hover {
+body main .card:hover, body main .chips:hover, body main .chess:hover, body main .dama:hover {
   transform: scale(1.075);
 }
-body main #table * .card, body main #table * .chips, body main #table * #board, body main #table * .dama {
+body main .card, body main .chips, body main #board, body main .dama {
   border: 1px solid rgb(0, 0, 0);
 }
-body main #table * .blue {
+body main .blue {
   left: 35px;
 }
-body main #table * .red {
+body main .red {
   left: 75px;
 }
-body main #table * .card {
+body main .card {
   height: 50px;
   border-radius: 2.5px;
 }
-body main #table * .chips {
+body main .chips {
   left: 120px;
   height: 35px;
   border-radius: 90%;
 }
-body main #table * #gold_chips {
+body main #gold_chips {
   top: 45px;
 }
-body main #table * #blue_chips {
+body main #blue_chips {
   top: 85px;
 }
-body main #table * #red_chips {
+body main #red_chips {
   top: 125px;
 }
-body main #table * #green_chips {
+body main #green_chips {
   top: 165px;
 }
-body main #table * #board {
+body main #board {
   left: 160px;
   width: 275px;
   height: 275px;
 }
-body main #table * .chess {
+body main .chess {
   height: 35px;
 }
-body main #table * .chess.white {
+body main .chess.white {
   left: 440px;
 }
-body main #table * .chess.black {
+body main .chess.black {
   left: 480px;
 }
-body main #table * .queen {
+body main .queen {
   top: 39px;
 }
-body main #table * .bishop {
+body main .bishop {
   top: 76px;
 }
-body main #table * .knight {
+body main .knight {
   top: 113px;
 }
-body main #table * .rook {
+body main .rook {
   top: 150px;
 }
-body main #table * .pawn {
+body main .pawn {
   top: 187px;
 }
-body main #table * .dama {
+body main .dama {
   left: 520px;
   height: 30px;
   border-radius: 90%;
 }
-body main #table * .dama.black {
+body main .dama.black {
   top: 43px;
 }/*# sourceMappingURL=index.css.map */
