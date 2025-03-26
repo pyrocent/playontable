@@ -43,7 +43,7 @@ $(() => {
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10D-u549YGvR28EAs1Cgv114Ubxa3slqYk.jpg",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10S-b8gySm19LLuNFOFuXUCxy4ef6RfXpx.jpg"
     ];
-    let blue_fra_deck, red_fra_deck = [
+    let blue_fra_deck = red_fra_deck = [
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/10C-CIHkkLjlm6e6t0q1EQsF9Ou4ltqljU.png",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/10D-vadXNF7NptSPdVMG8PZZReqS432cIb.png",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/10H-ktIaomzAwmCXZafUQZZTa9RZ5mToP1.png",
