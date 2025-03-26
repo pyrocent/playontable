@@ -3,6 +3,10 @@
         {
             "source": "/api/:path*",
             "destination": "/api/app.py"
+        },
+        {
+            "source": "/",
+            "destination": "/templates/index.html"
         }
     ]
 }
