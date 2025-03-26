@@ -39,10 +39,10 @@ body main .card, body main .chips, body main #board, body main .dama {
   border: 1px solid rgb(0, 0, 0);
 }
 body main .blue {
-  left: 35px;
+  left: 40px;
 }
 body main .red {
-  left: 75px;
+  left: 80px;
 }
 body main .card {
   height: 50px;
