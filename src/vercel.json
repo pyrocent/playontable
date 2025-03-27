@@ -5,7 +5,7 @@
             "destination": "/templates/index.html"
         },
         {
-            "source": "/(.*)",
+            "source": "/:path*",
             "has": [
                 {
                     "type": "header",
@@ -16,7 +16,7 @@
             "destination": "/templates/errors/404.html"
         },
         {
-            "source": "/(.*)",
+            "source": "/:path*",
             "has": [
                 {
                     "type": "header",
