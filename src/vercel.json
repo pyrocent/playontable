@@ -6,7 +6,7 @@
                 {
                     "type": "header",
                     "key": "Status Code",
-                    "value": "404 Not Found"
+                    "value": "404"
                 }
             ],
             "destination": "/templates/errors/404.html"
