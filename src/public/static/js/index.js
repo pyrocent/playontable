@@ -104,7 +104,7 @@ Draggable.create("#table *", {
     onDrag: function () {
         const threshold = 150;
         const bottomEdge = window.innerHeight;
-        const space = document.getElementById("spacer");
+        const space = document.getElementById("space");
         const rect = this.target.getBoundingClientRect();
 
         if (rect.bottom > bottomEdge - threshold) {
