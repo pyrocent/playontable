@@ -104,37 +104,40 @@ Draggable.create("#table *", {
         let type = "";
         let back = "";
         let chosen = "";
-        const card = $(this);
+        const card = this;
 
-        if (card.hasClass("ita")) {
+        if (card.classList.contains("ita")) {
             type = "ita";
             back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-        } else if (card.hasClass("fra") && card.hasClass("blue")) {
+        } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
             type = "fra/blue";
             back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-        } else if (card.hasClass("fra") && card.hasClass("red")) {
+        } else if (card.classList.contains("fra") && card.classList.contains("red")) {
             type = "fra/red";
             back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
         }
 
-        if (card.attr("src") !== back) {
-            card.attr("src", back);
+        if (card.getAttribute("src") !== back) {
+            card.setAttribute("src", back);
         } else {
-            if (card.attr("data-face")) {
-                card.attr("src", card.attr("data-face"));
+            const face = card.getAttribute("data-face");
+            if (face) {
+                card.setAttribute("src", face);
             } else {
+                let index;
                 if (type === "ita" && ita_deck.length > 0) {
-                    const index = Math.floor(Math.random() * ita_deck.length);
+                    index = Math.floor(Math.random() * ita_deck.length);
                     chosen = ita_deck.splice(index, 1)[0];
                 } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
-                    const index = Math.floor(Math.random() * blue_fra_deck.length);
+                    index = Math.floor(Math.random() * blue_fra_deck.length);
                     chosen = blue_fra_deck.splice(index, 1)[0];
                 } else if (type === "fra/red" && red_fra_deck.length > 0) {
                     index = Math.floor(Math.random() * red_fra_deck.length);
                     chosen = red_fra_deck.splice(index, 1)[0];
                 }
-                card.attr("src", chosen);
-                card.attr("data-face", chosen);
+
+                card.setAttribute("src", chosen);
+                card.setAttribute("data-face", chosen);
             }
         }
     }
