@@ -110,6 +110,7 @@ Draggable.create("#table *", {
 
             const rect = original.getBoundingClientRect();
             const parentRect = original.parentNode.getBoundingClientRect();
+            console.log(parentRect);
 
             gsap.set(clone, {
                 position: "absolute",
