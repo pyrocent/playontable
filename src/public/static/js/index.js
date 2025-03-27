@@ -104,7 +104,7 @@ Draggable.create("#table *", {
         let type = "";
         let back = "";
         let chosen = "";
-        const card = this.target;
+        const card = document.querySelector(this.target);
 
         if (card.classList.contains("ita")) {
             type = "ita";
