@@ -101,18 +101,6 @@ let blue_fra_deck = red_fra_deck = [
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
     bounds: {top: 10, left: 10},
-    onDrag: function () {
-        const threshold = 0;
-        const bottomEdge = window.innerHeight;
-        const space = document.getElementById("space");
-        const rect = this.target.getBoundingClientRect();
-
-        if (rect.bottom > bottomEdge - threshold) {
-            space.style.height = "500px";
-        } else {
-            space.style.height = "0px";
-        }
-    },
     onClick: function() {
         if (this.target.classList.contains("card")) {
 
