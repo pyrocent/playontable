@@ -100,11 +100,11 @@ let blue_fra_deck = red_fra_deck = [
 
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
-    onClick: () => {
+    onClick: function() {
         let type = "";
         let back = "";
         let chosen = "";
-        const card = document.querySelector(this.target);
+        const card = this.target;
 
         if (card.classList.contains("ita")) {
             type = "ita";
