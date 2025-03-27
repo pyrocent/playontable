@@ -110,18 +110,16 @@ Draggable.create("#table *", {
 
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
-                position: "absolute",
-                top: rect.top + window.scrollY,
-                left: rect.left + window.scrollX,
                 width: rect.width,
                 height: rect.height,
+                position: "absolute",
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX
             });
 
             Draggable.create(clone, {
                 bounds: {top: 10, left: 10},
             });
-
-            this.endDrag();
         }
     },
     onClick: function() {
