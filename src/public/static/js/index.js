@@ -101,7 +101,7 @@ $(() => {
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"
     ];
 
-    $(".card").on("click", "touchend", function () {
+    $(".card").on("click touchend", function () {
         let type = "";
         let back = "";
         let chosen = "";
