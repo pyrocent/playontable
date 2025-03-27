@@ -107,16 +107,22 @@ Draggable.create("#table *", {
         if (original.classList.contains("clone")) {
             const clone = original.cloneNode(true);
             clone.classList.remove("clone");
+
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
-                width: rect.width,
-                height: rect.height,
                 position: "absolute",
                 top: rect.top + window.scrollY,
-                left: rect.left + window.scrollX
+                left: rect.left + window.scrollX,
+                width: rect.width,
+                height: rect.height,
             });
+
             original.parentNode.appendChild(clone);
-            this.target = clone;
+
+            this.endDrag();
+            Draggable.create(clone, {
+                bounds: {top: 10, left: 10}
+            })[0].startDrag(this.pointerEvent); 
         }
     },
     onClick: function() {
