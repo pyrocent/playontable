@@ -3,16 +3,6 @@
         {
             "source": "/(.*)",
             "destination": "/templates/index.html"
-        },
-        {
-            "status": 404,
-            "source": "/(.*)",
-            "dest": "/templates/errors/404.html"
-        },
-        {
-            "status": 405,
-            "source": "/(.*)",
-            "dest": "/templates/errors/405.html"
         }
     ]
 }
