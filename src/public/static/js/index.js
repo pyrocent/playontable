@@ -101,6 +101,29 @@ let blue_fra_deck = red_fra_deck = [
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
     bounds: {top: 10, left: 10},
+    onPress: function () {
+        const original = this.target;
+
+        if (original.classList.contains("clone")) {
+            const clone = original.cloneNode(true);
+            original.parentNode.appendChild(clone);
+
+            const rect = original.getBoundingClientRect();
+            gsap.set(clone, {
+                position: "absolute",
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX,
+                width: rect.width,
+                height: rect.height,
+            });
+
+            Draggable.create(clone, {
+                bounds: {top: 10, left: 10},
+            });
+
+            this.endDrag();
+        }
+    },
     onClick: function() {
         if (this.target.classList.contains("card")) {
 
