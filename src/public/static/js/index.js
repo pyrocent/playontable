@@ -101,43 +101,46 @@ let blue_fra_deck = red_fra_deck = [
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
     onClick: function() {
-        let type = "";
-        let back = "";
-        let chosen = "";
-        const card = this.target;
+        if (card.classList.contains("card")) {
 
-        if (card.classList.contains("ita")) {
-            type = "ita";
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-        } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-            type = "fra/blue";
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-        } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-            type = "fra/red";
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
-        }
+            let type = "";
+            let back = "";
+            let chosen = "";
+            const card = this.target;
 
-        if (card.getAttribute("src") !== back) {
-            card.setAttribute("src", back);
-        } else {
-            const face = card.getAttribute("data-face");
-            if (face) {
-                card.setAttribute("src", face);
+            if (card.classList.contains("ita")) {
+                type = "ita";
+                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
+            } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
+                type = "fra/blue";
+                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
+            } else if (card.classList.contains("fra") && card.classList.contains("red")) {
+                type = "fra/red";
+                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
+            }
+
+            if (card.getAttribute("src") !== back) {
+                card.setAttribute("src", back);
             } else {
-                let index;
-                if (type === "ita" && ita_deck.length > 0) {
-                    index = Math.floor(Math.random() * ita_deck.length);
-                    chosen = ita_deck.splice(index, 1)[0];
-                } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
-                    index = Math.floor(Math.random() * blue_fra_deck.length);
-                    chosen = blue_fra_deck.splice(index, 1)[0];
-                } else if (type === "fra/red" && red_fra_deck.length > 0) {
-                    index = Math.floor(Math.random() * red_fra_deck.length);
-                    chosen = red_fra_deck.splice(index, 1)[0];
-                }
+                const face = card.getAttribute("data-face");
+                if (face) {
+                    card.setAttribute("src", face);
+                } else {
+                    let index;
+                    if (type === "ita" && ita_deck.length > 0) {
+                        index = Math.floor(Math.random() * ita_deck.length);
+                        chosen = ita_deck.splice(index, 1)[0];
+                    } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
+                        index = Math.floor(Math.random() * blue_fra_deck.length);
+                        chosen = blue_fra_deck.splice(index, 1)[0];
+                    } else if (type === "fra/red" && red_fra_deck.length > 0) {
+                        index = Math.floor(Math.random() * red_fra_deck.length);
+                        chosen = red_fra_deck.splice(index, 1)[0];
+                    }
 
-                card.setAttribute("src", chosen);
-                card.setAttribute("data-face", chosen);
+                    card.setAttribute("src", chosen);
+                    card.setAttribute("data-face", chosen);
+                }
             }
         }
     }
