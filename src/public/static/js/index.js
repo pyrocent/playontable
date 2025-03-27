@@ -110,11 +110,11 @@ Draggable.create("#table *", {
 
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
-                top: rect.top,
-                left: rect.left,
                 width: rect.width,
-                height: rect.height,
-                position: "absolute"
+                top: rect.top - 10,
+                left: rect.left - 10,
+                position: "absolute",
+                height: cloneRect.height
             });
 
             original.parentNode.appendChild(clone);
