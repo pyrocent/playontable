@@ -101,7 +101,7 @@ let blue_fra_deck = red_fra_deck = [
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
     bounds: {top: 10, left: 10},
-    onDragStart: function () {
+    onPress: function () {
         const original = this.target;
 
         if (original.classList.contains("clone")) {
