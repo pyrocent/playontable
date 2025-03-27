@@ -5,8 +5,8 @@
             "has": [
                 {
                     "type": "header",
-                    "key": "x-vercel-error",
-                    "value": "NOT_FOUND"
+                    "key": "Status",
+                    "value": "404"
                 }
             ],
             "destination": "/templates/errors/404.html"
