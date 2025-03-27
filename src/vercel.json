@@ -23,7 +23,7 @@
             "destination": "/templates/errors/405.html"
         },
         {
-            "source": "/?",
+            "source": "/",
             "destination": "/templates/index.html"
         }
     ]
