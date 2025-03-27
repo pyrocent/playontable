@@ -115,9 +115,6 @@ Draggable.create("#table *", {
                 top: rect.top + window.scrollY,
                 left: rect.left + window.scrollX
             });
-            Draggable.create(clone, {
-                bounds: {top: 10, left: 10}
-            });
             original.parentNode.appendChild(clone);
             this.target = clone;
         }
