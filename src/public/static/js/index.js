@@ -100,7 +100,7 @@ let blue_fra_deck = red_fra_deck = [
 
 gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
-    bounds: { left: 0 },
+    bounds: {left: 5},
     onClick: function() {
         if (this.target.classList.contains("card")) {
 
