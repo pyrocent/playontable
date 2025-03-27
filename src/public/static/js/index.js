@@ -106,6 +106,8 @@ Draggable.create("#table *", {
 
         if (original.classList.contains("clone")) {
             const clone = original.cloneNode(true);
+            clone.classList.remove("clone");
+
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
                 width: rect.width,
