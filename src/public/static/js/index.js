@@ -113,8 +113,8 @@ Draggable.create("#table *", {
 
             gsap.set(clone, {
                 position: "absolute",
-                top: rect.top- parentRect.top,
-                left: rect.left - parentRect.left,
+                top: rect.top- parentRect.top - 10,
+                left: rect.left - parentRect.left - 10,
                 width: rect.width,
                 height: rect.height,
             });
