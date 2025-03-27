@@ -106,6 +106,7 @@ Draggable.create("#table *", {
 
         if (original.classList.contains("clone")) {
             const clone = original.cloneNode(true);
+            clone.classList.remove("clone");
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
                 width: rect.width,
@@ -115,7 +116,7 @@ Draggable.create("#table *", {
                 left: rect.left + window.scrollX
             });
             Draggable.create(clone, {
-                bounds: {top: 10, left: 10},
+                bounds: {top: 10, left: 10}
             });
             original.parentNode.appendChild(clone);
             this.target = clone;
