@@ -106,8 +106,6 @@ Draggable.create("#table *", {
 
         if (original.classList.contains("clone")) {
             const clone = original.cloneNode(true);
-            original.parentNode.appendChild(clone);
-
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
                 top: rect.top,
@@ -116,10 +114,10 @@ Draggable.create("#table *", {
                 height: rect.height,
                 position: "absolute"
             });
-
             Draggable.create(clone, {
                 bounds: {top: 10, left: 10},
             });
+            original.parentNode.appendChild(clone);
         }
     },
     onClick: function() {
