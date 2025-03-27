@@ -102,7 +102,7 @@ gsap.registerPlugin(Draggable);
 Draggable.create("#table *", {
     bounds: {top: 10, left: 10},
     onDrag: function () {
-        const threshold = 150;
+        const threshold = 0;
         const bottomEdge = window.innerHeight;
         const space = document.getElementById("space");
         const rect = this.target.getBoundingClientRect();
