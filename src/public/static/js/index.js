@@ -108,16 +108,17 @@ Draggable.create("#table *", {
             const clone = original.cloneNode(true);
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
-                top: rect.top,
-                left: rect.left,
                 width: rect.width,
                 height: rect.height,
-                position: "absolute"
+                position: "absolute",
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX
             });
             Draggable.create(clone, {
                 bounds: {top: 10, left: 10},
             });
             original.parentNode.appendChild(clone);
+            this.target = clone;
         }
     },
     onClick: function() {
