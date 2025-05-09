@@ -28,76 +28,72 @@ body main #table {
   border: 10px ridge rgb(239, 158, 87);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-body main #table * {
-  position: absolute;
-}
-body main .card:hover, body main .chips:hover, body main .chess:hover, body main .dama:hover {
-  transform: scale(1.075);
-}
-body main .card, body main .chips, body main #board, body main .dama {
-  border: 1px solid rgb(0, 0, 0);
-}
-body main .blue {
-  left: 40px;
-}
-body main .red {
-  left: 80px;
-}
-body main .card {
+body main #table .card {
   height: 50px;
   border-radius: 2.5px;
+  border: 1px solid rgb(0, 0, 0);
 }
-body main .chips {
+body main #table .blue.card {
+  left: 40px;
+}
+body main #table .red.card {
+  left: 80px;
+}
+body main #table .chip {
   left: 120px;
   height: 35px;
-  border-radius: 90%;
 }
-body main #gold_chips {
+body main #table .gold.chip {
   top: 45px;
 }
-body main #blue_chips {
+body main #table .blue.chip {
   top: 85px;
 }
-body main #red_chips {
+body main #table .red.chip {
   top: 125px;
 }
-body main #green_chips {
+body main #table .green.chip {
   top: 165px;
 }
-body main #board {
+body main #table #board {
   left: 160px;
   width: 275px;
   height: 275px;
 }
-body main .chess {
+body main #table .chess {
   height: 35px;
 }
-body main .chess.white {
+body main #table .chess.white {
   left: 440px;
 }
-body main .chess.black {
+body main #table .chess.black {
   left: 480px;
 }
-body main .queen {
+body main #table .queen {
   top: 39px;
 }
-body main .bishop {
+body main #table .bishop {
   top: 76px;
 }
-body main .knight {
+body main #table .knight {
   top: 113px;
 }
-body main .rook {
+body main #table .rook {
   top: 150px;
 }
-body main .pawn {
+body main #table .pawn {
   top: 187px;
 }
-body main .dama {
+body main #table .dama {
   left: 520px;
   height: 30px;
-  border-radius: 90%;
 }
-body main .dama.black {
+body main #table .dama.black {
   top: 43px;
+}
+body main * {
+  position: absolute;
+}
+body main *:hover {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }/*# sourceMappingURL=index.css.map */

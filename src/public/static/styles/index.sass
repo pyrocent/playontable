@@ -26,75 +26,71 @@ body
             border: 10px ridge rgb(239, 158, 87)
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5)
 
-        #table *
+            .card
+                height: 50px
+                border-radius: 2.5px
+                border: 1px solid rgb(0, 0, 0)
+
+            .blue.card
+                left: 40px
+
+            .red.card
+                left: 80px
+
+            .chip
+                left: 120px
+                height: 35px
+
+            .gold.chip
+                top: 45px
+
+            .blue.chip
+                top: 85px
+
+            .red.chip
+                top: 125px
+
+            .green.chip
+                top: 165px
+
+            #board
+                left: 160px
+                width: 275px
+                height: 275px
+
+            .chess
+                height: 35px
+
+            .chess.white
+                left: 440px
+
+            .chess.black
+                left: 480px
+
+            .queen
+                top: 39px
+
+            .bishop
+                top: 76px
+
+            .knight
+                top: 113px
+
+            .rook
+                top: 150px
+
+            .pawn
+                top: 187px
+
+            .dama
+                left: 520px
+                height: 30px
+
+            .dama.black
+                top: 43px
+
+        & *
             position: absolute
 
-        .card:hover, .chips:hover, .chess:hover, .dama:hover
-            transform: scale(1.075)
-
-        .card, .chips, #board, .dama
-            border: 1px solid rgb(0, 0, 0)
-
-        .blue
-            left: 40px
-
-        .red
-            left: 80px
-
-        .card
-            height: 50px
-            border-radius: 2.5px
-
-        .chips
-            left: 120px
-            height: 35px
-            border-radius: 90%
-
-        #gold_chips
-            top: 45px
-
-        #blue_chips
-            top: 85px
-
-        #red_chips
-            top: 125px
-
-        #green_chips
-            top: 165px
-
-        #board
-            left: 160px
-            width: 275px
-            height: 275px
-
-        .chess
-            height: 35px
-
-        .chess.white
-            left: 440px
-
-        .chess.black
-            left: 480px
-
-        .queen
-            top: 39px
-
-        .bishop
-            top: 76px
-
-        .knight
-            top: 113px
-
-        .rook
-            top: 150px
-
-        .pawn
-            top: 187px
-
-        .dama
-            left: 520px
-            height: 30px
-            border-radius: 90%
-
-        .dama.black
-            top: 43px
+        & *:hover
+            filter: drop-shadow(0 2px 6px rgb(0, 0, 0, 0.5))

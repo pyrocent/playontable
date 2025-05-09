@@ -1,28 +1,6 @@
 {
     "rewrites": [
         {
-            "source": "/:path*",
-            "has": [
-                {
-                    "type": "header",
-                    "key": "X-Vercel-Error",
-                    "value": "NOT_FOUND"
-                }
-            ],
-            "destination": "/templates/errors/404.html"
-        },
-        {
-            "source": "/:path*",
-            "has": [
-                {
-                    "type": "header",
-                    "key": "Status Code",
-                    "value": "405 Method Not Allowed"
-                }
-            ],
-            "destination": "/templates/errors/405.html"
-        },
-        {
             "source": "/",
             "destination": "/templates/index.html"
         }
