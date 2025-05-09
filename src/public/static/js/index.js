@@ -99,6 +99,7 @@ let blue_fra_deck = red_fra_deck = [
 ];
 
 gsap.registerPlugin(Draggable);
+
 Draggable.create("#table *", {
     bounds: {top: 10, left: 10},
     onDragStart: function () {
@@ -106,7 +107,6 @@ Draggable.create("#table *", {
 
         if (original.classList.contains("clone")) {
             const clone = original.cloneNode(true);
-
             const rect = original.getBoundingClientRect();
             gsap.set(clone, {
                 width: rect.width,
@@ -115,9 +115,7 @@ Draggable.create("#table *", {
                 left: rect.left - 20,
                 position: "absolute"
             });
-
             original.parentNode.appendChild(clone);
-
             this.endDrag();
             Draggable.create(clone, {
                 bounds: {top: 10, left: 10}
@@ -126,7 +124,6 @@ Draggable.create("#table *", {
     },
     onClick: function() {
         if (this.target.classList.contains("card")) {
-
             let type = "";
             let back = "";
             let chosen = "";
@@ -161,7 +158,6 @@ Draggable.create("#table *", {
                         index = Math.floor(Math.random() * red_fra_deck.length);
                         chosen = red_fra_deck.splice(index, 1)[0];
                     }
-
                     card.setAttribute("src", chosen);
                     card.setAttribute("data-face", chosen);
                 }
