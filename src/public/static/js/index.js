@@ -1,3 +1,10 @@
+const welcomeDialog = document.getElementById("dialog-overlay");
+const closeDialogButton = document.getElementById("dialog-button");
+
+closeDialogButton.addEventListener("click", function() {
+    welcomeDialog.style.display = "none";
+});
+
 let ita_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1B-M7cfMC5sGLQC0Q256vyRX5XH9Yne7D.jpg",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1C-5Z4TjCXhiYWOhMRFw3NTSRdNefjW56.jpg",
