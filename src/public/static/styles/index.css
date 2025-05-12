@@ -42,7 +42,7 @@ body #dialog-box #dialog-title {
 }
 body #dialog-box #dialog-instructions {
   margin: 0;
-  padding-inline-start: 20px;
+  padding-inline-start: 15px;
   font-family: Outfit, sans-serif;
 }
 body #dialog-box #dialog-button {
