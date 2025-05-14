@@ -84,8 +84,14 @@ body main #table .card {
 body main #table .blue.card {
   left: 40px;
 }
+body main #table .blue.card.no-jolly {
+  top: 60px;
+}
 body main #table .red.card {
   left: 80px;
+}
+body main #table .red.card.no-jolly {
+  top: 60px;
 }
 body main #table .chip {
   left: 120px;

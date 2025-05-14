@@ -1,8 +1,5 @@
-const welcomeDialog = document.getElementById("dialog-overlay");
-const closeDialogButton = document.getElementById("dialog-button");
-
-closeDialogButton.addEventListener("click", function() {
-    welcomeDialog.style.display = "none";
+document.getElementById("dialog-button").addEventListener("click", function() {
+    document.getElementById("dialog-overlay").style.display = "none";
 });
 
 let ita_deck = [
@@ -48,7 +45,7 @@ let ita_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10S-b8gySm19LLuNFOFuXUCxy4ef6RfXpx.jpg"
 ];
 
-let blue_fra_deck = red_fra_deck = [
+let fra_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AC-rmsSCXb3JvBhq71x4BxyNn7v8KNJbD.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AD-MrsxkwyrbmvuoZGd8bjxHdRdxunVXx.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AH-F3494XjYUbXn0VeFZy0DF17G8RpLHr.png",
@@ -100,10 +97,13 @@ let blue_fra_deck = red_fra_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KC-TFcVQ3BGjHl4vCFO9vK1cOSJeIfhLq.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KD-wXrPaavuBX1DThWZhoWRCXXzepxKy6.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KH-ZF7H4DYj0Pcdnrnf5xxx63yzIHI5N6.png",
-    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KS-DkfrFa5XckIUkwqOu3ADIKFhvB3b7m.png",
-    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png",
-    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"
+    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KS-DkfrFa5XckIUkwqOu3ADIKFhvB3b7m.png"
 ];
+
+let blue_fra_deck = [...fra_deck];
+let red_fra_deck = [...fra_deck];
+let blue_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
+let red_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
 
 gsap.registerPlugin(Draggable);
 
@@ -140,11 +140,19 @@ Draggable.create("#table *", {
                 type = "ita";
                 back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
             } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-                type = "fra/blue";
                 back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
+                if (card.classList.contains("no-jolly")) {
+                    type = "fra/blue";
+                } else {
+                    type = "fra/blue/jolly";
+                }
             } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-                type = "fra/red";
                 back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
+                if (card.classList.contains("no-jolly")) {
+                    type = "fra/red";
+                } else {
+                    type = "fra/red/jolly";
+                }
             }
 
             if (card.getAttribute("src") !== back) {
@@ -164,6 +172,12 @@ Draggable.create("#table *", {
                     } else if (type === "fra/red" && red_fra_deck.length > 0) {
                         index = Math.floor(Math.random() * red_fra_deck.length);
                         chosen = red_fra_deck.splice(index, 1)[0];
+                    } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
+                        index = Math.floor(Math.random() * blue_fra_deck_jolly.length);
+                        chosen = blue_fra_deck_jolly.splice(index, 1)[0];
+                    } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
+                        index = Math.floor(Math.random() * red_fra_deck_jolly.length);
+                        chosen = red_fra_deck_jolly.splice(index, 1)[0];
                     }
                     card.setAttribute("src", chosen);
                     card.setAttribute("data-face", chosen);
