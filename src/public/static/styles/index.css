@@ -85,13 +85,24 @@ body main #table .blue.card {
   left: 40px;
 }
 body main #table .blue.card.no-jolly {
-  top: 60px;
+  top: 80px;
 }
 body main #table .red.card {
   left: 80px;
 }
 body main #table .red.card.no-jolly {
-  top: 60px;
+  top: 80px;
+}
+body main #table .info {
+  left: 40px;
+  color: white;
+  font-family: Outfit, sans-serif;
+}
+body main #table #V {
+  top: 35px;
+}
+body main #table #X {
+  top: 110px;
 }
 body main #table .chip {
   left: 120px;
@@ -148,6 +159,6 @@ body main #table .dama.black {
 body main * {
   position: absolute;
 }
-body main *:hover {
+body main *:not(.info):hover {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }/*# sourceMappingURL=index.css.map */

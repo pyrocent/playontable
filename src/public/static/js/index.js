@@ -107,7 +107,7 @@ let red_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.ver
 
 gsap.registerPlugin(Draggable);
 
-Draggable.create("#table *", {
+Draggable.create("#table *:not(.info)", {
     bounds: {top: 10, left: 10},
     onDragStart: function () {
         const original = this.target;
