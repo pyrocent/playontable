@@ -11,8 +11,11 @@
     <link rel = "stylesheet" href = "../static/styles/index.css">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     <meta name = "description" content = "Play many card game with your friends and more!">
-    <script src = "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script src = "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/ably@2.9.0/build/ably.min.js" defer></script>
+    <script src = "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src = "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable.min.js" defer></script>
+    <script src = "../static/js/index.js" defer></script>
+    <script src = "../static/js/realtime.js" defer></script>
 </head>
     <body oncontextmenu = "return false">
         <div id = "dialog-overlay">
@@ -24,8 +27,35 @@
                     <li>Click on cards to turn them</li>
                     <li>Endless chips are available</li>
                 </ul>
-                <button id = "dialog-button">START TO PLAY</button>
+                <div id = "room-controls">
+                    <div id = "create-room-section">
+                        <button id = "create-room-button">CREATE NEW ROOM</button>
+                    </div>
+                    <div id = "join-room-section">
+                        <input type = "text" id = "room-id-input" placeholder = "Enter Room ID">
+                        <button id = "join-room-button">JOIN ROOM</button>
+                    </div>
+                </div>
+                <div id = "player-info">
+                    <input type = "text" id = "player-name-input" placeholder = "Your Name (optional)">
+                </div>
+                <div id = "room-info" style = "display: none;">
+                    <p>Room ID: <span id = "current-room-id"></span></p>
+                    <p>Share this link to invite others:</p>
+                    <input type = "text" id = "room-link" readonly>
+                    <button id = "copy-link-button">Copy</button>
+                    <div id = "connected-players">
+                        <p>Connected Players:</p>
+                        <ul id = "player-list"></ul>
+                    </div>
+                </div>
+                <button id = "dialog-button" style = "display: none;">START TO PLAY</button>
             </div>
+        </div>
+        <div id = "room-status-bar">
+            <span id = "room-indicator"></span>
+            <span id = "player-count"></span>
+            <button id = "show-room-info">Room Info</button>
         </div>
         <main>
             <section id = "table">
@@ -104,6 +134,5 @@
                 <img class = "black dama" src = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dama/black-vzaqbhQalHgEsBVCp2Kidk7YKFRaZk.png" alt = "black dama">
             </section>
         </main>
-        <script src = "../static/js/index.js" charset = "UTF-8"></script>
     </body>
 </html>
