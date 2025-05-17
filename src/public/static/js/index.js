@@ -1,7 +1,3 @@
-document.getElementById("dialog-button").addEventListener("click", function() {
-    document.getElementById("dialog-overlay").style.display = "none";
-});
-
 let ita_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1B-M7cfMC5sGLQC0Q256vyRX5XH9Yne7D.jpg",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1C-5Z4TjCXhiYWOhMRFw3NTSRdNefjW56.jpg",
@@ -105,84 +101,121 @@ let red_fra_deck = [...fra_deck];
 let blue_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
 let red_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
 
+document.getElementById("dialog-button").addEventListener("click", function() {
+    document.getElementById("dialog-overlay").style.display = "none";
+});
+
 gsap.registerPlugin(Draggable);
 
-Draggable.create("#table *:not(.info)", {
+const DRAG_CONFIG = {
     bounds: {top: 10, left: 10},
-    onDragStart: function () {
-        const original = this.target;
-
-        if (original.classList.contains("clone")) {
-            const clone = original.cloneNode(true);
-            const rect = original.getBoundingClientRect();
-            gsap.set(clone, {
-                width: rect.width,
-                top: rect.top - 20,
-                height: rect.height,
-                left: rect.left - 20,
-                position: "absolute"
+    onDragStart() {
+        if (this.target.classList.contains("clone")) {
+            room.publish("clone", {
+                src: this.target.src,
+                alt: this.target.alt,
+                classes: this.target.className
             });
-            original.parentNode.appendChild(clone);
-            this.endDrag();
-            Draggable.create(clone, {
-                bounds: {top: 10, left: 10}
-            })[0].startDrag(this.pointerEvent); 
+            this.target.classList.remove("clone");
         }
     },
-    onClick: function() {
+    onDrag() {
+        const children = Array.from(this.target.parentElement.children);
+        room.publish("drag", {
+            x:  this.x,
+            y:  this.y,
+            id: children.indexOf(this.target)
+        });
+    },
+    onClick() {
         if (this.target.classList.contains("card")) {
-            let type = "";
-            let back = "";
-            let chosen = "";
-            const card = this.target;
+            const children = Array.from(this.target.parentElement.children);
+            room.publish("click", {
+                random: Math.random(),
+                id: children.indexOf(this.target)
+            });
+        }
+    }
+};
 
-            if (card.classList.contains("ita")) {
-                type = "ita";
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-            } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-                if (card.classList.contains("no-jolly")) {
-                    type = "fra/blue";
-                } else {
-                    type = "fra/blue/jolly";
-                }
-            } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
-                if (card.classList.contains("no-jolly")) {
-                    type = "fra/red";
-                } else {
-                    type = "fra/red/jolly";
-                }
-            }
+function makeDraggable(el) {
+    Draggable.create(el, DRAG_CONFIG);
+}
 
-            if (card.getAttribute("src") !== back) {
-                card.setAttribute("src", back);
-            } else {
-                const face = card.getAttribute("data-face");
-                if (face) {
-                    card.setAttribute("src", face);
-                } else {
-                    let index;
-                    if (type === "ita" && ita_deck.length > 0) {
-                        index = Math.floor(Math.random() * ita_deck.length);
-                        chosen = ita_deck.splice(index, 1)[0];
-                    } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
-                        index = Math.floor(Math.random() * blue_fra_deck.length);
-                        chosen = blue_fra_deck.splice(index, 1)[0];
-                    } else if (type === "fra/red" && red_fra_deck.length > 0) {
-                        index = Math.floor(Math.random() * red_fra_deck.length);
-                        chosen = red_fra_deck.splice(index, 1)[0];
-                    } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
-                        index = Math.floor(Math.random() * blue_fra_deck_jolly.length);
-                        chosen = blue_fra_deck_jolly.splice(index, 1)[0];
-                    } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
-                        index = Math.floor(Math.random() * red_fra_deck_jolly.length);
-                        chosen = red_fra_deck_jolly.splice(index, 1)[0];
-                    }
-                    card.setAttribute("src", chosen);
-                    card.setAttribute("data-face", chosen);
-                }
+document.querySelectorAll("#table *:not(.info)").forEach(el => makeDraggable(el));
+
+const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
+const room = ably.channels.get("chat:public");
+
+room.subscribe("drag", (message) => {
+    const {id, x, y} = message.data;
+    gsap.set(document.getElementById("table").children[id], {x : x, y : y});
+});
+
+room.subscribe("clone", message => {
+    const {src, alt, classes} = message.data;
+    const img = document.createElement("img");
+
+    img.src = src;
+    img.alt = alt;
+    img.className = classes;
+
+    document.getElementById("table").appendChild(img);
+    makeDraggable(img);
+});
+
+room.subscribe("click", message => {
+    const {random, id} = message.data;
+    let type = "";
+    let back = "";
+    let chosen = "";
+    const card = document.getElementById("table").children[id];
+
+    if (card.classList.contains("ita")) {
+        type = "ita";
+        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
+    } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
+        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
+        if (card.classList.contains("no-jolly")) {
+            type = "fra/blue";
+        } else {
+            type = "fra/blue/jolly";
+        }
+    } else if (card.classList.contains("fra") && card.classList.contains("red")) {
+        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
+        if (card.classList.contains("no-jolly")) {
+            type = "fra/red";
+        } else {
+            type = "fra/red/jolly";
+        }
+    }
+
+    if (card.getAttribute("src") !== back) {
+        card.setAttribute("src", back);
+    } else {
+        const face = card.getAttribute("data-face");
+        if (face) {
+            card.setAttribute("src", face);
+        } else {
+            let index;
+            if (type === "ita" && ita_deck.length > 0) {
+                index = Math.floor(random * ita_deck.length);
+                chosen = ita_deck.splice(index, 1)[0];
+            } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
+                index = Math.floor(random * blue_fra_deck.length);
+                chosen = blue_fra_deck.splice(index, 1)[0];
+            } else if (type === "fra/red" && red_fra_deck.length > 0) {
+                index = Math.floor(random * red_fra_deck.length);
+                chosen = red_fra_deck.splice(index, 1)[0];
+            } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
+                index = Math.floor(random * blue_fra_deck_jolly.length);
+                chosen = blue_fra_deck_jolly.splice(index, 1)[0];
+            } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
+                index = Math.floor(random * red_fra_deck_jolly.length);
+                chosen = red_fra_deck_jolly.splice(index, 1)[0];
             }
+            card.setAttribute("src", chosen);
+            card.setAttribute("data-face", chosen);
         }
     }
 });
