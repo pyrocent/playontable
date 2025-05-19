@@ -64,6 +64,18 @@ body main {
   display: flex;
   flex-direction: column;
 }
+body main #decks {
+  top: 30px;
+  left: 30px;
+  width: 100px;
+  height: 137px;
+}
+body main #chips {
+  top: 70px;
+  left: 145px;
+  width: 25px;
+  height: 145px;
+}
 body main #table {
   gap: 10px;
   height: 100%;

@@ -104,6 +104,18 @@ let red_fra_deck = [...fra_deck];
 let blue_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
 let red_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
 
+const driver = window.driver.js.driver({
+    nextBtnText: "➡️",
+    prevBtnText: "⬅️",
+    doneBtnText: "❌",
+    steps: [
+        {element: "#table", popover: {title: "Table", description: "Drag cards, chips, chess pieces, etc. across the table or press them to hold in your hand"}},
+        {element: "#decks", popover: {title: "Decks", description: "Click on card to show its value and click again to hide it. Remember: decks are auto-shuffled on each load", side: "right", align: "center"}},
+        {element: "#chips", popover: {title: "Chips", description: "", side: "right", align: "center"}},
+    ]
+});
+driver.drive();
+
 const CONFIG = {
     bounds: {top: 10, left: 10},
     onPress() {
@@ -159,9 +171,9 @@ document.querySelectorAll("#table *:not(.info)").forEach(el => {
     Draggable.create(el, CONFIG);
 });
 
-document.getElementById("dialog-button").addEventListener("click", function() {
-    document.getElementById("dialog-overlay").style.display = "none";
-});
+// document.getElementById("dialog-button").addEventListener("click", function() {
+//     document.getElementById("dialog-overlay").style.display = "none";
+// });
 
 const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
 const room = ably.channels.get("chat:public");
