@@ -156,11 +156,14 @@ body main #table .pawn {
   top: 187px;
 }
 body main #table .dama {
-  left: 520px;
+  top: 230px;
   height: 30px;
 }
-body main #table .dama.black {
-  top: 43px;
+body main #table .white.dama {
+  left: 445px;
+}
+body main #table .black.dama {
+  left: 483px;
 }
 body main * {
   position: absolute;
