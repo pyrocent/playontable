@@ -105,9 +105,7 @@ document.getElementById("dialog-button").addEventListener("click", function() {
     document.getElementById("dialog-overlay").style.display = "none";
 });
 
-gsap.registerPlugin(Draggable);
-
-const DRAG_CONFIG = {
+const CONFIG = {
     bounds: {top: 10, left: 10},
     onDragStart() {
         if (this.target.classList.contains("clone")) {
@@ -120,26 +118,27 @@ const DRAG_CONFIG = {
         }
     },
     onDrag() {
-        const children = Array.from(this.target.parentElement.children);
         room.publish("drag", {
-            x:  this.x,
-            y:  this.y,
-            id: children.indexOf(this.target)
+            index: Array.from(this.target.parentElement.children).indexOf(this.target),
+            x: this.x,
+            y: this.y,
+            zIndex: getComputedStyle(this.target).zIndex
         });
     },
     onClick() {
         if (this.target.classList.contains("card")) {
-            const children = Array.from(this.target.parentElement.children);
             room.publish("click", {
                 random: Math.random(),
-                id: children.indexOf(this.target)
+                id: Array.from(this.target.parentElement.children).indexOf(this.target)
             });
         }
     }
 };
 
+gsap.registerPlugin(Draggable);
+
 function makeDraggable(el) {
-    Draggable.create(el, DRAG_CONFIG);
+    Draggable.create(el, CONFIG);
 }
 
 document.querySelectorAll("#table *:not(.info)").forEach(el => makeDraggable(el));
@@ -148,8 +147,8 @@ const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g09
 const room = ably.channels.get("chat:public");
 
 room.subscribe("drag", (message) => {
-    const {id, x, y} = message.data;
-    gsap.set(document.getElementById("table").children[id], {x : x, y : y});
+    const {index, x, y, zIndex} = message.data;
+    gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
 });
 
 room.subscribe("clone", message => {
