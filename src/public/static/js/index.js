@@ -96,58 +96,80 @@ let fra_deck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KS-DkfrFa5XckIUkwqOu3ADIKFhvB3b7m.png"
 ];
 
+const RED_JOLLY = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png";
+const BLACK_JOLLY = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png";
+
 let blue_fra_deck = [...fra_deck];
 let red_fra_deck = [...fra_deck];
-let blue_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
-let red_fra_deck_jolly = [...fra_deck, "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png"];
-
-document.getElementById("dialog-button").addEventListener("click", function() {
-    document.getElementById("dialog-overlay").style.display = "none";
-});
+let blue_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
+let red_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
 
 const CONFIG = {
     bounds: {top: 10, left: 10},
+    onPress() {
+        if (!this.target.classList.contains("clone")) {
+            this._holdCall = gsap.delayedCall(0.5, () => {
+                this._justHeld = true;
+                const hand = this.target.classList.toggle("hand");
+                room.publish("hide", {
+                    hand,
+                    index: Array.from(this.target.parentElement.children).indexOf(this.target)
+                });
+            });
+        }
+    },
+    onRelease() {
+        if (this._holdCall) this._holdCall.kill();
+    },
+    onClick() {
+        if (this.target.classList.contains("card")) {
+            if (this._justHeld) this._justHeld = false
+            else {
+                room.publish("click", {
+                    random: Math.random(),
+                    index: Array.from(this.target.parentElement.children).indexOf(this.target)
+                });
+            }
+        }
+    },
     onDragStart() {
         if (this.target.classList.contains("clone")) {
-            room.publish("clone", {
-                src: this.target.src,
-                alt: this.target.alt,
-                classes: this.target.className
-            });
-            this.target.classList.remove("clone");
+            if (this._holdCall) this._holdCall.kill();
+            else {
+                room.publish("clone", {
+                    src: this.target.src,
+                    alt: this.target.alt,
+                    classes: this.target.className
+                });
+                this.target.classList.remove("clone");
+            }
         }
     },
     onDrag() {
         room.publish("drag", {
-            index: Array.from(this.target.parentElement.children).indexOf(this.target),
             x: this.x,
             y: this.y,
-            zIndex: getComputedStyle(this.target).zIndex
+            zIndex: getComputedStyle(this.target).zIndex,
+            index: Array.from(this.target.parentElement.children).indexOf(this.target)
         });
-    },
-    onClick() {
-        if (this.target.classList.contains("card")) {
-            room.publish("click", {
-                random: Math.random(),
-                id: Array.from(this.target.parentElement.children).indexOf(this.target)
-            });
-        }
     }
 };
 
 gsap.registerPlugin(Draggable);
 
-function makeDraggable(el) {
+document.querySelectorAll("#table *:not(.info)").forEach(el => {
     Draggable.create(el, CONFIG);
-}
+});
 
-document.querySelectorAll("#table *:not(.info)").forEach(el => makeDraggable(el));
+document.getElementById("dialog-button").addEventListener("click", function() {
+    document.getElementById("dialog-overlay").style.display = "none";
+});
 
 const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
 const room = ably.channels.get("chat:public");
 
 room.subscribe("drag", (message) => {
-    const {index, x, y, zIndex} = message.data;
+    const {x, y, zIndex, index} = message.data;
     gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
 });
 
@@ -164,11 +186,11 @@ room.subscribe("clone", message => {
 });
 
 room.subscribe("click", message => {
-    const {random, id} = message.data;
+    const {random, index} = message.data;
     let type = "";
     let back = "";
     let chosen = "";
-    const card = document.getElementById("table").children[id];
+    const card = document.getElementById("table").children[index];
 
     if (card.classList.contains("ita")) {
         type = "ita";
@@ -216,5 +238,17 @@ room.subscribe("click", message => {
             card.setAttribute("src", chosen);
             card.setAttribute("data-face", chosen);
         }
+    }
+});
+
+room.subscribe("hide", message => {
+    if (message.connectionId === ably.connection.id) return;
+    const {hand, index} = message.data;
+    const item = document.getElementById("table").children[index];
+
+    if (hand) {
+        item.classList.add("hide");
+    } else {
+        item.classList.remove("hide");
     }
 });
