@@ -133,16 +133,14 @@ const CONFIG = {
         }
     },
     onDragStart() {
-        if (this.target.classList.contains("clone")) {
-            if (this._holdCall) this._holdCall.kill();
-            else {
-                room.publish("clone", {
-                    src: this.target.src,
-                    alt: this.target.alt,
-                    classes: this.target.className
-                });
-                this.target.classList.remove("clone");
-            }
+        if (this._holdCall) this._holdCall.kill();
+        else if (this.target.classList.contains("clone")) {
+            room.publish("clone", {
+                src: this.target.src,
+                alt: this.target.alt,
+                classes: this.target.className
+            });
+            this.target.classList.remove("clone");
         }
     },
     onDrag() {
