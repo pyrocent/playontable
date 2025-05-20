@@ -4,7 +4,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-ably = AblyRest(getenv("ABLY_API_KEY") or "RSbNow.ZeQsvA:jVdAh_u6NW-YRaZxoVfnEoCsOk6Ot3M89Tp5-jRVNtQ")
+ably = AblyRest(getenv("ABLY_API_KEY"))
 
 app = FastAPI()
 app.add_middleware(
@@ -16,4 +16,4 @@ app.add_middleware(
 )
 
 @app.get("/api/auth")
-async def auth(): return await ably.auth.create_token_request()
+def auth(): return ably.auth.create_token_request()
