@@ -17,13 +17,12 @@ body #dialog-overlay {
   z-index: 1;
   width: 100%;
   height: 100%;
-  display: flex;
   position: fixed;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
 }
-body #dialog-box {
+body #dialog-overlay #dialog-box {
   gap: 20px;
   padding: 20px;
   display: flex;
@@ -34,18 +33,25 @@ body #dialog-box {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
-body #dialog-box #dialog-title {
+body #dialog-overlay #dialog-box #dialog-title {
   margin: 0;
   color: #006847;
   text-align: center;
   font-family: Outfit, sans-serif;
 }
-body #dialog-box #dialog-instructions {
-  margin: 0;
-  padding-inline-start: 15px;
+body #dialog-overlay #dialog-box #join {
+  padding: 5px;
+  height: 25px;
+  text-align: center;
+  border-radius: 10px;
   font-family: Outfit, sans-serif;
 }
-body #dialog-box #dialog-button {
+body #dialog-overlay #dialog-box #room {
+  margin: 0;
+  text-align: center;
+  font-family: Outfit, sans-serif;
+}
+body #dialog-overlay #dialog-box #dialog-button {
   margin: 0;
   color: white;
   border: none;
@@ -55,7 +61,7 @@ body #dialog-box #dialog-button {
   font-family: Outfit, sans-serif;
   background-color: rgb(0, 118, 73);
 }
-body #dialog-box #dialog-button:hover {
+body #dialog-overlay #dialog-box #dialog-button:hover {
   color: rgb(0, 0, 0);
   background-color: rgba(0, 118, 73, 0.5);
 }
@@ -72,8 +78,8 @@ body main #decks {
 }
 body main #chips {
   top: 70px;
-  left: 145px;
-  width: 25px;
+  left: 147px;
+  width: 20px;
   height: 145px;
 }
 body main #table {

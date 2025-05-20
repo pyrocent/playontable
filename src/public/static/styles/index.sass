@@ -15,47 +15,53 @@ body
         z-index: 1
         width: 100%
         height: 100%
-        display: flex
         position: fixed
         align-items: center
         justify-content: center
         background-color: rgba(0, 0, 0, 0.75)
 
-    #dialog-box
-        gap: 20px
-        padding: 20px
-        display: flex
-        max-width: 75%
-        max-height: 100%
-        border-radius: 10px
-        flex-direction: column
-        background-color: rgb(255, 255, 255)
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
-
-        #dialog-title
-            margin: 0
-            color: #006847
-            text-align: center
-            font-family: Outfit, sans-serif
-
-        #dialog-instructions
-            margin: 0
-            padding-inline-start: 15px
-            font-family: Outfit, sans-serif
-
-        #dialog-button
-            margin: 0
-            color: white
-            border: none
-            cursor: pointer
-            padding: 10px 20px
+        #dialog-box
+            gap: 20px
+            padding: 20px
+            display: flex
+            max-width: 75%
+            max-height: 100%
             border-radius: 10px
-            font-family: Outfit, sans-serif
-            background-color: rgb(0, 118, 73)
+            flex-direction: column
+            background-color: rgb(255, 255, 255)
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
 
-            &:hover
-                color: rgb(0, 0, 0)
-                background-color: rgba(0, 118, 73, 0.5)
+            #dialog-title
+                margin: 0
+                color: #006847
+                text-align: center
+                font-family: Outfit, sans-serif
+
+            #join
+                padding: 5px
+                height: 25px
+                text-align: center
+                border-radius: 10px
+                font-family: Outfit, sans-serif
+
+            #room
+                margin: 0
+                text-align: center
+                font-family: Outfit, sans-serif
+
+            #dialog-button
+                margin: 0
+                color: white
+                border: none
+                cursor: pointer
+                padding: 10px 20px
+                border-radius: 10px
+                font-family: Outfit, sans-serif
+                background-color: rgb(0, 118, 73)
+
+                &:hover
+                    color: rgb(0, 0, 0)
+                    background-color: rgba(0, 118, 73, 0.5)
 
     main
         height: 100%
@@ -70,8 +76,8 @@ body
 
         #chips
             top: 70px
-            left: 145px
-            width: 25px
+            left: 147px
+            width: 20px
             height: 145px
 
         #table

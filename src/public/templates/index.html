@@ -19,12 +19,14 @@
     <script src = "../static/js/index.js" defer></script>
 </head>
     <body oncontextmenu = "return false">
-        <!-- <div id = "dialog-overlay">
-            <div id = "dialog-box">
-                <h3 id = "dialog-title">PlayOnTable</h3>
-                <button id = "dialog-button">START TO PLAY</button>
-            </div>
-        </div> -->
+        <div id = "dialog-overlay" hidden>
+            <form id = "dialog-box">
+                <h2 id = "dialog-title">PlayOnTable</h2>
+                <input id = "join" type = "text" name = "room" placeholder = "Join Room With Code">
+                <h5 id = "room"></h5>
+                <input id = "dialog-button" type = "submit" value = "START TO PLAY">
+            </form>
+        </div>
         <main>
             <div id = "decks"></div>
             <div id = "chips"></div>

@@ -104,18 +104,6 @@ let red_fra_deck = [...fra_deck];
 let blue_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
 let red_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
 
-const driver = window.driver.js.driver({
-    nextBtnText: "➡️",
-    prevBtnText: "⬅️",
-    doneBtnText: "❌",
-    steps: [
-        {element: "#table", popover: {title: "Table", description: "Drag cards, chips, chess pieces, etc. across the table or press them to hold in your hand"}},
-        {element: "#decks", popover: {title: "Decks", description: "Click on card to show its value and click again to hide it. Remember: decks are auto-shuffled on each load", side: "right", align: "center"}},
-        {element: "#chips", popover: {title: "Chips", description: "", side: "right", align: "center"}},
-    ]
-});
-driver.drive();
-
 const CONFIG = {
     bounds: {top: 10, left: 10},
     onPress() {
@@ -165,100 +153,127 @@ const CONFIG = {
     }
 };
 
-gsap.registerPlugin(Draggable);
+const URL = new URLSearchParams(window.location.search);
+const roomCode = URL.get("room");
 
-document.querySelectorAll("#table *:not(.info)").forEach(el => {
-    Draggable.create(el, CONFIG);
-});
+function startPlay(roomCode) {
 
-// document.getElementById("dialog-button").addEventListener("click", function() {
-//     document.getElementById("dialog-overlay").style.display = "none";
-// });
+    gsap.registerPlugin(Draggable);
 
-const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
-const room = ably.channels.get("chat:public");
+    document.querySelectorAll("#table *:not(.info)").forEach(el => {
+        Draggable.create(el, CONFIG);
+    });
 
-room.subscribe("drag", (message) => {
-    const {x, y, zIndex, index} = message.data;
-    gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
-});
+    const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
+    const room = ably.channels.get("room:" + roomCode);
 
-room.subscribe("clone", message => {
-    const {src, alt, classes} = message.data;
-    const img = document.createElement("img");
+    room.subscribe("drag", (message) => {
+        const {x, y, zIndex, index} = message.data;
+        gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
+    });
 
-    img.src = src;
-    img.alt = alt;
-    img.className = classes;
+    room.subscribe("clone", message => {
+        const {src, alt, classes} = message.data;
+        const img = document.createElement("img");
 
-    document.getElementById("table").appendChild(img);
-    makeDraggable(img);
-});
+        img.src = src;
+        img.alt = alt;
+        img.className = classes;
 
-room.subscribe("click", message => {
-    const {random, index} = message.data;
-    let type = "";
-    let back = "";
-    let chosen = "";
-    const card = document.getElementById("table").children[index];
+        document.getElementById("table").appendChild(img);
+        makeDraggable(img);
+    });
 
-    if (card.classList.contains("ita")) {
-        type = "ita";
-        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-    } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-        if (card.classList.contains("no-jolly")) {
-            type = "fra/blue";
-        } else {
-            type = "fra/blue/jolly";
-        }
-    } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-        back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
-        if (card.classList.contains("no-jolly")) {
-            type = "fra/red";
-        } else {
-            type = "fra/red/jolly";
-        }
-    }
+    room.subscribe("click", message => {
+        const {random, index} = message.data;
+        let type = "";
+        let back = "";
+        let chosen = "";
+        const card = document.getElementById("table").children[index];
 
-    if (card.getAttribute("src") !== back) {
-        card.setAttribute("src", back);
-    } else {
-        const face = card.getAttribute("data-face");
-        if (face) {
-            card.setAttribute("src", face);
-        } else {
-            let index;
-            if (type === "ita" && ita_deck.length > 0) {
-                index = Math.floor(random * ita_deck.length);
-                chosen = ita_deck.splice(index, 1)[0];
-            } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
-                index = Math.floor(random * blue_fra_deck.length);
-                chosen = blue_fra_deck.splice(index, 1)[0];
-            } else if (type === "fra/red" && red_fra_deck.length > 0) {
-                index = Math.floor(random * red_fra_deck.length);
-                chosen = red_fra_deck.splice(index, 1)[0];
-            } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
-                index = Math.floor(random * blue_fra_deck_jolly.length);
-                chosen = blue_fra_deck_jolly.splice(index, 1)[0];
-            } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
-                index = Math.floor(random * red_fra_deck_jolly.length);
-                chosen = red_fra_deck_jolly.splice(index, 1)[0];
+        if (card.classList.contains("ita")) {
+            type = "ita";
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
+        } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
+            if (card.classList.contains("no-jolly")) {
+                type = "fra/blue";
+            } else {
+                type = "fra/blue/jolly";
             }
-            card.setAttribute("src", chosen);
-            card.setAttribute("data-face", chosen);
+        } else if (card.classList.contains("fra") && card.classList.contains("red")) {
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
+            if (card.classList.contains("no-jolly")) {
+                type = "fra/red";
+            } else {
+                type = "fra/red/jolly";
+            }
         }
-    }
-});
 
-room.subscribe("hide", message => {
-    if (message.connectionId === ably.connection.id) return;
-    const {hand, index} = message.data;
-    const item = document.getElementById("table").children[index];
+        if (card.getAttribute("src") !== back) {
+            card.setAttribute("src", back);
+        } else {
+            const face = card.getAttribute("data-face");
+            if (face) {
+                card.setAttribute("src", face);
+            } else {
+                let index;
+                if (type === "ita" && ita_deck.length > 0) {
+                    index = Math.floor(random * ita_deck.length);
+                    chosen = ita_deck.splice(index, 1)[0];
+                } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
+                    index = Math.floor(random * blue_fra_deck.length);
+                    chosen = blue_fra_deck.splice(index, 1)[0];
+                } else if (type === "fra/red" && red_fra_deck.length > 0) {
+                    index = Math.floor(random * red_fra_deck.length);
+                    chosen = red_fra_deck.splice(index, 1)[0];
+                } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
+                    index = Math.floor(random * blue_fra_deck_jolly.length);
+                    chosen = blue_fra_deck_jolly.splice(index, 1)[0];
+                } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
+                    index = Math.floor(random * red_fra_deck_jolly.length);
+                    chosen = red_fra_deck_jolly.splice(index, 1)[0];
+                }
+                card.setAttribute("src", chosen);
+                card.setAttribute("data-face", chosen);
+            }
+        }
+    });
 
-    if (hand) {
-        item.classList.add("hide");
-    } else {
-        item.classList.remove("hide");
-    }
-});
+    room.subscribe("hide", message => {
+        if (message.connectionId === ably.connection.id) return;
+        const {hand, index} = message.data;
+        const item = document.getElementById("table").children[index];
+
+        if (hand) {
+            item.classList.add("hide");
+        } else {
+            item.classList.remove("hide");
+        }
+    });
+}
+
+if (roomCode) {
+    startPlay(roomCode);
+} else {
+    const driver = window.driver.js.driver({
+        nextBtnText: "➡️",
+        prevBtnText: "⬅️",
+        doneBtnText: "❌",
+        steps: [
+            {element: "#table", popover: {title: "Table", description: "Drag cards, chips, chess pieces, etc. across the table or press them to hold in your hand"}},
+            {element: "#decks", popover: {title: "Decks", description: "Click on card to show its value and click again to hide it. Remember: decks are auto-shuffled on each load", side: "right", align: "center"}},
+            {element: "#chips", popover: {title: "Chips", description: "", side: "right", align: "center"}}
+        ],
+        onDestroyed() {
+            const roomCode = "test";
+            document.getElementById("room").innerText = "Your Code: " + roomCode;
+            document.getElementById("dialog-overlay").style.display = "flex";
+            document.getElementById("dialog-box").addEventListener("submit", async e => {
+                e.preventDefault();
+                location.href = `${location.origin}${location.pathname}?room=${encodeURIComponent(document.getElementById("join").value || roomCode)}`;
+            });
+        }
+    });
+    driver.drive();
+}
