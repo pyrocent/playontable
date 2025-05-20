@@ -1,0 +1,20 @@
+from os import getenv
+from ably import AblyRest
+from fastAPI import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+
+ably = AblyRest(getenv("ABLY_API_KEY"))
+
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_headers = ["*"],
+    allow_methods = ["GET"],
+    allow_credentials = True,
+    allow_origins = ["https://playontable.com"]
+)
+
+@app.get("/api/auth")
+async def get_auth(client_id: str):
+    return JSONResponse(ably.auth.create_token_request({"room:*": ["publish", "subscribe"]}))
