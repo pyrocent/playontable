@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 @app.get("/api/auth")
-async def auth():
+async def auth(client_id: str | None = Query(None)):
     token = ably.auth.create_token_request({
         "clientId": "guest",
         "capability": {
