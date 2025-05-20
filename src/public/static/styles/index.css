@@ -45,11 +45,21 @@ body #dialog-overlay #dialog-box #join {
   text-align: center;
   border-radius: 10px;
   font-family: Outfit, sans-serif;
+  border: 1px solid rgb(0, 118, 73);
 }
 body #dialog-overlay #dialog-box #room {
   margin: 0;
   text-align: center;
+  white-space: pre-wrap;
   font-family: Outfit, sans-serif;
+}
+body #dialog-overlay #dialog-box div {
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+}
+body #dialog-overlay #dialog-box div #copy {
+  cursor: pointer;
 }
 body #dialog-overlay #dialog-box #dialog-button {
   margin: 0;

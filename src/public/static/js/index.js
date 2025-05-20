@@ -266,12 +266,18 @@ if (roomCode) {
             {element: "#chips", popover: {title: "Chips", description: "", side: "right", align: "center"}}
         ],
         onDestroyed() {
-            const roomCode = "test";
-            document.getElementById("room").innerText = "Your Code: " + roomCode;
+            const roomText = document.getElementById("room");
+            const roomCode = String(Math.floor(Math.random() * 1e10)).padStart(10, "0");
+            room.innerText = "Your Code: " + roomCode;
             document.getElementById("dialog-overlay").style.display = "flex";
             document.getElementById("dialog-box").addEventListener("submit", async e => {
                 e.preventDefault();
                 location.href = `${location.origin}${location.pathname}?room=${encodeURIComponent(document.getElementById("join").value || roomCode)}`;
+            });
+            document.getElementById("copy").addEventListener("click", () => {
+                navigator.clipboard.writeText(roomCode);
+                roomText.innerText = "Your Code:      Copied!     ";
+                setTimeout(() => roomText.innerText = "Your Code: " + roomCode, 2000);
             });
         }
     });
