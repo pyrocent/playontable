@@ -16,4 +16,4 @@ app.add_middleware(
 )
 
 @app.get("/api/auth")
-def auth(): return ably.auth.create_token_request()
+async def auth(): return await ably.auth.create_token_request()
