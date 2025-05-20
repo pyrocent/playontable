@@ -1,7 +1,6 @@
 from os import getenv
 from ably import AblyRest
 from fastapi import FastAPI, Query
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 ably = AblyRest(getenv("ABLY_API_KEY"))
@@ -17,5 +16,5 @@ app.add_middleware(
 
 @app.get("/api/auth")
 async def auth():
-    token = await ably.auth.request_token()
-    return JSONResponse(token)
+    response = await ably.auth.request_token()
+    return response.token
