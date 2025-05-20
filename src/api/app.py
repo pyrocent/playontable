@@ -18,4 +18,4 @@ app.add_middleware(
 @app.get("/api/auth")
 async def auth():
     token = await ably.auth.request_token()
-    return token["token"]
+    return JSONResponse(token)
