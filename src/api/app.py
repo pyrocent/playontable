@@ -4,7 +4,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-ably = AblyRest(getenv("ABLY_API_KEY"))
+ably = AblyRest(getenv("ABLY_API_KEY") or "RSbNow.ZeQsvA:jVdAh_u6NW-YRaZxoVfnEoCsOk6Ot3M89Tp5-jRVNtQ")
 
 app = FastAPI()
 app.add_middleware(
@@ -12,16 +12,8 @@ app.add_middleware(
     allow_headers = ["*"],
     allow_methods = ["GET"],
     allow_credentials = True,
-    allow_origins = ["https://playontable.com"]
+    allow_origins = ["https://www.playontable.com"]
 )
 
 @app.get("/api/auth")
-async def auth(client_id: str | None = Query(None)):
-    token = ably.auth.create_token_request({
-        "clientId": "guest",
-        "capability": {
-            "channel1": ["publish", "subscribe"],
-        },
-        'ttl': 3600 * 1000
-    })
-    return JSONResponse(token)
+async def auth(): return await ably.auth.create_token_request()
