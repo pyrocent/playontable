@@ -17,9 +17,5 @@ app.add_middleware(
 
 @app.get("/")
 async def auth(client_id: str | None = Query(None)):
-    token = ably.auth.create_token_request({
-        "client_id": client_id or "guest",
-        "ttl": 60 * 60 * 1000,
-        "capability": {"room:*": ["publish", "subscribe"]}
-    })
+    token = ably.auth.create_token_request()
     return JSONResponse(token)
