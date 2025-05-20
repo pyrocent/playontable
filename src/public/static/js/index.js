@@ -164,7 +164,7 @@ function startPlay(roomCode) {
         Draggable.create(el, CONFIG);
     });
 
-    const ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
+    const ably = new Ably.Realtime({authUrl: "/auth"});
     const room = ably.channels.get("room:" + roomCode);
 
     room.subscribe("drag", (message) => {
