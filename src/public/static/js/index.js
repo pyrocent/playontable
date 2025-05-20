@@ -270,8 +270,7 @@ if (roomCode) {
             const roomCode = String(Math.floor(Math.random() * 1e10)).padStart(10, "0");
             room.innerText = roomCode;
             document.getElementById("dialog-overlay").style.display = "flex";
-            document.getElementById("dialog-box").addEventListener("submit", async e => {
-                e.preventDefault();
+            document.getElementById("dialog-button").addEventListener("click", () => {
                 location.href = `${location.origin}${location.pathname}?room=${encodeURIComponent(document.getElementById("join").value || roomCode)}`;
             });
             document.getElementById("copy").addEventListener("click", () => {

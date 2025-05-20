@@ -20,12 +20,12 @@
 </head>
     <body oncontextmenu = "return false">
         <div id = "dialog-overlay" hidden>
-            <form id = "dialog-box">
+            <div id = "dialog-box">
                 <h2 id = "dialog-title">PlayOnTable</h2>
                 <input id = "join" type = "text" name = "room" placeholder = "Join Room With Code">
                 <div><h5>Your Code:</h5><h5 id = "room"></h5><img id = "copy" src = "../static/assets/copy.png"></img></div>
-                <input id = "dialog-button" type = "submit" value = "START TO PLAY">
-            </form>
+                <input id = "dialog-button" type = "button" value = "START TO PLAY">
+            </div>
         </div>
         <main>
             <div id = "decks"></div>
