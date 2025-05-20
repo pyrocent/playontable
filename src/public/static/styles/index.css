@@ -47,15 +47,19 @@ body #dialog-overlay #dialog-box #join {
   font-family: Outfit, sans-serif;
   border: 1px solid rgb(0, 118, 73);
 }
-body #dialog-overlay #dialog-box #room {
+body #dialog-overlay #dialog-box h5 {
   margin: 0;
   text-align: center;
   white-space: pre-wrap;
   font-family: Outfit, sans-serif;
 }
+body #dialog-overlay #dialog-box #room {
+  width: 45%;
+  text-align: center;
+}
 body #dialog-overlay #dialog-box div {
-  gap: 5px;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 body #dialog-overlay #dialog-box div #copy {
@@ -70,6 +74,7 @@ body #dialog-overlay #dialog-box #dialog-button {
   border-radius: 10px;
   font-family: Outfit, sans-serif;
   background-color: rgb(0, 118, 73);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 body #dialog-overlay #dialog-box #dialog-button:hover {
   color: rgb(0, 0, 0);

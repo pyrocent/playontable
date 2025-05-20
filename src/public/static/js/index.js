@@ -268,7 +268,7 @@ if (roomCode) {
         onDestroyed() {
             const roomText = document.getElementById("room");
             const roomCode = String(Math.floor(Math.random() * 1e10)).padStart(10, "0");
-            room.innerText = "Your Code: " + roomCode;
+            room.innerText = roomCode;
             document.getElementById("dialog-overlay").style.display = "flex";
             document.getElementById("dialog-box").addEventListener("submit", async e => {
                 e.preventDefault();
@@ -276,8 +276,8 @@ if (roomCode) {
             });
             document.getElementById("copy").addEventListener("click", () => {
                 navigator.clipboard.writeText(roomCode);
-                roomText.innerText = "Your Code:      Copied!     ";
-                setTimeout(() => roomText.innerText = "Your Code: " + roomCode, 2000);
+                roomText.innerText = "Copied!";
+                setTimeout(() => roomText.innerText = roomCode, 2000);
             });
         }
     });
