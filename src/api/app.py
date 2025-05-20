@@ -16,5 +16,5 @@ app.add_middleware(
 )
 
 @app.get("/api/auth")
-async def get_auth(client_id: str):
+async def auth():
     return JSONResponse(ably.auth.create_token_request({"room:*": ["publish", "subscribe"]}))
