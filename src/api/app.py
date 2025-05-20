@@ -15,7 +15,7 @@ app.add_middleware(
     allow_origins = ["https://playontable.com"]
 )
 
-@app.get("/")
+@app.get("/api/auth")
 async def auth():
     token = ably.auth.create_token_request({
         "clientId": "guest",
