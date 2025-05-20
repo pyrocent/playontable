@@ -164,7 +164,7 @@ function startPlay(roomCode) {
         Draggable.create(el, CONFIG);
     });
 
-    const ably = new Ably.Realtime({authUrl: "/auth"});
+    const ably = new Ably.Realtime({authUrl: "/api/auth"});
     const room = ably.channels.get("room:" + roomCode);
 
     room.subscribe("drag", (message) => {
