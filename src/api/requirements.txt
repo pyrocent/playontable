@@ -1,3 +1,4 @@
 ably
 fastapi
+python-multipart
 uvicorn[standard]
