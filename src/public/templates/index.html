@@ -24,7 +24,7 @@
         <div id = "dialog-overlay" hidden>
             <div id = "dialog-box">
                 <h2 id = "dialog-title">PlayOnTable</h2>
-                <input id = "join" type = "text" name = "room" placeholder = "Enter Code to Join Room...">
+                <input id = "join" type = "text" name = "room" placeholder = "Enter Code to Join Room..." pattern = "\d{10}" minlength = "10" maxlength = "10" inputmode = "numeric">
                 <div><h5>Or Invite:</h5><h5 id = "room"></h5><img id = "copy" src = "../static/assets/copy.png"></img></div>
                 <input id = "dialog-button" type = "button" value = "START TO PLAY">
             </div>
