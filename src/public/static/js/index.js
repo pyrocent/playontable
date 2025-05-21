@@ -1,14 +1,12 @@
-const ably = new Ably.Realtime({authUrl: "/api/auth"});
 const roomCode =
-  document.cookie
-          .split("; ")
-          .find(row => row.startsWith("room="))
-          ?.split("=")[1]
-  ?? Date.now();
+    document.cookie
+        .split("; ")
+        .find(row => row.startsWith("room="))
+        ?.split("=")[1]
 
-  function startPlay(roomCode) {
+function startPlay(roomCode) {
 
-    let ita_deck = [
+    let itaDeck = [
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1B-M7cfMC5sGLQC0Q256vyRX5XH9Yne7D.jpg",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1C-5Z4TjCXhiYWOhMRFw3NTSRdNefjW56.jpg",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1D-R6wLmFFmmrVbmoi1pjrmQcJv1DHFXm.jpg",
@@ -51,7 +49,7 @@ const roomCode =
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10S-b8gySm19LLuNFOFuXUCxy4ef6RfXpx.jpg"
     ];
 
-    let fra_deck = [
+    let fraDeck = [
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AC-rmsSCXb3JvBhq71x4BxyNn7v8KNJbD.png",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AD-MrsxkwyrbmvuoZGd8bjxHdRdxunVXx.png",
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AH-F3494XjYUbXn0VeFZy0DF17G8RpLHr.png",
@@ -109,10 +107,10 @@ const roomCode =
     const RED_JOLLY = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png";
     const BLACK_JOLLY = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png";
 
-    let blue_fra_deck = [...fra_deck];
-    let red_fra_deck = [...fra_deck];
-    let blue_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
-    let red_fra_deck_jolly = [...fra_deck, RED_JOLLY, BLACK_JOLLY];
+    let blueFraDeck = [...fraDeck];
+    let redFraDeck = [...fraDeck];
+    let blueFraDeckJolly = [...fraDeck, RED_JOLLY, BLACK_JOLLY];
+    let redFraDeckJolly = [...fraDeck, RED_JOLLY, BLACK_JOLLY];
 
     const CONFIG = {
         bounds: {top: 10, left: 10},
@@ -121,10 +119,7 @@ const roomCode =
                 this._holdCall = gsap.delayedCall(0.5, () => {
                     this._justHeld = true;
                     const hand = this.target.classList.toggle("hand");
-                    room.publish("hide", {
-                        hand,
-                        index: Array.from(this.target.parentElement.children).indexOf(this.target)
-                    });
+                    room.publish("hide", {hand, index: [...this.target.parentElement.children].indexOf(this.target)});
                 });
             }
         },
@@ -135,30 +130,22 @@ const roomCode =
             if (this.target.classList.contains("card")) {
                 if (this._justHeld) this._justHeld = false
                 else {
-                    room.publish("click", {
-                        random: Math.random(),
-                        index: Array.from(this.target.parentElement.children).indexOf(this.target)
-                    });
+                    room.publish("click", {random: Math.random(), index: [...this.target.parentElement.children].indexOf(this.target)});
                 }
             }
         },
         onDragStart() {
             if (this._holdCall) this._holdCall.kill();
             else if (this.target.classList.contains("clone")) {
-                room.publish("clone", {
-                    src: this.target.src,
-                    alt: this.target.alt,
-                    classes: this.target.className
-                });
+                room.publish("clone", {src: this.target.src, classes: this.target.className, alt: this.target.alt});
                 this.target.classList.remove("clone");
             }
         },
         onDrag() {
             room.publish("drag", {
-                x: this.x,
-                y: this.y,
+                x: this.x, y: this.y,
                 zIndex: getComputedStyle(this.target).zIndex,
-                index: Array.from(this.target.parentElement.children).indexOf(this.target)
+                index: [...this.target.parentElement.children].indexOf(this.target)
             });
         }
     };
@@ -222,21 +209,21 @@ const roomCode =
                 card.setAttribute("src", face);
             } else {
                 let index;
-                if (type === "ita" && ita_deck.length > 0) {
-                    index = Math.floor(random * ita_deck.length);
-                    chosen = ita_deck.splice(index, 1)[0];
-                } else if (type === "fra/blue" && blue_fra_deck.length > 0) {
-                    index = Math.floor(random * blue_fra_deck.length);
-                    chosen = blue_fra_deck.splice(index, 1)[0];
-                } else if (type === "fra/red" && red_fra_deck.length > 0) {
-                    index = Math.floor(random * red_fra_deck.length);
-                    chosen = red_fra_deck.splice(index, 1)[0];
-                } else if (type === "fra/blue/jolly" && blue_fra_deck_jolly.length > 0) {
-                    index = Math.floor(random * blue_fra_deck_jolly.length);
-                    chosen = blue_fra_deck_jolly.splice(index, 1)[0];
-                } else if (type === "fra/red/jolly" && red_fra_deck_jolly.length > 0) {
-                    index = Math.floor(random * red_fra_deck_jolly.length);
-                    chosen = red_fra_deck_jolly.splice(index, 1)[0];
+                if (type === "ita" && itaDeck.length > 0) {
+                    index = Math.floor(random * itaDeck.length);
+                    chosen = itaDeck.splice(index, 1)[0];
+                } else if (type === "fra/blue" && blueFraDeck.length > 0) {
+                    index = Math.floor(random * blueFraDeck.length);
+                    chosen = blueFraDeck.splice(index, 1)[0];
+                } else if (type === "fra/red" && redFraDeck.length > 0) {
+                    index = Math.floor(random * redFraDeck.length);
+                    chosen = redFraDeck.splice(index, 1)[0];
+                } else if (type === "fra/blue/jolly" && blueFraDeckJolly.length > 0) {
+                    index = Math.floor(random * blueFraDeckJolly.length);
+                    chosen = blueFraDeckJolly.splice(index, 1)[0];
+                } else if (type === "fra/red/jolly" && redFraDeckJolly.length > 0) {
+                    index = Math.floor(random * redFraDeckJolly.length);
+                    chosen = redFraDeckJolly.splice(index, 1)[0];
                 }
                 card.setAttribute("src", chosen);
                 card.setAttribute("data-face", chosen);
@@ -261,15 +248,14 @@ if (roomCode) {
     startPlay(roomCode);
 } else {
     const driver = window.driver.js.driver({
-        nextBtnText: "➡️",
-        prevBtnText: "⬅️",
-        doneBtnText: "❌",
+        nextBtnText: "➡️", prevBtnText: "⬅️", doneBtnText: "❌",
         steps: [
             {element: "#table", popover: {title: "Table", description: "<ul><li>Drag anything to move anywhere</li><li>Hold down it to take in your hand</li><li>Things in hand have a red border</li><li>Only you can see your own hand</li></ul>", side: "bottom", align: "center"}},
             {element: "#decks", popover: {title: "Decks", description: "<ul><li>Decks are already pre-shuffled</li><li>Tap cards to turn face up/down</li></ul>", side: "right", align: "center"}},
             {element: "#chips", popover: {title: "Chips", description: "<ul><li>Use as many chips as you want</li><ul>", side: "right", align: "center"}}
         ],
         onDestroyed() {
+            const roomCode = Date.now();
             const roomText = document.getElementById("room");
             room.innerText = roomCode;
             document.getElementById("dialog-overlay").style.display = "flex";
