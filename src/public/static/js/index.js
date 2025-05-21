@@ -1,12 +1,11 @@
-const ably = new Ably.Realtime({authUrl: "/api/auth"});
 const roomCode =
   document.cookie
           .split("; ")
           .find(row => row.startsWith("room="))
           ?.split("=")[1]
-  ?? ably.connection.id;
+  ?? Date.now();
 
-function startPlay(roomCode) {
+  function startPlay(roomCode) {
 
     let ita_deck = [
         "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1B-M7cfMC5sGLQC0Q256vyRX5XH9Yne7D.jpg",
