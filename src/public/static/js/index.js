@@ -273,7 +273,8 @@ if (roomCode) {
             document.getElementById("dialog-button").addEventListener("click", () => {
                 location.href = `${location.origin}${location.pathname}?room=${encodeURIComponent(document.getElementById("join").value || roomCode)}`;
             });
-            document.getElementById("copy").addEventListener("click", () => {
+            document.getElementById("copy").addEventListener("submit", (e) => {
+                e.preventDefault();
                 navigator.clipboard.writeText(roomCode);
                 roomText.innerText = "Copied!";
                 setTimeout(() => roomText.innerText = roomCode, 2000);
