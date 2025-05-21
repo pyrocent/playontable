@@ -1,5 +1,10 @@
-const URL = new URLSearchParams(window.location.search);
-const roomCode = URL.get("room");
+const ably = new Ably.Realtime({authUrl: "/api/auth"});
+const roomCode =
+  document.cookie
+          .split("; ")
+          .find(row => row.startsWith("room="))
+          ?.split("=")[1]
+  ?? ably.connection.id;
 
 function startPlay(roomCode) {
 
@@ -164,7 +169,6 @@ function startPlay(roomCode) {
         Draggable.create(el, CONFIG);
     });
 
-    const ably = new Ably.Realtime({authUrl: "/api/auth"});
     const room = ably.channels.get("room:" + roomCode);
 
     room.subscribe("drag", (message) => {
@@ -267,14 +271,9 @@ if (roomCode) {
         ],
         onDestroyed() {
             const roomText = document.getElementById("room");
-            const roomCode = String(Math.floor(Math.random() * 1e10)).padStart(10, "0");
             room.innerText = roomCode;
             document.getElementById("dialog-overlay").style.display = "flex";
-            document.getElementById("dialog-button").addEventListener("click", () => {
-                location.href = `${location.origin}${location.pathname}?room=${encodeURIComponent(document.getElementById("join").value || roomCode)}`;
-            });
-            document.getElementById("copy").addEventListener("submit", (e) => {
-                e.preventDefault();
+            document.getElementById("copy").addEventListener("click", (e) => {
                 navigator.clipboard.writeText(roomCode);
                 roomText.innerText = "Copied!";
                 setTimeout(() => roomText.innerText = roomCode, 2000);
