@@ -3,7 +3,6 @@ from ably import AblyRest
 from fastapi import FastAPI, Form
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-from json import load
 
 ably: AblyRest = AblyRest(getenv("ABLY_API_KEY"))
 
@@ -19,7 +18,7 @@ app.add_middleware(
 @app.get("/api/auth")
 async def auth():
     response = await ably.auth.request_token()
-    return load(response)
+    return dict(response)
 
 @app.post("/api/room")
 async def room(room: str = Form(...)):
