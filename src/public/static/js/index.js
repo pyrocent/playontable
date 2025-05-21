@@ -1,3 +1,4 @@
+const ably = new Ably.Realtime({authUrl: "/api/auth"});
 const roomCode =
   document.cookie
           .split("; ")
