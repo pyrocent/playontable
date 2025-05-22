@@ -1,5 +1,6 @@
 import {Room} from "./ably.js";
 import {makeDraggable} from "./drag.js";
+import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {getItaDeck, getBlueFraDeck, getRedFraDeck, getBlueFraDeckJolly, getRedFraDeckJolly} from "./decks.js";
 
 let room;
