@@ -2,10 +2,12 @@ import {getRoom} from "./room.js";
 import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable/+esm";
 
-const room = getRoom();
 gsap.registerPlugin(Draggable);
 
 export function makeDraggable(toBeDrag) {
+
+    const room = getRoom();
+
     Draggable.create(toBeDrag, {
         bounds: {top: 10, left: 10},
         onPress() {
