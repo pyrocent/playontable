@@ -1,7 +1,4 @@
-import {makeDraggable} from "./drag.js";
-import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
-
-let itaDeck = [
+const itaDeck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1B-M7cfMC5sGLQC0Q256vyRX5XH9Yne7D.jpg",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1C-5Z4TjCXhiYWOhMRFw3NTSRdNefjW56.jpg",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/1D-R6wLmFFmmrVbmoi1pjrmQcJv1DHFXm.jpg",
@@ -43,7 +40,8 @@ let itaDeck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10D-u549YGvR28EAs1Cgv114Ubxa3slqYk.jpg",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/ita/10S-b8gySm19LLuNFOFuXUCxy4ef6RfXpx.jpg"
 ];
-let fraDeck = [
+
+const fraDeck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AC-rmsSCXb3JvBhq71x4BxyNn7v8KNJbD.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AD-MrsxkwyrbmvuoZGd8bjxHdRdxunVXx.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/AH-F3494XjYUbXn0VeFZy0DF17G8RpLHr.png",
@@ -97,99 +95,32 @@ let fraDeck = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KH-ZF7H4DYj0Pcdnrnf5xxx63yzIHI5N6.png",
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/KS-DkfrFa5XckIUkwqOu3ADIKFhvB3b7m.png"
 ];
-const JOLLY            = ["https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png", "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png"];
-let   blueFraDeck      = [...fraDeck];
-let   redFraDeck       = [...fraDeck];
-let   blueFraDeckJolly = [...fraDeck, ...JOLLY];
-let   redFraDeckJolly  = [...fraDeck, ...JOLLY];
 
-export function initRoomHandlers(room, table) {
-    room.on("play", () => {
-        wait.close();
-    });
+const JOLLY = [
+  "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png",
+  "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png"
+];
 
-    room.on("drag", (message) => {
-        const {x, y, zIndex, index} = message.data;
-        gsap.set(table.children[index], {x: x, y: y, zIndex: zIndex});
-    });
+export function getItaDeck() {
+  return [...itaDeck];
+};
 
-    room.on("chip", message => {
-        const {src, alt, classes} = message.data;
-        const img = document.createElement("img");
+export function getFraDeck() {
+  return [...fraDeck];
+};
 
-        img.src = src;
-        img.alt = alt;
-        img.className = classes;
+export function getBlueFraDeck() {
+  return [...fraDeck];
+};
 
-        table.appendChild(img);
-        makeDraggable(img);
-    });
+export function getRedFraDeck() {
+  return [...fraDeck];
+};
 
-    room.on("turn", message => {
-        const {random, index} = message.data;
-        let type = "";
-        let back = "";
-        let chosen = "";
-        const card = table.children[index];
+export function getBlueFraDeckJolly() {
+  return [...fraDeck, ...JOLLY];
+};
 
-        if (card.classList.contains("ita")) {
-            type = "ita";
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-        } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-            if (card.classList.contains("no-jolly")) {
-                type = "fra/blue";
-            } else {
-                type = "fra/blue/jolly";
-            }
-        } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
-            if (card.classList.contains("no-jolly")) {
-                type = "fra/red";
-            } else {
-                type = "fra/red/jolly";
-            }
-        }
-
-        if (card.getAttribute("src") !== back) {
-            card.setAttribute("src", back);
-        } else {
-            const face = card.getAttribute("data-face");
-            if (face) {
-                card.setAttribute("src", face);
-            } else {
-                let index;
-                if (type === "ita" && itaDeck.length > 0) {
-                    index = Math.floor(random * itaDeck.length);
-                    chosen = itaDeck.splice(index, 1)[0];
-                } else if (type === "fra/blue" && blueFraDeck.length > 0) {
-                    index = Math.floor(random * blueFraDeck.length);
-                    chosen = blueFraDeck.splice(index, 1)[0];
-                } else if (type === "fra/red" && redFraDeck.length > 0) {
-                    index = Math.floor(random * redFraDeck.length);
-                    chosen = redFraDeck.splice(index, 1)[0];
-                } else if (type === "fra/blue/jolly" && blueFraDeckJolly.length > 0) {
-                    index = Math.floor(random * blueFraDeckJolly.length);
-                    chosen = blueFraDeckJolly.splice(index, 1)[0];
-                } else if (type === "fra/red/jolly" && redFraDeckJolly.length > 0) {
-                    index = Math.floor(random * redFraDeckJolly.length);
-                    chosen = redFraDeckJolly.splice(index, 1)[0];
-                }
-                card.setAttribute("src", chosen);
-                card.setAttribute("data-face", chosen);
-            }
-        }
-    });
-
-    room.on("hide", message => {
-        if (message.connectionId === ably.connection.id) return;
-        const {hand, index} = message.data;
-        const item = table.children[index];
-
-        if (hand) {
-            item.classList.add("hide");
-        } else {
-            item.classList.remove("hide");
-        }
-    });
+export function getRedFraDeckJolly() {
+  return [...fraDeck, ...JOLLY];
 };

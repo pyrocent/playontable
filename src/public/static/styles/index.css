@@ -25,20 +25,20 @@ body #chips {
   height: 145px;
   position: fixed;
 }
-body #menu, body #load, body #wait {
+body #main-menu, body #wait-room, body #wait-host {
   padding: 20px;
   max-width: 75%;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
-body #menu .name, body #load .name, body #wait .name {
+body #main-menu .name, body #wait-room .name, body #wait-host .name {
   margin: 0;
   color: #006847;
   text-align: center;
   font-family: Outfit, sans-serif;
 }
-body #menu button, body #load button, body #wait button {
+body #main-menu button, body #wait-room button, body #wait-host button {
   color: white;
   border: none;
   cursor: pointer;
@@ -47,14 +47,14 @@ body #menu button, body #load button, body #wait button {
   font-family: Outfit, sans-serif;
   background-color: rgb(0, 118, 73);
 }
-body #menu button:hover, body #load button:hover, body #wait button:hover {
+body #main-menu button:hover, body #wait-room button:hover, body #wait-host button:hover {
   color: rgb(0, 0, 0);
   background-color: rgba(0, 118, 73, 0.5);
 }
-body #menu #form-wait, body #load #form-wait, body #wait #form-wait {
+body #main-menu #form-wait, body #wait-room #form-wait, body #wait-host #form-wait {
   margin: 20px 0 10px 0;
 }
-body #menu #form-wait #join, body #load #form-wait #join, body #wait #form-wait #join {
+body #main-menu #form-wait #join, body #wait-room #form-wait #join, body #wait-host #form-wait #join {
   padding: 5px;
   min-width: 0;
   flex: 1 1 auto;
@@ -62,7 +62,7 @@ body #menu #form-wait #join, body #load #form-wait #join, body #wait #form-wait 
   font-family: Outfit, sans-serif;
   border: 1px solid rgb(0, 118, 73);
 }
-body #menu #form-load button, body #load #form-load button, body #wait #form-load button {
+body #main-menu #form-load button, body #wait-room #form-load button, body #wait-host #form-load button {
   width: 100%;
 }
 body #load h5 {

@@ -1,10 +1,12 @@
+import {getRoom} from "./room.js";
 import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable/+esm";
 
-export function makeDraggable(what, room) {
+const room = getRoom();
+gsap.registerPlugin(Draggable);
 
-    gsap.registerPlugin(Draggable);
-    Draggable.create(what, {
+export function makeDraggable(toBeDrag) {
+    Draggable.create(toBeDrag, {
         bounds: {top: 10, left: 10},
         onPress() {
             if (!this.target.classList.contains("clone")) {
@@ -21,7 +23,7 @@ export function makeDraggable(what, room) {
         onClick() {
             if (this.target.classList.contains("card")) {
                 if (this._justHeld) this._justHeld = false;
-                else room.send("turn", {random: Math.random(), index: [...this.target.parentElement.children].indexOf(this.target)});
+                else room.send("turn", {randomNumber: Math.random(), index: [...this.target.parentElement.children].indexOf(this.target)});
             }
         },
         onDragStart() {
@@ -33,7 +35,7 @@ export function makeDraggable(what, room) {
         },
         onDrag() {
             room.send("drag", {
-                x: this.x, y: this.y, zIndex: getComputedStyle(this.target).zIndex,
+                x: this.x, y: this.y, z: getComputedStyle(this.target).zIndex,
                 index: [...this.target.parentElement.children].indexOf(this.target)
             });
         }
