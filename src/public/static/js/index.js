@@ -136,6 +136,14 @@ menu.addEventListener("close", () => {
     const ably = new Ably.Realtime({authUrl: "/api/auth"});
     const room = ably.channels.get(code);
 
+    load.addEventListener("close", () => {
+        room.publish("play", {});
+    });
+
+    room.subscribe("play", () => {
+        wait.close();
+    });
+
     const CONFIG = {
         bounds: {top: 10, left: 10},
         onPress() {
