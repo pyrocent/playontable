@@ -142,7 +142,7 @@ menu.addEventListener("close", () => {
 
     load.addEventListener("close", () => {
         wait.close();
-        room.publish("play");
+        room.publish("play", {});
     });
 });
 
