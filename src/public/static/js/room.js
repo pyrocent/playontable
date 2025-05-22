@@ -12,8 +12,6 @@ const table = document.getElementById("table");
 
 export function initRoom(roomCode) {
 
-    makeDraggable("#table *:not(.info)");
-
     room = new Room(roomCode);
 
     room.on("play", () => {
@@ -104,6 +102,9 @@ export function initRoom(roomCode) {
             item.classList.remove("hide");
         }
     });
+
+    makeDraggable("#table *:not(.info)");
+
     return room;
 }
 
