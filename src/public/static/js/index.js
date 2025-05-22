@@ -139,11 +139,11 @@ menu.addEventListener("close", () => {
     room.subscribe("play", () => {
         startPlaying();
     });
-});
 
-load.addEventListener("close", () => {
-    wait.close();
-    room.publish("play");
+    load.addEventListener("close", () => {
+        wait.close();
+        room.publish("play");
+    });
 });
 
 function startPlaying(roomCode) {
