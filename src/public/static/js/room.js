@@ -93,7 +93,7 @@ export function initRoom(roomCode) {
     });
 
     room.on("hide", message => {
-        if (message.connectionId === ably.connection.id) return;
+        if (message.connectionId === room.ably.connection.id) return;
         const {hand, index} = message.data;
         const item = table.children[index];
 
