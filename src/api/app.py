@@ -19,16 +19,3 @@ app.add_middleware(
 async def auth():
     response = await ably.auth.request_token()
     return response.to_dict()
-
-@app.post("/api/room")
-async def room(room: str = Form(...)):
-    response = RedirectResponse("/", status_code = 303)
-    response.set_cookie(
-        path = "/",
-        key = "room",
-        value = room,
-        secure = True,
-        samesite = "lax",
-        max_age = 60 * 60 * 24
-    )
-    return response

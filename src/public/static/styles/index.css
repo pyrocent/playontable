@@ -25,7 +25,7 @@ body #chips {
   height: 145px;
   position: fixed;
 }
-body #dialog-overlay {
+body #dialog {
   top: 0;
   left: 0;
   z-index: 1;
@@ -36,7 +36,7 @@ body #dialog-overlay {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
 }
-body #dialog-overlay #dialog-box {
+body #dialog #dialog-box {
   gap: 20px;
   padding: 20px;
   display: flex;
@@ -47,38 +47,38 @@ body #dialog-overlay #dialog-box {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
-body #dialog-overlay #dialog-box #dialog-title {
+body #dialog #dialog-box #dialog-title {
   margin: 0;
   color: #006847;
   text-align: center;
   font-family: Outfit, sans-serif;
 }
-body #dialog-overlay #dialog-box #join {
+body #dialog #dialog-box #join {
   padding: 5px;
   height: 25px;
   border-radius: 10px;
   font-family: Outfit, sans-serif;
   border: 1px solid rgb(0, 118, 73);
 }
-body #dialog-overlay #dialog-box h5 {
+body #dialog #dialog-box h5 {
   margin: 0;
   text-align: center;
   white-space: pre-wrap;
   font-family: Outfit, sans-serif;
 }
-body #dialog-overlay #dialog-box #room {
+body #dialog #dialog-box #room {
   width: 45%;
   text-align: center;
 }
-body #dialog-overlay #dialog-box div {
+body #dialog #dialog-box div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body #dialog-overlay #dialog-box div #copy {
+body #dialog #dialog-box div #copy {
   cursor: pointer;
 }
-body #dialog-overlay #dialog-box #dialog-button {
+body #dialog #dialog-box #dialog-button {
   margin: 0;
   color: white;
   border: none;
@@ -89,7 +89,7 @@ body #dialog-overlay #dialog-box #dialog-button {
   background-color: rgb(0, 118, 73);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
-body #dialog-overlay #dialog-box #dialog-button:hover {
+body #dialog #dialog-box #dialog-button:hover {
   color: rgb(0, 0, 0);
   background-color: rgba(0, 118, 73, 0.5);
 }
