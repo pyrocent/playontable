@@ -136,141 +136,129 @@ menu.addEventListener("close", () => {
     const ably = new Ably.Realtime({authUrl: "/api/auth"});
     const room = ably.channels.get(code);
 
-    room.subscribe("play", () => {
-        startPlaying();
-    });
-
-    load.addEventListener("close", () => {
-        wait.close();
-        room.publish("play", {});
-    });
-
-    function startPlaying() {
-
-        const CONFIG = {
-            bounds: {top: 10, left: 10},
-            onPress() {
-                if (!this.target.classList.contains("clone")) {
-                    this._holdCall = gsap.delayedCall(0.5, () => {
-                        this._justHeld = true;
-                        const hand = this.target.classList.toggle("hand");
-                        room.publish("hide", {hand, index: [...this.target.parentElement.children].indexOf(this.target)});
-                    });
-                }
-            },
-            onRelease() {
-                if (this._holdCall) this._holdCall.kill();
-            },
-            onClick() {
-                if (this.target.classList.contains("card")) {
-                    if (this._justHeld) this._justHeld = false
-                    else {
-                        room.publish("turn", {random: Math.random(), index: [...this.target.parentElement.children].indexOf(this.target)});
-                    }
-                }
-            },
-            onDragStart() {
-                if (this._holdCall) this._holdCall.kill();
-                else if (this.target.classList.contains("clone")) {
-                    room.publish("chip", {src: this.target.src, classes: this.target.className, alt: this.target.alt});
-                    this.target.classList.remove("clone");
-                }
-            },
-            onDrag() {
-                room.publish("drag", {
-                    x: this.x, y: this.y,
-                    zIndex: getComputedStyle(this.target).zIndex,
-                    index: [...this.target.parentElement.children].indexOf(this.target)
+    const CONFIG = {
+        bounds: {top: 10, left: 10},
+        onPress() {
+            if (!this.target.classList.contains("clone")) {
+                this._holdCall = gsap.delayedCall(0.5, () => {
+                    this._justHeld = true;
+                    const hand = this.target.classList.toggle("hand");
+                    room.publish("hide", {hand, index: [...this.target.parentElement.children].indexOf(this.target)});
                 });
             }
-        };
-
-        gsap.registerPlugin(Draggable);
-        Draggable.create("#table *:not(.info)", CONFIG);
-
-        room.subscribe("drag", (message) => {
-            const {x, y, zIndex, index} = message.data;
-            gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
-        });
-
-        room.subscribe("chip", message => {
-            const {src, alt, classes} = message.data;
-            const img = document.createElement("img");
-
-            img.src = src;
-            img.alt = alt;
-            img.className = classes;
-
-            document.getElementById("table").appendChild(img);
-            makeDraggable(img);
-        });
-
-        room.subscribe("turn", message => {
-            const {random, index} = message.data;
-            let type = "";
-            let back = "";
-            let chosen = "";
-            const card = document.getElementById("table").children[index];
-
-            if (card.classList.contains("ita")) {
-                type = "ita";
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
-            } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
-                if (card.classList.contains("no-jolly")) {
-                    type = "fra/blue";
-                } else {
-                    type = "fra/blue/jolly";
-                }
-            } else if (card.classList.contains("fra") && card.classList.contains("red")) {
-                back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
-                if (card.classList.contains("no-jolly")) {
-                    type = "fra/red";
-                } else {
-                    type = "fra/red/jolly";
+        },
+        onRelease() {
+            if (this._holdCall) this._holdCall.kill();
+        },
+        onClick() {
+            if (this.target.classList.contains("card")) {
+                if (this._justHeld) this._justHeld = false
+                else {
+                    room.publish("turn", {random: Math.random(), index: [...this.target.parentElement.children].indexOf(this.target)});
                 }
             }
+        },
+        onDragStart() {
+            if (this._holdCall) this._holdCall.kill();
+            else if (this.target.classList.contains("clone")) {
+                room.publish("chip", {src: this.target.src, classes: this.target.className, alt: this.target.alt});
+                this.target.classList.remove("clone");
+            }
+        },
+        onDrag() {
+            room.publish("drag", {
+                x: this.x, y: this.y,
+                zIndex: getComputedStyle(this.target).zIndex,
+                index: [...this.target.parentElement.children].indexOf(this.target)
+            });
+        }
+    };
 
-            if (card.getAttribute("src") !== back) {
-                card.setAttribute("src", back);
+    gsap.registerPlugin(Draggable);
+    Draggable.create("#table *:not(.info)", CONFIG);
+
+    room.subscribe("drag", (message) => {
+        const {x, y, zIndex, index} = message.data;
+        gsap.set(document.getElementById("table").children[index], {x: x, y: y, zIndex: zIndex});
+    });
+
+    room.subscribe("chip", message => {
+        const {src, alt, classes} = message.data;
+        const img = document.createElement("img");
+
+        img.src = src;
+        img.alt = alt;
+        img.className = classes;
+
+        document.getElementById("table").appendChild(img);
+        makeDraggable(img);
+    });
+
+    room.subscribe("turn", message => {
+        const {random, index} = message.data;
+        let type = "";
+        let back = "";
+        let chosen = "";
+        const card = document.getElementById("table").children[index];
+
+        if (card.classList.contains("ita")) {
+            type = "ita";
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/ita-v16M4k51oPsbykjlDkP2QC12a2ZlC9.png";
+        } else if (card.classList.contains("fra") && card.classList.contains("blue")) {
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/blue-QGgTJ0hBDa3mmldXMJOAh4qGWzcWJd.png";
+            if (card.classList.contains("no-jolly")) {
+                type = "fra/blue";
             } else {
-                const face = card.getAttribute("data-face");
-                if (face) {
-                    card.setAttribute("src", face);
-                } else {
-                    let index;
-                    if (type === "ita" && itaDeck.length > 0) {
-                        index = Math.floor(random * itaDeck.length);
-                        chosen = itaDeck.splice(index, 1)[0];
-                    } else if (type === "fra/blue" && blueFraDeck.length > 0) {
-                        index = Math.floor(random * blueFraDeck.length);
-                        chosen = blueFraDeck.splice(index, 1)[0];
-                    } else if (type === "fra/red" && redFraDeck.length > 0) {
-                        index = Math.floor(random * redFraDeck.length);
-                        chosen = redFraDeck.splice(index, 1)[0];
-                    } else if (type === "fra/blue/jolly" && blueFraDeckJolly.length > 0) {
-                        index = Math.floor(random * blueFraDeckJolly.length);
-                        chosen = blueFraDeckJolly.splice(index, 1)[0];
-                    } else if (type === "fra/red/jolly" && redFraDeckJolly.length > 0) {
-                        index = Math.floor(random * redFraDeckJolly.length);
-                        chosen = redFraDeckJolly.splice(index, 1)[0];
-                    }
-                    card.setAttribute("src", chosen);
-                    card.setAttribute("data-face", chosen);
-                }
+                type = "fra/blue/jolly";
             }
-        });
-
-        room.subscribe("hide", message => {
-            if (message.connectionId === ably.connection.id) return;
-            const {hand, index} = message.data;
-            const item = document.getElementById("table").children[index];
-
-            if (hand) {
-                item.classList.add("hide");
+        } else if (card.classList.contains("fra") && card.classList.contains("red")) {
+            back = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/back/fra/red-0Wy1fwzHybNsgqCW99k7WtZ998hOjv.png";
+            if (card.classList.contains("no-jolly")) {
+                type = "fra/red";
             } else {
-                item.classList.remove("hide");
+                type = "fra/red/jolly";
             }
-        });
-    }
+        }
+
+        if (card.getAttribute("src") !== back) {
+            card.setAttribute("src", back);
+        } else {
+            const face = card.getAttribute("data-face");
+            if (face) {
+                card.setAttribute("src", face);
+            } else {
+                let index;
+                if (type === "ita" && itaDeck.length > 0) {
+                    index = Math.floor(random * itaDeck.length);
+                    chosen = itaDeck.splice(index, 1)[0];
+                } else if (type === "fra/blue" && blueFraDeck.length > 0) {
+                    index = Math.floor(random * blueFraDeck.length);
+                    chosen = blueFraDeck.splice(index, 1)[0];
+                } else if (type === "fra/red" && redFraDeck.length > 0) {
+                    index = Math.floor(random * redFraDeck.length);
+                    chosen = redFraDeck.splice(index, 1)[0];
+                } else if (type === "fra/blue/jolly" && blueFraDeckJolly.length > 0) {
+                    index = Math.floor(random * blueFraDeckJolly.length);
+                    chosen = blueFraDeckJolly.splice(index, 1)[0];
+                } else if (type === "fra/red/jolly" && redFraDeckJolly.length > 0) {
+                    index = Math.floor(random * redFraDeckJolly.length);
+                    chosen = redFraDeckJolly.splice(index, 1)[0];
+                }
+                card.setAttribute("src", chosen);
+                card.setAttribute("data-face", chosen);
+            }
+        }
+    });
+
+    room.subscribe("hide", message => {
+        if (message.connectionId === ably.connection.id) return;
+        const {hand, index} = message.data;
+        const item = document.getElementById("table").children[index];
+
+        if (hand) {
+            item.classList.add("hide");
+        } else {
+            item.classList.remove("hide");
+        }
+    });
 });
