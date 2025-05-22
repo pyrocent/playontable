@@ -22,8 +22,7 @@ mainMenu.addEventListener("close", () => {
             setTimeout(() => showCode.innerText = roomCode, 2000);
         };
         waitRoom.showModal();
-    }
-    else if (mainMenu.returnValue === "wait-host") {
+    } else if (mainMenu.returnValue === "wait-host") {
         initRoom(joinCode.value);
         waitHost.showModal();
     };

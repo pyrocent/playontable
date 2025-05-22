@@ -1,7 +1,7 @@
 {
     "rewrites": [
         {
-            "source": "/api/:endpoint(auth|room)",
+            "source": "/api/auth",
             "destination": "/api/app"
         },
         {

@@ -97,30 +97,30 @@ const fraDeck = [
 ];
 
 const JOLLY = [
-  "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png",
-  "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png"
+    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XR-XlmR6S3wAC2T4yd7yCFmRnOkFhNaEH.png",
+    "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png"
 ];
 
 export function getItaDeck() {
-  return [...itaDeck];
+    return [...itaDeck];
 };
 
 export function getFraDeck() {
-  return [...fraDeck];
+    return [...fraDeck];
 };
 
 export function getBlueFraDeck() {
-  return [...fraDeck];
+    return [...fraDeck];
 };
 
 export function getRedFraDeck() {
-  return [...fraDeck];
+    return [...fraDeck];
 };
 
 export function getBlueFraDeckJolly() {
-  return [...fraDeck, ...JOLLY];
+    return [...fraDeck, ...JOLLY];
 };
 
 export function getRedFraDeckJolly() {
-  return [...fraDeck, ...JOLLY];
+    return [...fraDeck, ...JOLLY];
 };

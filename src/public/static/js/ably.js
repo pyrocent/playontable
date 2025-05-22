@@ -2,7 +2,7 @@ import Ably from "https://cdn.jsdelivr.net/npm/ably@2.2.0/+esm";
 
 export class Room {
     constructor(roomCode) {
-        this.ably = new Ably.Realtime({key: "RSbNow.VG6faw:GXG7jxAOIfxwTkYQaEmho1WX5g096yZnMB7TnmCeMgI"});
+        this.ably = new Ably.Realtime({authUrl: "/api/auth"});
         this.room = this.ably.channels.get(roomCode);
     }
 

@@ -60,15 +60,15 @@ export function initRoom(roomCode) {
                 deckType = "fra/red";
             } else {
                 deckType = "fra/red/jolly";
-            }
+            };
         }
 
         if (card.getAttribute("src") !== cardBack) {
             card.setAttribute("src", cardBack);
         } else {
-            const face = card.getAttribute("data-face");
-            if (face) {
-                card.setAttribute("src", face);
+            const cardFront = card.getAttribute("data-face");
+            if (cardFront) {
+                card.setAttribute("src", cardFront);
             } else {
                 let index;
                 if (deckType === "ita" && itaDeck.length > 0) {
@@ -86,11 +86,11 @@ export function initRoom(roomCode) {
                 } else if (deckType === "fra/red/jolly" && redFraDeckJolly.length > 0) {
                     index = Math.floor(randomNumber * redFraDeckJolly.length);
                     randomCard = redFraDeckJolly.splice(index, 1)[0];
-                }
+                };
                 card.setAttribute("src", randomCard);
                 card.setAttribute("data-face", randomCard);
-            }
-        }
+            };
+        };
     });
 
     room.on("hide", message => {
