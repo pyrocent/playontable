@@ -30,12 +30,31 @@ body
         background-color: rgb(255, 255, 255)
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
 
-        .name
-            margin: 0
-            color: #006847
-            text-align: center
-            font-family: Outfit, sans-serif
+    #main-menu .name, #wait-host .name
+        margin: 0
+        color: #006847
+        text-align: center
+        font-family: Outfit, sans-serif
 
+    #main-menu
+        #form-wait-host
+            gap: 10px
+            display: flex
+            margin: 20px 0 10px 0
+
+            #join-code
+                padding: 5px
+                min-width: 0
+                flex: 1 1 auto
+                border-radius: 10px
+                font-family: Outfit, sans-serif
+                border: 1px solid rgb(0, 118, 73)
+
+        #form-wait-room
+            button
+                width: 100%
+
+    #main-menu, #wait-room
         button
             color: white
             border: none
@@ -49,38 +68,29 @@ body
                 color: rgb(0, 0, 0)
                 background-color: rgba(0, 118, 73, 0.5)
 
-        #form-wait
-            margin: 20px 0 10px 0
-
-            #join
-                padding: 5px
-                min-width: 0
-                flex: 1 1 auto
-                border-radius: 10px
-                font-family: Outfit, sans-serif
-                border: 1px solid rgb(0, 118, 73)
-
-        #form-load button
-            width: 100%
-
-    #load
-        h5
-            margin: 0
-            text-align: center
-            white-space: pre-wrap
-            font-family: Outfit, sans-serif
-
-        #room
-            width: 40%
-            text-align: center
-
-        div
+    #wait-room
+        form
+            gap: 10px
             display: flex
-            align-items: center
-            justify-content: center
+            flex-direction: column
 
-            #copy
-                cursor: pointer
+            div
+                display: flex
+                align-items: center
+                justify-content: center
+
+                h5
+                    margin: 0
+                    text-align: center
+                    white-space: pre-wrap
+                    font-family: Outfit, sans-serif
+
+                #show-code
+                    width: 40%
+                    text-align: center
+
+                #copy-code
+                    cursor: pointer
 
     main
         height: 100%

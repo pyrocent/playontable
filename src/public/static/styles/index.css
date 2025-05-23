@@ -32,13 +32,29 @@ body #main-menu, body #wait-room, body #wait-host {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
-body #main-menu .name, body #wait-room .name, body #wait-host .name {
+body #main-menu .name, body #wait-host .name {
   margin: 0;
   color: #006847;
   text-align: center;
   font-family: Outfit, sans-serif;
 }
-body #main-menu button, body #wait-room button, body #wait-host button {
+body #main-menu #form-wait-host {
+  gap: 10px;
+  display: flex;
+  margin: 20px 0 10px 0;
+}
+body #main-menu #form-wait-host #join-code {
+  padding: 5px;
+  min-width: 0;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  font-family: Outfit, sans-serif;
+  border: 1px solid rgb(0, 118, 73);
+}
+body #main-menu #form-wait-room button {
+  width: 100%;
+}
+body #main-menu button, body #wait-room button {
   color: white;
   border: none;
   cursor: pointer;
@@ -47,40 +63,31 @@ body #main-menu button, body #wait-room button, body #wait-host button {
   font-family: Outfit, sans-serif;
   background-color: rgb(0, 118, 73);
 }
-body #main-menu button:hover, body #wait-room button:hover, body #wait-host button:hover {
+body #main-menu button:hover, body #wait-room button:hover {
   color: rgb(0, 0, 0);
   background-color: rgba(0, 118, 73, 0.5);
 }
-body #main-menu #form-wait, body #wait-room #form-wait, body #wait-host #form-wait {
-  margin: 20px 0 10px 0;
+body #wait-room form {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
-body #main-menu #form-wait #join, body #wait-room #form-wait #join, body #wait-host #form-wait #join {
-  padding: 5px;
-  min-width: 0;
-  flex: 1 1 auto;
-  border-radius: 10px;
-  font-family: Outfit, sans-serif;
-  border: 1px solid rgb(0, 118, 73);
+body #wait-room form div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body #main-menu #form-load button, body #wait-room #form-load button, body #wait-host #form-load button {
-  width: 100%;
-}
-body #load h5 {
+body #wait-room form div h5 {
   margin: 0;
   text-align: center;
   white-space: pre-wrap;
   font-family: Outfit, sans-serif;
 }
-body #load #room {
+body #wait-room form div #show-code {
   width: 40%;
   text-align: center;
 }
-body #load div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body #load div #copy {
+body #wait-room form div #copy-code {
   cursor: pointer;
 }
 body main {
