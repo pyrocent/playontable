@@ -13,10 +13,10 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     title: "Table",
                     description: `
                         <ul>
-                            <li>Drag anything to move anywhere</li>
-                            <li>Hold down it to take in your hand</li>
-                            <li>Things in hand have a red border</li>
-                            <li>Only you can see your own hand</li>
+                            <li><strong>Drag anything to move anywhere</strong></li>
+                            <li><strong>Hold down it to take in your hand</strong></li>
+                            <li><strong>Things in hand have a red border</strong></li>
+                            <li><strong>Only you can see your own hand</strong></li>
                         </ul>
                     `,
                     side: "bottom",
@@ -29,8 +29,8 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     title: "Decks",
                     description: `
                         <ul>
-                            <li>Decks are already pre-shuffled</li>
-                            <li>Tap cards to turn face up/down</li>
+                            <li><strong>Decks are already pre-shuffled</strong></li>
+                            <li><strong>Tap cards to turn face up/down</strong></li>
                         </ul>
                     `,
                     side: "right",
@@ -43,7 +43,7 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     title: "Chips",
                     description: `
                         <ul>
-                            <li>Use as many chips as you want</li>
+                            <li><strong>Use as many chips as you want</strong></li>
                         </ul>
                     `,
                     side: "right",
