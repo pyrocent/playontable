@@ -29,8 +29,8 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     title: "Decks",
                     description: `
                         <ul>
-                            <li><strong>Decks are already pre-shuffled</strong></li>
-                            <li><strong>Click card to turn face up/down</strong></li>
+                            <li><strong>Decks have already pre-shuffled</strong></li>
+                            <li><strong>Click cards to turn face up/down</strong></li>
                         </ul>
                     `,
                     side: "right",
