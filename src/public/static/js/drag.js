@@ -14,7 +14,7 @@ export function makeDraggable(toBeDrag) {
             if (!this.target.classList.contains("clone")) {
                 this._holdCall = gsap.delayedCall(0.5, () => {
                     this._justHeld = true;
-                    room.send("hide", {hand: this.target.classList.toggle("hand"), cardIndex: [...this.target.parentElement.children].indexOf(this.target)});
+                    room.send("hide", {hand: this.target.classList.toggle("hand"), hideIndex: [...this.target.parentElement.children].indexOf(this.target)});
                 });
             }
         },
@@ -37,7 +37,7 @@ export function makeDraggable(toBeDrag) {
         onDrag() {
             room.send("drag", {
                 x: this.x, y: this.y, z: getComputedStyle(this.target).zIndex,
-                cardIndex: [...this.target.parentElement.children].indexOf(this.target)
+                dragIndex: [...this.target.parentElement.children].indexOf(this.target)
             });
         }
     });

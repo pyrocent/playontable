@@ -20,8 +20,8 @@ export function initRoom(roomCode) {
     });
 
     room.on("drag", message => {
-        const {x, y, z, cardIndex} = message.data;
-        gsap.set(table.children[cardIndex], {x: x, y: y, zIndex: z});
+        const {x, y, z, dragIndex} = message.data;
+        gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
     });
 
     room.on("chip", message => {
@@ -41,6 +41,7 @@ export function initRoom(roomCode) {
         let deckType;
         let cardBack;
         let randomCard;
+        let randomCardIndex;
         const card = table.children[cardIndex];
 
         if (card.classList.contains("ita")) {
@@ -70,24 +71,24 @@ export function initRoom(roomCode) {
                 card.setAttribute("src", cardFront);
             } else {
                 if (deckType === "ita") {
-                    cardIndex = Math.floor(randomNumber * itaDeck.length);
-                    randomCard = itaDeck[cardIndex];
+                    randomCardIndex = Math.floor(randomNumber * itaDeck.length);
+                    randomCard = itaDeck[randomCardIndex];
                 } else if (deckType === "fra/blue") {
-                    cardIndex = Math.floor(randomNumber * blueFraDeck.length);
-                    randomCard = blueFraDeck[cardIndex];
+                    randomCardIndex = Math.floor(randomNumber * blueFraDeck.length);
+                    randomCard = blueFraDeck[randomCardIndex];
                 } else if (deckType === "fra/red") {
-                    cardIndex = Math.floor(randomNumber * redFraDeck.length);
-                    randomCard = redFraDeck[cardIndex];
+                    randomCardIndex = Math.floor(randomNumber * redFraDeck.length);
+                    randomCard = redFraDeck[randomCardIndex];
                 } else if (deckType === "fra/blue/jolly") {
-                    cardIndex = Math.floor(randomNumber * blueFraDeckJolly.length);
-                    randomCard = blueFraDeckJolly[cardIndex];
+                    randomCardIndex = Math.floor(randomNumber * blueFraDeckJolly.length);
+                    randomCard = blueFraDeckJolly[randomCardIndex];
                 } else if (deckType === "fra/red/jolly") {
-                    cardIndex = Math.floor(randomNumber * redFraDeckJolly.length);
-                    randomCard = redFraDeckJolly[cardIndex];
+                    randomCardIndex = Math.floor(randomNumber * redFraDeckJolly.length);
+                    randomCard = redFraDeckJolly[carrandomCardIndexdIndex];
                 };
                 card.setAttribute("src", randomCard);
                 card.setAttribute("data-face", randomCard);
-                room.send("draw", {deckType: deckType, cardIndex: cardIndex});
+                room.send("draw", {deckType, cardIndex});
             };
         };
     });
@@ -106,8 +107,8 @@ export function initRoom(roomCode) {
 
     room.on("hide", message => {
         if (message.connectionId === room.ably.connection.id) return;
-        const {hand, cardIndex} = message.data;
-        const item = table.children[cardIndex];
+        const {hand, hideIndex} = message.data;
+        const item = table.children[hideIndex];
 
         if (hand) item.classList.add("hide");
         else item.classList.remove("hide");
