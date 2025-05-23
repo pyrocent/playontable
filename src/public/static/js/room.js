@@ -102,7 +102,7 @@ export function initRoom(roomCode) {
         else if (deckType === "fra/blue/jolly") blueFraDeckJolly.splice(cardIndex, 1)[0];
         else if (deckType === "fra/red/jolly") redFraDeckJolly.splice(cardIndex, 1)[0];
 
-        console.log(itaDeck, blueFraDeck, redFraDeck, blueFraDeckJolly, redFraDeckJolly);
+        console.log(itaDeck.length);
     });
 
     room.on("hide", message => {
