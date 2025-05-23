@@ -84,7 +84,7 @@ export function initRoom(roomCode) {
                     randomCard = blueFraDeckJolly[randomCardIndex];
                 } else if (deckType === "fra/red/jolly") {
                     randomCardIndex = Math.floor(randomNumber * redFraDeckJolly.length);
-                    randomCard = redFraDeckJolly[carrandomCardIndexdIndex];
+                    randomCard = redFraDeckJolly[randomCardIndex];
                 };
                 card.setAttribute("src", randomCard);
                 card.setAttribute("data-face", randomCard);
