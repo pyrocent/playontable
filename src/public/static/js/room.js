@@ -20,8 +20,8 @@ export function initRoom(roomCode) {
     });
 
     room.on("drag", message => {
-        const {x, y, z, index} = message.data;
-        gsap.set(table.children[index], {x: x, y: y, zIndex: z});
+        const {x, y, z, cardIndex} = message.data;
+        gsap.set(table.children[cardIndex], {x: x, y: y, zIndex: z});
     });
 
     room.on("chip", message => {
@@ -37,11 +37,11 @@ export function initRoom(roomCode) {
     });
 
     room.on("turn", message => {
-        const {randomNumber, index} = message.data;
-        let deckType = "";
-        let cardBack = "";
-        let randomCard = "";
-        const card = table.children[index];
+        const {randomNumber, cardIndex} = message.data;
+        let deckType;
+        let cardBack;
+        let randomCard;
+        const card = table.children[cardIndex];
 
         if (card.classList.contains("ita")) {
             deckType = "ita";
@@ -69,39 +69,48 @@ export function initRoom(roomCode) {
             if (cardFront) {
                 card.setAttribute("src", cardFront);
             } else {
-                let index;
-                if (deckType === "ita" && itaDeck.length > 0) {
-                    index = Math.floor(randomNumber * itaDeck.length);
-                    randomCard = itaDeck.splice(index, 1)[0];
-                } else if (deckType === "fra/blue" && blueFraDeck.length > 0) {
-                    index = Math.floor(randomNumber * blueFraDeck.length);
-                    randomCard = blueFraDeck.splice(index, 1)[0];
-                } else if (deckType === "fra/red" && redFraDeck.length > 0) {
-                    index = Math.floor(randomNumber * redFraDeck.length);
-                    randomCard = redFraDeck.splice(index, 1)[0];
-                } else if (deckType === "fra/blue/jolly" && blueFraDeckJolly.length > 0) {
-                    index = Math.floor(randomNumber * blueFraDeckJolly.length);
-                    randomCard = blueFraDeckJolly.splice(index, 1)[0];
-                } else if (deckType === "fra/red/jolly" && redFraDeckJolly.length > 0) {
-                    index = Math.floor(randomNumber * redFraDeckJolly.length);
-                    randomCard = redFraDeckJolly.splice(index, 1)[0];
+                if (deckType === "ita") {
+                    cardIndex = Math.floor(randomNumber * itaDeck.length);
+                    randomCard = itaDeck[cardIndex];
+                } else if (deckType === "fra/blue") {
+                    cardIndex = Math.floor(randomNumber * blueFraDeck.length);
+                    randomCard = blueFraDeck[cardIndex];
+                } else if (deckType === "fra/red") {
+                    cardIndex = Math.floor(randomNumber * redFraDeck.length);
+                    randomCard = redFraDeck[cardIndex];
+                } else if (deckType === "fra/blue/jolly") {
+                    cardIndex = Math.floor(randomNumber * blueFraDeckJolly.length);
+                    randomCard = blueFraDeckJolly[cardIndex];
+                } else if (deckType === "fra/red/jolly") {
+                    cardIndex = Math.floor(randomNumber * redFraDeckJolly.length);
+                    randomCard = redFraDeckJolly[cardIndex];
                 };
                 card.setAttribute("src", randomCard);
                 card.setAttribute("data-face", randomCard);
+                room.send("draw", {deckType: deckType, cardIndex: cardIndex});
             };
         };
     });
 
+    room.on("draw", message => {
+        const {deckType, cardIndex} = message.data;
+
+        if (deckType === "ita") itaDeck.splice(cardIndex, 1)[0];
+        else if (deckType === "fra/blue") blueFraDeck.splice(cardIndex, 1)[0];
+        else if (deckType === "fra/red") redFraDeck.splice(cardIndex, 1)[0];
+        else if (deckType === "fra/blue/jolly") blueFraDeckJolly.splice(cardIndex, 1)[0];
+        else if (deckType === "fra/red/jolly") redFraDeckJolly.splice(cardIndex, 1)[0];
+
+        console.log(itaDeck, blueFraDeck, redFraDeck, blueFraDeckJolly, redFraDeckJolly);
+    });
+
     room.on("hide", message => {
         if (message.connectionId === room.ably.connection.id) return;
-        const {hand, index} = message.data;
-        const item = table.children[index];
+        const {hand, cardIndex} = message.data;
+        const item = table.children[cardIndex];
 
-        if (hand) {
-            item.classList.add("hide");
-        } else {
-            item.classList.remove("hide");
-        }
+        if (hand) item.classList.add("hide");
+        else item.classList.remove("hide");
     });
 
     makeDraggable("#table *:not(.info)");
