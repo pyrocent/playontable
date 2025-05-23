@@ -49,7 +49,7 @@ body #main-menu #form-wait-host #join-code {
   flex: 1 1 auto;
   border-radius: 10px;
   font-family: Outfit, sans-serif;
-  border: 3px solid rgb(0, 0, 0);
+  border: 2px solid rgb(0, 0, 0);
 }
 body #main-menu #form-wait-room button {
   width: 100%;
