@@ -18,7 +18,14 @@ body #decks {
   top: 30px;
   left: 30px;
   width: 100px;
-  height: 137px;
+  height: 100px;
+  position: fixed;
+}
+body #jolly {
+  top: 90px;
+  left: 67px;
+  width: 61px;
+  height: 37px;
   position: fixed;
 }
 body #chips {
@@ -124,25 +131,13 @@ body main #table .card {
 body main #table .blue.card {
   left: 40px;
 }
-body main #table .blue.card.no-jolly {
-  top: 80px;
-}
 body main #table .red.card {
   left: 80px;
 }
-body main #table .red.card.no-jolly {
-  top: 80px;
-}
-body main #table .info {
-  left: 43px;
-  color: white;
-  font-family: Outfit, sans-serif;
-}
-body main #table #V {
-  top: 37px;
-}
-body main #table #X {
-  top: 112px;
+body main #table .blue.card.no-jolly, body main #table .red.card.no-jolly {
+  top: 63px;
+  border-radius: 7.5px;
+  border: 1px solid rgb(248, 247, 247);
 }
 body main #table .chip {
   left: 120px;
@@ -202,6 +197,6 @@ body main #table .black.dama {
 body main * {
   position: absolute;
 }
-body main *:not(.info):hover {
+body main *:hover {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }/*# sourceMappingURL=index.css.map */

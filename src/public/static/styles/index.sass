@@ -16,7 +16,14 @@ body
         top: 30px
         left: 30px
         width: 100px
-        height: 137px
+        height: 100px
+        position: fixed
+
+    #jolly
+        top: 90px
+        left: 67px
+        width: 61px
+        height: 37px
         position: fixed
 
     #chips
@@ -126,25 +133,13 @@ body
             .blue.card
                 left: 40px
 
-            .blue.card.no-jolly
-                top: 80px
-
             .red.card
                 left: 80px
 
-            .red.card.no-jolly
-                top: 80px
-
-            .info
-                left: 43px
-                color: white
-                font-family: Outfit, sans-serif
-
-            #V
-                top: 37px
-
-            #X
-                top: 112px
+            .blue.card.no-jolly, .red.card.no-jolly
+                top: 63px
+                border-radius: 7.5px
+                border: 1px solid rgb(248, 247, 247)
 
             .chip
                 left: 120px
@@ -204,5 +199,5 @@ body
         & *
             position: absolute
 
-        & *:not(.info):hover
+        & *:hover
             filter: drop-shadow(0 2px 6px rgb(0, 0, 0, 0.5))

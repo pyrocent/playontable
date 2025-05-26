@@ -21,7 +21,7 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     `,
                     side: "bottom",
                     align: "center"
-                },
+                }
             },
             {
                 element: "#decks",
@@ -33,9 +33,22 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                             <li><strong>Click cards to turn face up/down</strong></li>
                         </ul>
                     `,
-                    side: "right",
+                    side: "bottom",
                     align: "center"
-                },
+                }
+            },
+            {
+                element: "#jolly",
+                popover: {
+                    title: "Jolly Decks",
+                    description: `
+                        <ul>
+                            <li><strong>Each has 1 red and 1 blue jolly</strong></li>
+                        </ul>
+                    `,
+                    side: "bottom",
+                    align: "center"
+                }
             },
             {
                 element: "#chips",
@@ -48,8 +61,8 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     `,
                     side: "right",
                     align: "center"
-                },
-            },
+                }
+            }
         ],
         onDestroyed() {
             onDestroyedCallback();
