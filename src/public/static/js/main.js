@@ -16,7 +16,6 @@ mainMenu.addEventListener("close", () => {
     if (mainMenu.returnValue === "wait-room") {
         showCode.innerText = roomCode;
         copyCode.onclick = () => {
-            copyCode.disabled = true;
             showCode.innerText = "Copied!";
             navigator.clipboard.writeText(roomCode);
             setTimeout(() => showCode.innerText = roomCode, 2000);
