@@ -1,6 +1,6 @@
 from os import getenv
 from ably import AblyRest
-from fastapi import FastAPI, Form
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 if not (api_key := getenv("ABLY_API_KEY")):

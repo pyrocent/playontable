@@ -115,7 +115,7 @@ body main #table {
   border-radius: 5px;
   background-color: rgb(0, 118, 73);
   border: 10px ridge rgb(239, 158, 87);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
 body main #table .hand {
   border: 2px solid rgb(255, 0, 0) !important;
