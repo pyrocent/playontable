@@ -1,59 +1,77 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 html, body {
+  margin: 0;
   height: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  font-family: Outfit, sans-serif;
+  background-color: rgb(31, 35, 36);
   -webkit-tap-highlight-color: transparent;
 }
-
-body {
-  margin: 0;
-  background-color: rgb(31, 35, 36);
-}
-body ::backdrop {
+html ::backdrop, body ::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
-body #decks {
+
+#decks-tutorial, #jolly-tutorial, #chips-tutorial {
+  position: fixed;
+}
+
+#decks-tutorial {
   top: 30px;
   left: 30px;
   width: 100px;
   height: 100px;
-  position: fixed;
 }
-body #jolly {
+
+#jolly-tutorial {
   top: 90px;
   left: 67px;
   width: 61px;
   height: 37px;
-  position: fixed;
 }
-body #chips {
+
+#chips-tutorial {
   top: 70px;
   left: 147px;
   width: 20px;
   height: 145px;
-  position: fixed;
 }
-body #main-menu, body #wait-room, body #wait-host {
+
+#main-menu, #wait-room, #wait-host {
   padding: 20px;
   max-width: 65%;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
-body #main-menu .name, body #wait-host .name {
+#main-menu .name, #wait-room .name, #wait-host .name {
   margin: 0;
   color: #006847;
   text-align: center;
-  font-family: Outfit, sans-serif;
 }
-body #main-menu #form-wait-host {
+
+#main-menu button, #wait-room button {
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: Outfit, sans-serif;
+  background-color: rgb(0, 118, 73);
+}
+#main-menu button:hover, #wait-room button:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 118, 73, 0.5);
+}
+
+#main-menu #form-wait-host {
   gap: 10px;
   display: flex;
   margin: 20px 0 10px 0;
 }
-body #main-menu #form-wait-host #join-code {
+#main-menu #form-wait-host #join-code {
   padding: 5px;
   min-width: 0;
   flex: 1 1 auto;
@@ -61,51 +79,39 @@ body #main-menu #form-wait-host #join-code {
   font-family: Outfit, sans-serif;
   border: 2px solid rgb(0, 0, 0);
 }
-body #main-menu #form-wait-room button {
+#main-menu #form-wait-room button {
   width: 100%;
 }
-body #main-menu button, body #wait-room button {
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-family: Outfit, sans-serif;
-  background-color: rgb(0, 118, 73);
-}
-body #main-menu button:hover, body #wait-room button:hover {
-  color: rgb(0, 0, 0);
-  background-color: rgba(0, 118, 73, 0.5);
-}
-body #wait-room form {
+
+#wait-room form {
   gap: 10px;
   display: flex;
   flex-direction: column;
 }
-body #wait-room form div {
+#wait-room form div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body #wait-room form div h5 {
+#wait-room form div h5 {
   margin: 0;
   text-align: center;
   white-space: pre-wrap;
-  font-family: Outfit, sans-serif;
 }
-body #wait-room form div #show-code {
+#wait-room form div #show-code {
   width: 40%;
   text-align: center;
 }
-body #wait-room form div #copy-code {
+#wait-room form div #copy-code {
   cursor: pointer;
 }
-body main {
+
+main {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-body main #table {
+main #table {
   gap: 10px;
   height: 100%;
   padding: 5px;
@@ -117,86 +123,86 @@ body main #table {
   border: 10px ridge rgb(239, 158, 87);
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
-body main #table .hand {
-  border: 2px solid rgb(255, 0, 0) !important;
+main #table .hand {
+  border: 2px solid red !important;
 }
-body main #table .hide {
+main #table .hide {
   display: none !important;
 }
-body main #table .card {
+main #table .card {
   height: 50px;
   border-radius: 2.5px;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid black;
 }
-body main #table .blue.card {
+main #table .card.blue {
   left: 40px;
 }
-body main #table .red.card {
+main #table .card.red {
   left: 80px;
 }
-body main #table .blue.card.no-jolly, body main #table .red.card.no-jolly {
+main #table .card.no-jolly {
   top: 63px;
   border-radius: 7.5px;
   border: 1px solid rgb(248, 247, 247);
 }
-body main #table .chip {
+main #table .chip {
   left: 120px;
   height: 35px;
 }
-body main #table .gold.chip {
+main #table .chip.gold {
   top: 45px;
 }
-body main #table .blue.chip {
+main #table .chip.blue {
   top: 85px;
 }
-body main #table .red.chip {
+main #table .chip.red {
   top: 125px;
 }
-body main #table .green.chip {
+main #table .chip.green {
   top: 165px;
 }
-body main #table #board {
+main #table #board {
   left: 160px;
   width: 275px;
   height: 275px;
 }
-body main #table .chess {
+main #table .chess {
   height: 35px;
 }
-body main #table .chess.white {
+main #table .chess.white {
   left: 440px;
 }
-body main #table .chess.black {
+main #table .chess.black {
   left: 480px;
 }
-body main #table .queen {
+main #table .queen {
   top: 39px;
 }
-body main #table .bishop {
+main #table .bishop {
   top: 76px;
 }
-body main #table .knight {
+main #table .knight {
   top: 113px;
 }
-body main #table .rook {
+main #table .rook {
   top: 150px;
 }
-body main #table .pawn {
+main #table .pawn {
   top: 187px;
 }
-body main #table .dama {
+main #table .dama {
   top: 230px;
   height: 30px;
 }
-body main #table .white.dama {
+main #table .dama.white {
   left: 445px;
 }
-body main #table .black.dama {
+main #table .dama.black {
   left: 483px;
 }
-body main * {
+main * {
   position: absolute;
 }
-body main *:hover {
+main *:hover {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }/*# sourceMappingURL=index.css.map */

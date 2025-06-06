@@ -30,8 +30,3 @@ mainMenu.addEventListener("close", () => {
 waitRoom.addEventListener("close", () => {
     initRoom(roomCode).send("play");
 });
-
-joinCode.addEventListener("click", () => {
-    joinCode.readOnly = false;
-    joinCode.focus();
-}, {once: true});

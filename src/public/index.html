@@ -15,27 +15,30 @@
     <script src = "static/js/main.js" type = "module" defer></script>
 </head>
     <body oncontextmenu = "return false">
-        <div id = "decks"></div>
-        <div id = "jolly"></div>
-        <div id = "chips"></div>
-        <dialog id = "main-menu">
-            <h2 class = "name">PlayOnTable</h2>
-            <form id = "form-wait-host" method = "dialog" autocomplete = "off">
-                <input id = "join-code" type = "text" placeholder = "Enter Room Code..." pattern = ".{5}" required readonly>
+        <div id = "decks-tutorial"></div>
+        <div id = "jolly-tutorial"></div>
+        <div id = "chips-tutorial"></div>
+        <dialog id = "main-menu" aria-label = "main menu">
+            <h2 id = "main-title" class = "name">PlayOnTable</h2>
+            <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
+                <input id = "join-code" type = "text" placeholder = "Enter Room Code..." pattern = ".{5}" required>
                 <button value = "wait-host">JOIN</button>
             </form>
-            <form id = "form-wait-room" method = "dialog">
-                <button value = "wait-room">CREATE A ROOM</button>
+            <form id = "form-wait-room" method = "dialog" aria-label = "create room">
+                <button value = "wait-room" autofocus>CREATE A ROOM</button>
             </form>
         </dialog>
-        <dialog id = "wait-room">
+        <dialog id = "wait-room" aria-label = "wait room">
             <form method = "dialog">
-                <div><h5>Invite:</h5><h5 id = "show-code"></h5><img id = "copy-code" src = "static/assets/copy.png"></img></div>
-                <button>START PLAYING</button>
+                <div>
+                    <h5>Invite:</h5><h5 id = "show-code" aria-live = "polite"></h5>
+                    <img id = "copy-code" src = "static/assets/copy.png" alt = "copy code">
+                </div>
+                <button autofocus>START PLAYING</button>
             </form>
         </dialog>
-        <dialog id = "wait-host">
-            <h3 class = "name">Waiting Host Start...</h3>
+        <dialog id = "wait-host" aria-label = "wait host">
+            <h3 class = "name">Waiting for Host to Start...</h3>
         </dialog>
         <main>
             <section id = "table">

@@ -24,7 +24,7 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                 }
             },
             {
-                element: "#decks",
+                element: "#decks-tutorial",
                 popover: {
                     title: "Decks",
                     description: `
@@ -38,7 +38,7 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                 }
             },
             {
-                element: "#jolly",
+                element: "#jolly-tutorial",
                 popover: {
                     title: "Jolly Decks",
                     description: `
@@ -51,7 +51,7 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                 }
             },
             {
-                element: "#chips",
+                element: "#chips-tutorial",
                 popover: {
                     title: "Chips",
                     description: `

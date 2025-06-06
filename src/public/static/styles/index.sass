@@ -1,203 +1,199 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap")
 
+$bg-dark: rgb(31, 35, 36)
+$green-dark: rgb(0, 118, 73)
+$font-main: Outfit, sans-serif
+$bg-white: rgb(255, 255, 255)
+$border-orange: rgb(239, 158, 87)
+$green-dark-transparent: rgba(0, 118, 73, 0.5)
+
 html, body
+    margin: 0
     height: 100%
     user-select: none
+    font-family: $font-main
+    background-color: $bg-dark
     -webkit-tap-highlight-color: transparent
-
-body
-    margin: 0
-    background-color: rgb(31, 35, 36)
 
     & ::backdrop
         background-color: rgba(0, 0, 0, 0.5)
+ 
+#decks-tutorial, #jolly-tutorial, #chips-tutorial
+    position: fixed
 
-    #decks
-        top: 30px
-        left: 30px
-        width: 100px
-        height: 100px
-        position: fixed
+#decks-tutorial
+    top: 30px
+    left: 30px
+    width: 100px
+    height: 100px
 
-    #jolly
-        top: 90px
-        left: 67px
-        width: 61px
-        height: 37px
-        position: fixed
+#jolly-tutorial
+    top: 90px
+    left: 67px
+    width: 61px
+    height: 37px
 
-    #chips
-        top: 70px
-        left: 147px
-        width: 20px
-        height: 145px
-        position: fixed
+#chips-tutorial
+    top: 70px
+    left: 147px
+    width: 20px
+    height: 145px
 
-    #main-menu, #wait-room, #wait-host
-        padding: 20px
-        max-width: 65%
-        border-radius: 10px
-        background-color: rgb(255, 255, 255)
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
+#main-menu, #wait-room, #wait-host
+    padding: 20px
+    max-width: 65%
+    border-radius: 10px
+    background-color: $bg-white
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
 
-    #main-menu .name, #wait-host .name
+    .name
         margin: 0
         color: #006847
         text-align: center
+
+#main-menu, #wait-room
+    button
+        border: none
+        color: white
+        outline: none
+        cursor: pointer
+        padding: 10px 20px
+        border-radius: 10px
         font-family: Outfit, sans-serif
+        background-color: rgb(0, 118, 73)
 
-    #main-menu
-        #form-wait-host
-            gap: 10px
-            display: flex
-            margin: 20px 0 10px 0
+        &:hover
+            color: rgb(0, 0, 0)
+            background-color: rgba(0, 118, 73, 0.5)
 
-            #join-code
-                padding: 5px
-                min-width: 0
-                flex: 1 1 auto
-                border-radius: 10px
-                font-family: Outfit, sans-serif
-                border: 2px solid rgb(0, 0, 0)
+#main-menu
+    #form-wait-host
+        gap: 10px
+        display: flex
+        margin: 20px 0 10px 0
 
-        #form-wait-room
-            button
-                width: 100%
-
-    #main-menu, #wait-room
-        button
-            color: white
-            border: none
-            cursor: pointer
-            padding: 10px 20px
+        #join-code
+            padding: 5px
+            min-width: 0
+            flex: 1 1 auto
             border-radius: 10px
             font-family: Outfit, sans-serif
-            background-color: rgb(0, 118, 73)
+            border: 2px solid rgb(0, 0, 0)
 
-            &:hover
-                color: rgb(0, 0, 0)
-                background-color: rgba(0, 118, 73, 0.5)
+    #form-wait-room
+        button
+            width: 100%
 
-    #wait-room
-        form
-            gap: 10px
-            display: flex
-            flex-direction: column
-
-            div
-                display: flex
-                align-items: center
-                justify-content: center
-
-                h5
-                    margin: 0
-                    text-align: center
-                    white-space: pre-wrap
-                    font-family: Outfit, sans-serif
-
-                #show-code
-                    width: 40%
-                    text-align: center
-
-                #copy-code
-                    cursor: pointer
-
-    main
-        height: 100%
+#wait-room
+    form
+        gap: 10px
         display: flex
         flex-direction: column
 
-        #table
-            gap: 10px
-            height: 100%
-            padding: 5px
-            margin: 10px
-            overflow: auto
-            position: relative
-            border-radius: 5px
-            background-color: rgb(0, 118, 73)
-            border: 10px ridge rgb(239, 158, 87)
-            filter: drop-shadow(0 0 10px rgb(0, 0, 0, 0.5))
+        div
+            display: flex
+            align-items: center
+            justify-content: center
 
-            .hand
-                border: 2px solid rgb(255, 0, 0) !important
+            h5
+                margin: 0
+                text-align: center
+                white-space: pre-wrap
 
-            .hide
-                display: none !important
+            #show-code
+                width: 40%
+                text-align: center
 
-            .card
-                height: 50px
-                border-radius: 2.5px
-                border: 1px solid rgb(0, 0, 0)
+            #copy-code
+                cursor: pointer
 
-            .blue.card
+main
+    height: 100%
+    display: flex
+    flex-direction: column
+
+    #table
+        gap: 10px
+        height: 100%
+        padding: 5px
+        margin: 10px
+        overflow: auto
+        position: relative
+        border-radius: 5px
+        background-color: $green-dark
+        border: 10px ridge $border-orange
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))
+
+        .hand
+            border: 2px solid red !important
+
+        .hide
+            display: none !important
+
+        .card
+            height: 50px
+            border-radius: 2.5px
+            border: 1px solid black
+
+            &.blue
                 left: 40px
 
-            .red.card
+            &.red
                 left: 80px
 
-            .blue.card.no-jolly, .red.card.no-jolly
+            &.no-jolly
                 top: 63px
                 border-radius: 7.5px
                 border: 1px solid rgb(248, 247, 247)
 
-            .chip
-                left: 120px
-                height: 35px
+        .chip
+            left: 120px
+            height: 35px
 
-            .gold.chip
+            &.gold
                 top: 45px
-
-            .blue.chip
+            &.blue
                 top: 85px
-
-            .red.chip
+            &.red
                 top: 125px
-
-            .green.chip
+            &.green
                 top: 165px
 
-            #board
-                left: 160px
-                width: 275px
-                height: 275px
+        #board
+            left: 160px
+            width: 275px
+            height: 275px
 
-            .chess
-                height: 35px
+        .chess 
+            height: 35px
 
-            .chess.white
+            &.white
                 left: 440px
-
-            .chess.black
+            &.black
                 left: 480px
 
-            .queen
-                top: 39px
+        .queen
+            top: 39px
+        .bishop
+            top: 76px
+        .knight
+            top: 113px
+        .rook
+            top: 150px
+        .pawn
+            top: 187px
 
-            .bishop
-                top: 76px
+        .dama
+            top: 230px
+            height: 30px
 
-            .knight
-                top: 113px
-
-            .rook
-                top: 150px
-
-            .pawn
-                top: 187px
-
-            .dama
-                top: 230px
-                height: 30px
-
-            .white.dama
+            &.white
                 left: 445px
-
-            .black.dama
+            &.black
                 left: 483px
 
-        & *
-            position: absolute
+    & *
+        position: absolute
 
-        & *:hover
-            filter: drop-shadow(0 2px 6px rgb(0, 0, 0, 0.5))
+        &:hover
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5))
