@@ -109,18 +109,18 @@ export function getFraDeck() {
     return [...fraDeck];
 };
 
-export function getBlueFraDeck() {
-    return [...fraDeck];
-};
-
 export function getRedFraDeck() {
     return [...fraDeck];
 };
 
-export function getBlueFraDeckJolly() {
-    return [...fraDeck, ...JOLLY];
+export function getBlueFraDeck() {
+    return [...fraDeck];
 };
 
 export function getRedFraDeckJolly() {
+    return [...fraDeck, ...JOLLY];
+};
+
+export function getBlueFraDeckJolly() {
     return [...fraDeck, ...JOLLY];
 };

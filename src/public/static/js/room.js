@@ -3,17 +3,16 @@ import {makeDraggable} from "./drag.js";
 import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {getItaDeck, getBlueFraDeck, getRedFraDeck, getBlueFraDeckJolly, getRedFraDeckJolly} from "./decks.js";
 
-let room;
 let itaDeck = getItaDeck();
-let blueFraDeck = getBlueFraDeck();
 let redFraDeck = getRedFraDeck();
-let blueFraDeckJolly = getBlueFraDeckJolly();
+let blueFraDeck = getBlueFraDeck();
 let redFraDeckJolly = getRedFraDeckJolly();
+let blueFraDeckJolly = getBlueFraDeckJolly();
 const table = document.getElementById("table");
 
 export function initRoom(roomCode) {
 
-    room = new Room(roomCode);
+    const room = new Room(roomCode);
 
     room.on("play", () => {
         document.getElementById("wait-host").close();
