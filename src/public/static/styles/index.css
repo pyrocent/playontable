@@ -40,7 +40,6 @@ html ::backdrop, body ::backdrop {
 
 #main-menu, #wait-room, #wait-host {
   padding: 20px;
-  max-width: 70%;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
@@ -95,8 +94,7 @@ html ::backdrop, body ::backdrop {
 }
 #wait-room form div h5 {
   margin: 0;
-  text-align: center;
-  white-space: pre-wrap;
+  white-space: nowrap;
 }
 #wait-room form div #show-code {
   width: 40%;
