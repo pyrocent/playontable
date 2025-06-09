@@ -101,26 +101,9 @@ const JOLLY = [
     "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/decks/front/fra/XB-1d9uNYDxptzYbdxhTL5sMTIAO2OMza.png"
 ];
 
-export function getItaDeck() {
-    return [...itaDeck];
-};
-
-export function getFraDeck() {
-    return [...fraDeck];
-};
-
-export function getRedFraDeck() {
-    return [...fraDeck];
-};
-
-export function getBlueFraDeck() {
-    return [...fraDeck];
-};
-
-export function getRedFraDeckJolly() {
-    return [...fraDeck, ...JOLLY];
-};
-
-export function getBlueFraDeckJolly() {
-    return [...fraDeck, ...JOLLY];
-};
+export function getItaDeck() {return [...itaDeck];}
+export function getFraDeck() {return [...fraDeck];}
+export function getRedFraDeck() {return [...fraDeck];}
+export function getBlueFraDeck() {return [...fraDeck];}
+export function getRedFraDeckJolly() {return [...fraDeck, ...JOLLY];}
+export function getBlueFraDeckJolly() {return [...fraDeck, ...JOLLY];}

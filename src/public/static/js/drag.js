@@ -25,14 +25,14 @@ export function makeDraggable(toBeDrag) {
             if (this.target.classList.contains("card")) {
                 if (this._justHeld) this._justHeld = false;
                 else room.send("turn", {randomNumber: Math.random(), cardIndex: [...this.target.parentElement.children].indexOf(this.target)});
-            };
+            }
         },
         onDragStart() {
-            if (this._holdCall) this._holdCall.kill();
+            if (this._holdCall) this._holdCall.kill()
             else if (this.target.classList.contains("clone")) {
                 room.send("chip", {src: this.target.src, classes: this.target.className, alt: this.target.alt});
                 this.target.classList.remove("clone");
-            };
+            }
         },
         onDrag() {
             room.send("drag", {

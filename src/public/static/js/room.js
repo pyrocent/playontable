@@ -3,6 +3,7 @@ import {makeDraggable} from "./drag.js";
 import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {getItaDeck, getBlueFraDeck, getRedFraDeck, getBlueFraDeckJolly, getRedFraDeckJolly} from "./decks.js";
 
+let room;
 let itaDeck = getItaDeck();
 let redFraDeck = getRedFraDeck();
 let blueFraDeck = getBlueFraDeck();
@@ -12,11 +13,9 @@ const table = document.getElementById("table");
 
 export function initRoom(roomCode) {
 
-    const room = new Room(roomCode);
+    room = new Room(roomCode);
 
-    room.on("play", () => {
-        document.getElementById("wait-host").close();
-    });
+    room.on("play", () => {document.getElementById("wait-host").close();});
 
     room.on("drag", message => {
         const {x, y, z, dragIndex} = message.data;
@@ -59,7 +58,7 @@ export function initRoom(roomCode) {
                 deckType = "fra/red";
             } else {
                 deckType = "fra/red/jolly";
-            };
+            }
         }
 
         if (card.getAttribute("src") !== cardBack) {
@@ -84,12 +83,12 @@ export function initRoom(roomCode) {
                 } else if (deckType === "fra/red/jolly") {
                     randomCardIndex = Math.floor(randomNumber * redFraDeckJolly.length);
                     randomCard = redFraDeckJolly[randomCardIndex];
-                };
+                }
                 card.setAttribute("src", randomCard);
                 card.setAttribute("data-face", randomCard);
                 room.send("draw", {deckType, cardIndex});
-            };
-        };
+            }
+        }
     });
 
     room.on("draw", message => {
@@ -116,6 +115,4 @@ export function initRoom(roomCode) {
     return room;
 }
 
-export function getRoom() {
-    return room;
-}
+export function getRoom() {return room;}

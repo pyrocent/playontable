@@ -24,7 +24,7 @@ mainMenu.addEventListener("close", () => {
     } else if (mainMenu.returnValue === "wait-host") {
         initRoom(joinCode.value);
         waitHost.showModal();
-    };
+    }
 });
 
 waitRoom.addEventListener("close", () => {

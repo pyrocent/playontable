@@ -1,8 +1,7 @@
 import {driver} from "https://cdn.jsdelivr.net/npm/driver.js@1.3.6/+esm";
 
 export function startTutorial(onDestroyedCallback = () => {}) {
-
-    const tutorial = driver({
+    driver({
         prevBtnText: "⬅️",
         nextBtnText: "➡️",
         doneBtnText: "❌",
@@ -64,10 +63,6 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                 }
             }
         ],
-        onDestroyed() {
-            onDestroyedCallback();
-        }
-    });
-
-    tutorial.drive();
+        onDestroyed() {onDestroyedCallback();}
+    }).drive();
 }
