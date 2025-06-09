@@ -9,7 +9,7 @@ else: ably = AblyRest(api_key)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_headers = ["*"],
+    allow_headers = [],
     allow_methods = ["GET"],
     allow_credentials = True,
     allow_origins = ["https://www.playontable.com"]
