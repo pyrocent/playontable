@@ -3,25 +3,15 @@ from ably import AblyRest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-if not (api_key := getenv("ABLY_API_KEY")): raise RuntimeError("❌ ABLY_API_KEY not found")
-else: ably = AblyRest(api_key)
-
-origins = [
-    "http://localhost/",
-    "https://localhost/",
-    "capacitor://localhost",
-    "http://localhost:8100",
-    "https://playontable.com",
-    "https://www.playontable.com"
-]
+ably = AblyRest(getenv("ABLY_API_KEY"))
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_headers = ["*"],
-    allow_methods = ["*"],
-    allow_origins = origins,
-    allow_credentials = True
+    allow_headers = [],
+    allow_methods = ["GET"],
+    allow_credentials = True,
+    allow_origins = ["https://localhost", "https://playontable.com", "https://www.playontable.com"]
 )
 
 @app.get("/api/auth")
