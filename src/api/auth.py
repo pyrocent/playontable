@@ -10,7 +10,7 @@ origins = [
     "http://localhost",
     "capacitor://localhost",
     "http://localhost:8100",
-    "https://playontable.com"
+    "https://playontable.com",
     "https://www.playontable.com"
 ]
 
