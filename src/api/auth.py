@@ -7,8 +7,8 @@ if not (api_key := getenv("ABLY_API_KEY")): raise RuntimeError("❌ ABLY_API_KEY
 else: ably = AblyRest(api_key)
 
 origins = [
-    "http://localhost",
-    "https://localhost",
+    "http://localhost/",
+    "https://localhost/",
     "capacitor://localhost",
     "http://localhost:8100",
     "https://playontable.com",
