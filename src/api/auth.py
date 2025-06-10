@@ -12,7 +12,7 @@ app.add_middleware(
     allow_headers = [],
     allow_methods = ["GET"],
     allow_credentials = True,
-    allow_origins = ["https://www.playontable.com"]
+    allow_origins = []
 )
 
 @app.get("/api/auth")
