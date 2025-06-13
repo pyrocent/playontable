@@ -6,6 +6,6 @@
   "scripts": {
     "build": "npm run build-css && npm run build-js",
     "build-css": "sass public/static/styles/index.sass public/static/styles/index.css",
-    "build-js": "terser public/static/js/room.js -c passes=3,toplevel=true -m toplevel -o public/static/js/"
+    "build-js": "terser public/static/js/room.js -c passes=3,toplevel=true -m toplevel -o public/static/js/room.js"
   }
 }
