@@ -1,16 +1,15 @@
 {
     "dependencies": {
-        "path": "0.12.7",
         "axios": "1.9.0",
         "sass": "1.89.2",
         "terser": "5.42.0",
         "clean-css-cli": "5.6.3"
     },
     "scripts": {
-        "build": "npm run sass-to-css && npm run minify-css && npm run minify-js && npm run inline-img",
+        "build": "npm run sass-to-css && npm run minify-css && npm run minify-js && npm run html-inline-img",
         "sass-to-css": "sass public/static/styles/index.sass public/static/styles/index.css",
         "minify-css": "cleancss -o public/static/styles/index.css public/static/styles/index.css",
         "minify-js": "for f in public/static/js/*.js; do terser $f -c passes=3,toplevel=true -m toplevel -o $f; done",
-        "inline-img": "node tools/images.js public/index.html"
+        "html-inline-img": "node tools/images.js"
     }
 }
