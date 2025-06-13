@@ -1,5 +1,7 @@
 {
     "dependencies": {
+        "path": "0.12.7",
+        "axios": "1.9.0",
         "sass": "1.89.2",
         "terser": "^5.42.0",
         "clean-css-cli": "^5.6.3"
