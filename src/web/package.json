@@ -9,6 +9,6 @@
         "sass-to-css": "sass public/static/styles/index.sass public/static/styles/index.css",
         "minify-css": "cleancss -o public/static/styles/index.css public/static/styles/index.css",
         "minify-js": "for f in public/static/js/*.js; do terser $f -c passes=3,toplevel=true -m toplevel -o $f; done",
-        "inline-img": "node tools/inline-images.js public/index.html"
+        "inline-img": "node tools/images.js public/index.html"
     }
 }
