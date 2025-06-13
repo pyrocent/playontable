@@ -3,8 +3,8 @@
         "path": "0.12.7",
         "axios": "1.9.0",
         "sass": "1.89.2",
-        "terser": "^5.42.0",
-        "clean-css-cli": "^5.6.3"
+        "terser": "5.42.0",
+        "clean-css-cli": "5.6.3"
     },
     "scripts": {
         "build": "npm run sass-to-css && npm run minify-css && npm run minify-js && npm run inline-img",

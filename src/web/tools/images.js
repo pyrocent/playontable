@@ -34,7 +34,7 @@ const urlRegex = /(["'])https?:\/\/[^"']+\.(png|jpg|jpeg|gif|svg)(\?[^"']*)?\1/g
     }
   }
 
-  const outPath = path.join(path.dirname(htmlPath), 'index.inlined.html');
+  const outPath = path.join(path.dirname(htmlPath), 'index.html');
   fs.writeFileSync(outPath, modifiedHtml);
   console.log(`✅ Base64 inlining complete: ${outPath}`);
 })();
