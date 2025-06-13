@@ -10,7 +10,7 @@ async function urlToBase64(url) {
 
 (async () => {
     const html = fs.readFileSync('public/index.html', 'UTF-8');
-    const urls = html.matchAll(/(["'])https?:\/\/[^"']+\.(png|jpg|jpeg|gif|svg)(\?[^"']*)?\1/g);
+    const urls = html.matchAll(/https:\/\/[^\s"']+\.(png|jpg)/gi);
 
     for (const url of urls) html = html.replace(url, await urlToBase64(url));
 
