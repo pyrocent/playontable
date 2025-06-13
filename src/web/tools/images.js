@@ -14,5 +14,5 @@ async function urlToBase64(url) {
 
     for (const url of urls) html = html.replaceAll(url, await urlToBase64(url));
 
-    fs.writeFileSync("demo.html", html);
+    fs.writeFileSync("public/index.html", html);
 })();
