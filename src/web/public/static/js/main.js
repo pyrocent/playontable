@@ -11,7 +11,7 @@ document.querySelector("#app").innerHTML = `
         <button value = "wait-host">JOIN</button>
     </form>
     <form id = "form-wait-room" method = "dialog" aria-label = "create room">
-        <button value = "wait-room">CREATE A ROOM</button>
+        <button value = "wait-room" autofocus>CREATE A ROOM</button>
     </form>
 </dialog>
 <dialog id = "wait-room" aria-label = "wait room">
@@ -20,7 +20,7 @@ document.querySelector("#app").innerHTML = `
             <h5>Invite Code:</h5><h5 id = "show-code" aria-live = "polite"></h5>
             <img id = "copy-code" src = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/copy-xzbmyweMBM2wGhXSlOibhrD90IVcQO.png" alt = "copy code">
         </div>
-        <button>START PLAYING</button>
+        <button autofocus>START PLAYING</button>
     </form>
 </dialog>
 <dialog id = "wait-host" aria-label = "wait host">
