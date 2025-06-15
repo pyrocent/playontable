@@ -2,15 +2,16 @@ import {nanoid} from "nanoid";
 import {initRoom} from "./room.js";
 import {startTutorial} from "./tutorial.js";
 
-const roomCode = nanoid(5);
-const mainMenu = document.getElementById("main-menu");
-const waitRoom = document.getElementById("wait-room");
-const waitHost = document.getElementById("wait-host");
-const joinCode = document.getElementById("join-code");
-const showCode = document.getElementById("show-code");
-const copyCode = document.getElementById("copy-code");
-
 export function onLoad() {
+
+    const roomCode = nanoid(5);
+    const mainMenu = document.getElementById("main-menu");
+    const waitRoom = document.getElementById("wait-room");
+    const waitHost = document.getElementById("wait-host");
+    const joinCode = document.getElementById("join-code");
+    const showCode = document.getElementById("show-code");
+    const copyCode = document.getElementById("copy-code");
+
     startTutorial(() => mainMenu.showModal());
 
     mainMenu.addEventListener("close", () => {
