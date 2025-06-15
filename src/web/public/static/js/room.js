@@ -9,9 +9,10 @@ let redFraDeck = getRedFraDeck();
 let blueFraDeck = getBlueFraDeck();
 let redFraDeckJolly = getRedFraDeckJolly();
 let blueFraDeckJolly = getBlueFraDeckJolly();
-const table = document.getElementById("table");
 
 export function initRoom(roomCode) {
+
+    const table = document.getElementById("table");
 
     room = new Room(roomCode);
 
