@@ -1,4 +1,4 @@
-import Driver from "driver.js";
+import {Driver} from "driver.js";
 import "driver.js/dist/driver.css";
 
 export function startTutorial(onDestroyedCallback = () => {}) {
