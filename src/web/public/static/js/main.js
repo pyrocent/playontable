@@ -1,6 +1,6 @@
-import {onLoad} from './load.js'
+import {onLoad} from "./load.js"
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
 <div id = "decks-tutorial"></div>
 <div id = "jolly-tutorial"></div>
 <div id = "chips-tutorial"></div>
