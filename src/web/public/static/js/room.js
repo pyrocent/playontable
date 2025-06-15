@@ -3,6 +3,7 @@ import {Room} from "./ably.js";
 import {makeDraggable} from "./drag.js";
 import {getItaDeck, getBlueFraDeck, getRedFraDeck, getBlueFraDeckJolly, getRedFraDeckJolly} from "./decks.js";
 
+let room;
 let itaDeck = getItaDeck();
 let redFraDeck = getRedFraDeck();
 let blueFraDeck = getBlueFraDeck();
@@ -11,7 +12,7 @@ let blueFraDeckJolly = getBlueFraDeckJolly();
 
 export function initRoom(roomCode) {
 
-    const room = new Room(roomCode);
+    room = new Room(roomCode);
     const table = document.getElementById("table");
 
     room.on("play", () => {document.getElementById("wait-host").close();});
@@ -114,8 +115,4 @@ export function initRoom(roomCode) {
     return room;
 }
 
-export function getRoom() {
-    if (typeof room !== "undefined" && room !== null) {
-        return room;
-    }
-}
+export function getRoom() {return room;}

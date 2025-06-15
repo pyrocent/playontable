@@ -11,7 +11,7 @@ document.querySelector("#app").innerHTML = `
         <button value = "wait-host">JOIN</button>
     </form>
     <form id = "form-wait-room" method = "dialog" aria-label = "create room">
-        <button value = "wait-room" autofocus>CREATE A ROOM</button>
+        <button value = "wait-room">CREATE A ROOM</button>
     </form>
 </dialog>
 <dialog id = "wait-room" aria-label = "wait room">
