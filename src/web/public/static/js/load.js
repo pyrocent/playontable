@@ -12,10 +12,7 @@ export function onLoad() {
     const showCode = document.getElementById("show-code");
     const copyCode = document.getElementById("copy-code");
 
-    startTutorial(() => {
-        mainMenu.showModal();
-        mainMenu.querySelector("button").focus();
-    });
+    startTutorial(() => {mainMenu.showModal();});
 
     mainMenu.addEventListener("close", () => {
         if (mainMenu.returnValue === "wait-room") {
@@ -26,7 +23,6 @@ export function onLoad() {
                 setTimeout(() => showCode.innerText = roomCode, 2000);
             };
             waitRoom.showModal();
-            waitRoom.querySelector("button").focus();
         } else if (mainMenu.returnValue === "wait-host") {
             initRoom(joinCode.value);
             waitHost.showModal();
