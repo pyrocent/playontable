@@ -114,4 +114,8 @@ export function initRoom(roomCode) {
     return room;
 }
 
-export function getRoom() {if (room) return room;}
+export function getRoom() {
+    if (typeof room !== "undefined" && room !== null) {
+        return room;
+    }
+}
