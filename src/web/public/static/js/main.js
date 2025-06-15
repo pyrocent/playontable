@@ -20,7 +20,7 @@ document.querySelector("#app").innerHTML = `
             <h5>Invite Code:</h5><h5 id = "show-code" aria-live = "polite"></h5>
             <img id = "copy-code" src = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/copy-xzbmyweMBM2wGhXSlOibhrD90IVcQO.png" alt = "copy code">
         </div>
-        <button autofocus>START PLAYING</button>
+        <button>START PLAYING</button>
     </form>
 </dialog>
 <dialog id = "wait-host" aria-label = "wait host">

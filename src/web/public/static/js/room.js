@@ -114,4 +114,4 @@ export function initRoom(roomCode) {
     return room;
 }
 
-export function getRoom() {return room;}
+export function getRoom() {if (room) return room;}
