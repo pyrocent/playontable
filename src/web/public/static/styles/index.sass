@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap")
+
+$bg-dark: rgb(31, 35, 36)
+$green-dark: rgb(0, 118, 73)
+$font-main: Outfit, sans-serif
+$bg-white: rgb(255, 255, 255)
+$border-orange: rgb(239, 158, 87)
+$green-dark-transparent: rgba(0, 118, 73, 0.5)
+
+html, body
+    margin: 0
+    height: 100%
+    user-select: none
+    font-family: $font-main
+    background-color: $bg-dark
+    -webkit-tap-highlight-color: transparent
+
+    & ::backdrop
+        background-color: rgba(0, 0, 0, 0.5)
+ 
+#decks-tutorial, #jolly-tutorial, #chips-tutorial
+    position: fixed
+
+#decks-tutorial
+    top: 30px
+    left: 30px
+    width: 100px
+    height: 100px
+
+#jolly-tutorial
+    top: 90px
+    left: 67px
+    width: 61px
+    height: 37px
+
+#chips-tutorial
+    top: 70px
+    left: 147px
+    width: 20px
+    height: 145px
+
+#main-menu, #wait-room, #wait-host
+    padding: 20px
+    user-select: none
+    border-radius: 10px
+    background-color: $bg-white
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5)
+
+    .name
+        margin: 0
+        color: #006847
+        text-align: center
+
+#main-menu, #wait-room
+    button
+        border: none
+        color: white
+        outline: none
+        cursor: pointer
+        padding: 10px 20px
+        border-radius: 10px
+        font-family: Outfit, sans-serif
+        background-color: rgb(0, 118, 73)
+
+        &:hover
+            color: rgb(0, 0, 0)
+            background-color: rgba(0, 118, 73, 0.5)
+
+#main-menu
+    #form-wait-host
+        gap: 10px
+        display: flex
+        margin: 20px 0 10px 0
+
+        #join-code
+            padding: 5px
+            min-width: 0
+            flex: 1 1 auto
+            border-radius: 10px
+            font-family: Outfit, sans-serif
+            border: 2px solid rgb(0, 0, 0)
+
+    #form-wait-room
+        button
+            width: 100%
+
+#wait-room
+    form
+        gap: 10px
+        display: flex
+        flex-direction: column
+
+        span
+            display: flex
+            min-width: 150px
+            align-items: center
+            justify-content: space-between
+
+            h5
+                margin: 0
+                white-space: nowrap
+
+            #show-code
+                color: rgb(100, 100, 100)
+
+            #copy-code
+                cursor: pointer
+
+main
+    height: 100%
+    display: flex
+    flex-direction: column
+
+    #table
+        gap: 10px
+        height: 100%
+        padding: 5px
+        margin: 10px
+        overflow: auto
+        position: relative
+        border-radius: 5px
+        background-color: $green-dark
+        border: 10px ridge $border-orange
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))
+
+        .hand
+            border: 2px solid red !important
+
+        .hide
+            display: none !important
+
+        .card
+            height: 50px
+            border-radius: 2.5px
+            border: 1px solid black
+
+            &.blue
+                left: 40px
+
+            &.red
+                left: 80px
+
+            &.no-jolly
+                top: 63px
+                border-radius: 7.5px
+                border: 1px solid rgb(248, 247, 247)
+
+        .chip
+            left: 120px
+            height: 35px
+
+            &.gold
+                top: 45px
+            &.blue
+                top: 85px
+            &.red
+                top: 125px
+            &.green
+                top: 165px
+
+        #board
+            left: 160px
+            width: 275px
+            height: 275px
+
+        .chess 
+            height: 35px
+
+            &.white
+                left: 440px
+            &.black
+                left: 480px
+
+        .queen
+            top: 39px
+        .bishop
+            top: 76px
+        .knight
+            top: 113px
+        .rook
+            top: 150px
+        .pawn
+            top: 187px
+
+        .dama
+            top: 230px
+            height: 30px
+
+            &.white
+                left: 445px
+            &.black
+                left: 483px
+
+    & *
+        position: absolute
+
+        &:hover
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5))
