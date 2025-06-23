@@ -1,10 +1,10 @@
 # [PlayOnTable.com](https://www.playontable.com/)
 
-![thumbnail](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail-vj0zUV663nFN8eHuzHvFuVBJq3BrhR.png)
+![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail-vj0zUV663nFN8eHuzHvFuVBJq3BrhR.png)
 
-This is a web site .
+This web site allows you to play many games on a virtual table for free.
 
-It was developed using the following languages:
+It was developed using the following programming/markup languages:
 
 *for the backend*
 
@@ -18,12 +18,12 @@ It was developed using the following languages:
 
 The codebase has these dependencies:
 
-- [Ably](https://ably.com/) ()
-- [GSAP](https://gsap.com/) ()
-- [Nanoid](https://www.npmjs.com/package/nanoid) ()
-- [Driver.js](https://driverjs.com/) ()
-- [Vite](https://vite.dev/) ()
-- [SASS](https://sass-lang.com/) ()
-- [Google Font](https://fonts.google.com/) (all the site uses [Outfit](https://fonts.google.com/specimen/Outfit) font)
+- [Vite](https://vite.dev/) (for project build)
+- [Ably](https://ably.com/) (for realtime connection)
+- [SASS](https://sass-lang.com/) (for HTML stylesheets)
+- [Driver.js](https://driverjs.com/) (for spotlight tutorial)
+- [GSAP](https://gsap.com/) (for drag items on table)
+- [Nanoid](https://www.npmjs.com/package/nanoid) (for generating room code)
+- [Google Font](https://fonts.google.com/) (all the web site uses [Outfit](https://fonts.google.com/specimen/Outfit) font)
 
-[PlayOnTable](https://www.playontable.com/) is hosted on [Vercel](https://vercel.com/) and its web domain is registered on [Ionos](https://www.ionos.it/).
+[PlayOnTable](https://www.playontable.com/) is hosted on [Vercel](https://vercel.com/) and its *.com* web domain is registered on [Ionos](https://www.ionos.it/).
