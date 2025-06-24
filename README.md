@@ -2,7 +2,7 @@
 
 ![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail-vj0zUV663nFN8eHuzHvFuVBJq3BrhR.png)
 
-This web site allows you to play many games on a virtual table for free.
+This web site allows you to play many games on a virtual table, for free.
 
 It was developed using the following programming/markup languages:
 
