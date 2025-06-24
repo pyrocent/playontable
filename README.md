@@ -19,8 +19,8 @@ It was developed using the following programming/markup languages:
 The codebase has these dependencies:
 
 - [Vite](https://vite.dev/) (for project build)
-- [Ably](https://ably.com/) (for realtime connection)
 - [SASS](https://sass-lang.com/) (for HTML stylesheets)
+- [Ably](https://ably.com/) (for realtime connection)
 - [Driver.js](https://driverjs.com/) (for spotlight tutorial)
 - [GSAP](https://gsap.com/) (for dragging items on table)
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
