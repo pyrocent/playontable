@@ -22,8 +22,8 @@ The codebase has these dependencies:
 - [Ably](https://ably.com/) (for realtime connection)
 - [SASS](https://sass-lang.com/) (for HTML stylesheets)
 - [Driver.js](https://driverjs.com/) (for spotlight tutorial)
-- [GSAP](https://gsap.com/) (for drag items on table)
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating room code)
+- [GSAP](https://gsap.com/) (for dragging items on table)
 - [Google Font](https://fonts.google.com/) (all the web site uses [Outfit](https://fonts.google.com/specimen/Outfit) font)
 
 [PlayOnTable](https://www.playontable.com/) is hosted on [Vercel](https://vercel.com/) and its *.com* web domain is registered on [Ionos](https://www.ionos.it/).
