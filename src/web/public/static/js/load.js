@@ -1,8 +1,8 @@
-import {nanoid} from "./nanoid";
 import {initRoom} from "./room.js";
-import {inject} from "./@vercel/analytics"
 import {startTutorial} from "./tutorial.js";
-import {injectSpeedInsights} from "./@vercel/speed-insights";
+import {nanoid} from "https://cdn.jsdelivr.net/npm/nanoid@5.1.5/+esm";
+import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
+import {injectSpeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/dist/index.min.js";
 
 export function onLoad() {
 
