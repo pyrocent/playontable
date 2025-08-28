@@ -1,6 +1,5 @@
-import {gsap} from "gsap";
 import {getRoom} from "./room.js";
-import {Draggable} from "gsap/Draggable";
+import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 
 gsap.registerPlugin(Draggable);
 

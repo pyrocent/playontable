@@ -1,5 +1,4 @@
-import {driver} from "driver.js";
-import "driver.js/dist/driver.css";
+import {driver} from "https://cdn.jsdelivr.net/npm/driver.js@1.3.6/+esm";
 
 export function startTutorial(onDestroyedCallback = () => {}) {
     driver({
