@@ -1,4 +1,4 @@
-import {nanoid} from "@nanoid";
+import {nanoid} from "./nanoid";
 import {initRoom} from "./room.js";
 import {inject} from "@vercel/analytics"
 import {startTutorial} from "./tutorial.js";
