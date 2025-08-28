@@ -1,8 +1,13 @@
 import {nanoid} from "nanoid";
 import {initRoom} from "./room.js";
+import {inject} from "@vercel/analytics"
 import {startTutorial} from "./tutorial.js";
+import {injectSpeedInsights} from "@vercel/speed-insights";
 
 export function onLoad() {
+
+    inject();
+    injectSpeedInsights();
 
     const roomCode = nanoid(6);
     const mainMenu = document.getElementById("main-menu");
