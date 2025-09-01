@@ -18,7 +18,6 @@ It was developed using the following programming/markup languages:
 
 The codebase has these dependencies:
 
-- [Vite](https://vite.dev/) (for project build)
 - [SASS](https://sass-lang.com/) (for HTML stylesheets)
 - [Ably](https://ably.com/) (for realtime connection)
 - [Driver.js](https://driverjs.com/) (for spotlight tutorial)
