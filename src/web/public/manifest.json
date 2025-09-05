@@ -1,0 +1,22 @@
+{
+    "start_url": "/",
+    "categories": ["games"],
+    "display": "standalone",
+    "theme_color": "#1f2324",
+    "name": "PlayOnTable.com",
+    "background_color": "#1f2324",
+    "short_name": "PlayOnTable.com",
+    "description": "Play cards games with your friends and many more!",
+    "icons": [
+        {
+            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
