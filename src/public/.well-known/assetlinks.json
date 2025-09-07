@@ -1,0 +1,8 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+        "namespace": "android_app",
+        "package_name": "com.playontable.twa",
+        "sha256_cert_fingerprints": ["D3:3E:58:16:51:6A:3E:50:95:10:D1:56:67:AE:E1:AD:C6:B3:8B:E5:64:45:E0:12:89:2D:9D:66:94:B4:D4:16"]
+    }
+}]
