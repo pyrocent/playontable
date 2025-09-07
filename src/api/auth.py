@@ -11,7 +11,7 @@ app.add_middleware(
     allow_headers = [],
     allow_methods = ["POST"],
     allow_credentials = False,
-    allow_origins = ["https://playontable.com", "https://www.playontable.com"]
+    allow_origins = ["https://playontable.com"]
 )
 
 @app.post("/api/auth")

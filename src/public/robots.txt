@@ -2,4 +2,3 @@ User-agent: *
 Disallow: /api/
 
 Sitemap: https://playontable.com/sitemap.xml
-Sitemap: https://www.playontable.com/sitemap.xml

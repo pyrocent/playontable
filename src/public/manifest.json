@@ -1,11 +1,11 @@
 {
     "start_url": "/",
+    "name": "PlayOnTable",
     "categories": ["games"],
     "display": "standalone",
     "theme_color": "#1f2324",
-    "name": "PlayOnTable.com",
+    "short_name": "PlayOnTable",
     "background_color": "#1f2324",
-    "short_name": "PlayOnTable.com",
     "description": "Play cards games with your friends and many more!",
     "icons": [
         {
