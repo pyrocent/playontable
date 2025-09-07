@@ -2,7 +2,7 @@
     "start_url": "/",
     "name": "PlayOnTable",
     "categories": ["games"],
-    "display": "standalone",
+    "display": "Fullscreen",
     "theme_color": "#1f2324",
     "short_name": "PlayOnTable",
     "background_color": "#1f2324",
