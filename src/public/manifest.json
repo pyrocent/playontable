@@ -1,22 +1,36 @@
 {
+    "scope": "/",
     "start_url": "/",
+    "orientation": "any",
     "name": "PlayOnTable",
     "categories": ["games"],
-    "display": "Fullscreen",
+    "display": "fullscreen",
     "theme_color": "#1f2324",
     "short_name": "PlayOnTable",
     "background_color": "#1f2324",
-    "description": "Play cards games with your friends and many more!",
+    "display_override": ["standalone", "minimal-ui", "browser"],
+    "description": "PlayOnTable.com lets you play any game on a virtual multiplayer table",
+    "shortcuts": [
+        {
+            "url": "/",
+            "name": "Create new room",
+            "short_name": "Create new room",
+            "description": "Create a new multiplayer room",
+            "icons": [{"src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/shortcut.png", "sizes": "96x96", "type": "image/png"}]
+        }
+    ],
     "icons": [
         {
-            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable",
+            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon192x192.png"
         },
         {
-            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable",
+            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon512x512.png"
         }
     ]
 }
