@@ -9,10 +9,10 @@
     <link rel = "canonical" href = "https://playontable.com/">
     <link rel = "stylesheet" href = "static/styles/index.min.css">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-    <meta name = "description" content = "Play cards games with your friends and many more!">
-    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css">
-    <link rel = "icon" href = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/favicon.png">
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css">
     <link rel = "icon" href = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/favicon.ico">
+    <link rel = "icon" href = "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/favicon.png">
+    <meta name = "description" content = "PlayOnTable.com lets you play any game on a virtual multiplayer table">
     <script>if ("serviceWorker" in navigator) {window.addEventListener("load", () => {navigator.serviceWorker.register("/sw.js").catch(console.error);});}</script>
 </head>
     <body oncontextmenu = "return false">
@@ -20,10 +20,9 @@
         <div id = "jolly-tutorial"></div>
         <div id = "chips-tutorial"></div>
         <dialog id = "main-menu" aria-label = "main menu">
-            <h2 id = "main-title" class = "name">PlayOnTable</h2>
+            <h2 id = "main-title" class = "name" translate = "no">PlayOnTable</h2>
             <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
-                <input id = "join-code" type = "text" placeholder = "Enter Room Code..." pattern = ".{6}" required>
-                <button value = "wait-host">JOIN</button>
+                <input id = "join-code" type = "text" placeholder = "Enter Room Code to Join..." pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
             </form>
             <form id = "form-wait-room" method = "dialog" aria-label = "create room">
                 <button value = "wait-room" autofocus>CREATE NEW ROOM</button>
