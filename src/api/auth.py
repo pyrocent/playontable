@@ -8,9 +8,7 @@ ably = AblyRest(getenv("ABLY_API_KEY"))
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_headers = [],
     allow_methods = ["POST"],
-    allow_credentials = False,
     allow_origins = ["https://playontable.com"]
 )
 
