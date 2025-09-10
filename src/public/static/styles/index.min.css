@@ -161,26 +161,74 @@ html ::backdrop, body ::backdrop {
   display: inline-block;
 }
 
-#wait-room form {
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
+#wait-room .menu-actions {
+  padding: 20px;
 }
-#wait-room form span {
+#wait-room .menu-actions .code-section {
+  margin-bottom: 20px;
+}
+#wait-room .menu-actions .code-section .code-label {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+#wait-room .menu-actions .code-section .code-display {
   display: flex;
-  min-width: 150px;
+  gap: 8px;
   align-items: center;
-  justify-content: space-between;
+  background: rgba(0, 118, 73, 0.05);
+  border: 2px solid rgba(0, 118, 73, 0.2);
+  border-radius: 10px;
+  padding: 12px;
 }
-#wait-room form span h5 {
-  margin: 0;
-  white-space: nowrap;
+#wait-room .menu-actions .code-section .code-display #show-code {
+  flex: 1;
+  font-family: "Courier New", monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(0, 118, 73);
+  text-align: center;
+  letter-spacing: 2px;
 }
-#wait-room form span #show-code {
-  color: rgb(100, 100, 100);
-}
-#wait-room form span #copy-code {
+#wait-room .menu-actions .code-section .code-display .copy-btn {
+  border: none;
+  outline: none;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: Outfit, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgb(0, 118, 73);
+  color: white;
+  transition: all 0.3s ease;
+}
+#wait-room .menu-actions .code-section .code-display .copy-btn:hover {
+  background: #00a662;
+  transform: translateY(-1px);
+}
+#wait-room .menu-actions .start-section .primary-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-family: Outfit, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(135deg, rgb(0, 118, 73) 0%, #00a662 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 118, 73, 0.3);
+}
+#wait-room .menu-actions .start-section .primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 118, 73, 0.4);
 }
 
 main {

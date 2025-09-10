@@ -50,14 +50,23 @@
             </div>
         </dialog>
         <dialog id = "wait-room" aria-label = "wait room">
-            <form method = "dialog">
-                <span>
-                    <h5>Invite Code:</h5>
-                    <h5 id = "show-code" aria-live = "polite"></h5>
-                    <h5 id = "copy-code">📋</h5>
-                </span>
-                <button autofocus>START PLAYING</button>
-            </form>
+            <div class="menu-header">
+                <h2 class="name">Room Created</h2>
+            </div>
+            
+            <div class="menu-actions">
+                <div class="code-section">
+                    <p class="code-label">Share this code with friends:</p>
+                    <div class="code-display">
+                        <span id="show-code" aria-live="polite"></span>
+                        <button type="button" id="copy-code" class="copy-btn">Copy</button>
+                    </div>
+                </div>
+                
+                <form method="dialog" class="start-section">
+                    <button autofocus class="primary-btn">Start Playing</button>
+                </form>
+            </div>
         </dialog>
         <dialog id = "wait-host" aria-label = "wait host">
             <h3 class = "name">Waiting for Host to Start...</h3>

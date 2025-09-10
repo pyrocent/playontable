@@ -164,26 +164,75 @@ html, body
                 display: inline-block
 
 #wait-room
-    form
-        gap: 10px
-        display: flex
-        flex-direction: column
-
-        span
-            display: flex
-            min-width: 150px
-            align-items: center
-            justify-content: space-between
-
-            h5
-                margin: 0
-                white-space: nowrap
-
-            #show-code
-                color: rgb(100, 100, 100)
-
-            #copy-code
+    .menu-actions
+        padding: 20px
+        
+        .code-section
+            margin-bottom: 20px
+            
+            .code-label
+                margin: 0 0 10px 0
+                color: #666
+                font-size: 0.9rem
+                text-align: center
+            
+            .code-display
+                display: flex
+                gap: 8px
+                align-items: center
+                background: rgba(0, 118, 73, 0.05)
+                border: 2px solid rgba(0, 118, 73, 0.2)
+                border-radius: 10px
+                padding: 12px
+                
+                #show-code
+                    flex: 1
+                    font-family: 'Courier New', monospace
+                    font-size: 1.2rem
+                    font-weight: bold
+                    color: $green-dark
+                    text-align: center
+                    letter-spacing: 2px
+                
+                .copy-btn
+                    border: none
+                    outline: none
+                    cursor: pointer
+                    padding: 8px 12px
+                    border-radius: 6px
+                    font-family: Outfit, sans-serif
+                    font-size: 0.8rem
+                    font-weight: 600
+                    background: $green-dark
+                    color: white
+                    transition: all 0.3s ease
+                    
+                    &:hover
+                        background: #00a662
+                        transform: translateY(-1px)
+        
+        .start-section
+            .primary-btn
+                border: none
+                outline: none
                 cursor: pointer
+                padding: 14px 24px
+                border-radius: 12px
+                font-family: Outfit, sans-serif
+                font-weight: 600
+                font-size: 1rem
+                transition: all 0.3s ease
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 100%
+                background: linear-gradient(135deg, $green-dark 0%, #00a662 100%)
+                color: white
+                box-shadow: 0 4px 15px rgba(0, 118, 73, 0.3)
+                
+                &:hover
+                    transform: translateY(-1px)
+                    box-shadow: 0 6px 20px rgba(0, 118, 73, 0.4)
 
 main
     height: 100%
