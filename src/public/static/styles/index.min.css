@@ -200,6 +200,12 @@ html ::backdrop, body ::backdrop {
   color: rgb(0, 118, 73);
   text-align: center;
   letter-spacing: 3px;
+  transition: all 0.4s ease;
+}
+#wait-room .menu-actions .code-section .code-display #show-code.copying {
+  color: #28a745;
+  transform: scale(1.05);
+  font-weight: 800;
 }
 #wait-room .menu-actions .code-section .code-display .copy-icon {
   border: none;
@@ -221,6 +227,11 @@ html ::backdrop, body ::backdrop {
   background: #00a662;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 118, 73, 0.3);
+}
+#wait-room .menu-actions .code-section .code-display .copy-icon.copied {
+  background: #28a745 !important;
+  transform: scale(0.9) !important;
+  animation: copySuccess 0.6s ease;
 }
 #wait-room .menu-actions .start-section .primary-btn {
   border: none;
@@ -245,6 +256,21 @@ html ::backdrop, body ::backdrop {
   box-shadow: 0 6px 20px rgba(0, 118, 73, 0.4);
 }
 
+@keyframes copySuccess {
+  0% {
+    transform: scale(0.9);
+    background: #28a745;
+  }
+  50% {
+    transform: scale(1.15);
+    background: #20c997;
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    background: #28a745;
+  }
+}
 main {
   height: 100%;
   display: flex;

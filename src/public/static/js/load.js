@@ -21,13 +21,24 @@ mainMenu.addEventListener("close", () => {
     if (mainMenu.returnValue === "wait-room") {
         showCode.innerText = roomCode;
         copyCode.onclick = () => {
+            // Animate the copy button
+            copyCode.classList.add('copied');
+            copyCode.innerHTML = '✓';
+            
+            // Animate the code text
+            showCode.classList.add('copying');
             showCode.innerText = "Copied!";
-            showCode.style.color = "#007649";
+            
+            // Copy to clipboard
             navigator.clipboard.writeText(roomCode);
+            
+            // Reset after animation
             setTimeout(() => {
+                copyCode.classList.remove('copied');
+                copyCode.innerHTML = '📋';
+                showCode.classList.remove('copying');
                 showCode.innerText = roomCode;
-                showCode.style.color = "#646464";
-            }, 2000);
+            }, 1500);
         };
         waitRoom.showModal();
     } else if (mainMenu.returnValue === "wait-host") {
