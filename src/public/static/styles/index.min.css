@@ -161,9 +161,20 @@ html ::backdrop, body ::backdrop {
   display: inline-block;
 }
 
-#wait-room .menu-actions {
+#wait-room .menu-actions, #wait-host .menu-actions {
   padding: 20px;
 }
+
+#wait-host .waiting-message {
+  text-align: center;
+}
+#wait-host .waiting-message p {
+  margin: 0;
+  color: #006847;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
 #wait-room .menu-actions .code-section {
   margin-bottom: 20px;
 }
