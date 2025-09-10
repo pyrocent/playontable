@@ -20,13 +20,43 @@
         <div id = "jolly-tutorial"></div>
         <div id = "chips-tutorial"></div>
         <dialog id = "main-menu" aria-label = "main menu">
-            <h2 id = "main-title" class = "name" translate = "no">PlayOnTable</h2>
-            <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
-                <input id = "join-code" type = "text" placeholder = "Enter Room Code to Join..." pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
-            </form>
-            <form id = "form-wait-room" method = "dialog" aria-label = "create room">
-                <button value = "wait-room" autofocus>CREATE NEW ROOM</button>
-            </form>
+            <div class="menu-header">
+                <h1 id = "main-title" class = "name" translate = "no">🎲 PlayOnTable</h1>
+                <p class="subtitle">Il tuo tavolo virtuale per giocare insieme</p>
+            </div>
+            
+            <div class="menu-actions">
+                <div class="action-card">
+                    <div class="action-icon">🚀</div>
+                    <h3>Crea una nuova stanza</h3>
+                    <p>Inizia una partita e invita i tuoi amici</p>
+                    <form id = "form-wait-room" method = "dialog" aria-label = "create room">
+                        <button value = "wait-room" class="primary-btn" autofocus>
+                            <span class="btn-icon">➕</span>
+                            <span class="btn-text">Crea Stanza</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="divider">
+                    <span>oppure</span>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-icon">🎯</div>
+                    <h3>Unisciti a una stanza</h3>
+                    <p>Inserisci il codice della stanza per partecipare</p>
+                    <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
+                        <div class="input-group">
+                            <input id = "join-code" type = "text" placeholder = "Inserisci il codice (6 caratteri)" pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
+                            <button type="submit" class="secondary-btn">
+                                <span class="btn-icon">🔗</span>
+                                <span class="btn-text">Entra</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </dialog>
         <dialog id = "wait-room" aria-label = "wait room">
             <form method = "dialog">
