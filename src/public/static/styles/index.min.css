@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+html, body {
+  margin: 0;
+  height: 100%;
+  user-select: none;
+  font-family: Outfit, sans-serif;
+  background-color: rgb(31, 35, 36);
+  -webkit-tap-highlight-color: transparent;
+}
+html ::backdrop, body ::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#decks-tutorial, #jolly-tutorial, #chips-tutorial {
+  position: fixed;
+}
+
+#decks-tutorial {
+  top: 30px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
+}
+
+#jolly-tutorial {
+  top: 90px;
+  left: 67px;
+  width: 61px;
+  height: 37px;
+}
+
+#chips-tutorial {
+  top: 70px;
+  left: 147px;
+  width: 20px;
+  height: 145px;
+}
+
+#main-menu, #wait-room, #wait-host {
+  padding: 20px;
+  user-select: none;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+#main-menu .name, #wait-room .name, #wait-host .name {
+  margin: 0;
+  color: #006847;
+  text-align: center;
+}
+
+#main-menu button, #wait-room button {
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: Outfit, sans-serif;
+  background-color: rgb(0, 118, 73);
+}
+#main-menu button:hover, #wait-room button:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 118, 73, 0.5);
+}
+
+#main-menu #form-wait-host {
+  gap: 10px;
+  display: flex;
+  margin: 20px 0 10px 0;
+}
+#main-menu #form-wait-host #join-code {
+  padding: 5px;
+  min-width: 0;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  font-family: Outfit, sans-serif;
+  border: 2px solid rgb(0, 0, 0);
+}
+#main-menu #form-wait-room button {
+  width: 100%;
+}
+
+#wait-room form {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#wait-room form span {
+  display: flex;
+  min-width: 150px;
+  align-items: center;
+  justify-content: space-between;
+}
+#wait-room form span h5 {
+  margin: 0;
+  white-space: nowrap;
+}
+#wait-room form span #show-code {
+  color: rgb(100, 100, 100);
+}
+#wait-room form span #copy-code {
+  cursor: pointer;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main #table {
+  gap: 10px;
+  height: 100%;
+  padding: 5px;
+  margin: 10px;
+  overflow: auto;
+  position: relative;
+  border-radius: 5px;
+  background-color: rgb(0, 118, 73);
+  border: 10px ridge rgb(239, 158, 87);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+main #table .hand {
+  border: 2px solid red !important;
+}
+main #table .hide {
+  display: none !important;
+}
+main #table .card {
+  height: 50px;
+  border-radius: 2.5px;
+  border: 1px solid black;
+}
+main #table .card.blue {
+  left: 40px;
+}
+main #table .card.red {
+  left: 80px;
+}
+main #table .card.no-jolly {
+  top: 63px;
+  border-radius: 7.5px;
+  border: 1px solid rgb(248, 247, 247);
+}
+main #table .chip {
+  left: 120px;
+  height: 35px;
+}
+main #table .chip.gold {
+  top: 45px;
+}
+main #table .chip.blue {
+  top: 85px;
+}
+main #table .chip.red {
+  top: 125px;
+}
+main #table .chip.green {
+  top: 165px;
+}
+main #table #board {
+  left: 160px;
+  width: 275px;
+  height: 275px;
+}
+main #table .chess {
+  height: 35px;
+}
+main #table .chess.white {
+  left: 440px;
+}
+main #table .chess.black {
+  left: 480px;
+}
+main #table .queen {
+  top: 39px;
+}
+main #table .bishop {
+  top: 76px;
+}
+main #table .knight {
+  top: 113px;
+}
+main #table .rook {
+  top: 150px;
+}
+main #table .pawn {
+  top: 187px;
+}
+main #table .dama {
+  top: 230px;
+  height: 30px;
+}
+main #table .dama.white {
+  left: 445px;
+}
+main #table .dama.black {
+  left: 483px;
+}
+main * {
+  position: absolute;
+}
+main *:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=index.min.css.map */
