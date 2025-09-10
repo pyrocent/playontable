@@ -65,7 +65,7 @@ html ::backdrop, body ::backdrop {
   padding: 20px;
 }
 #main-menu .menu-actions .action-row {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 #main-menu .menu-actions .action-row .primary-btn, #main-menu .menu-actions .action-row .secondary-btn {
   border: none;
@@ -114,7 +114,7 @@ html ::backdrop, body ::backdrop {
 }
 #main-menu .menu-actions .action-row .input-group input {
   flex: 1;
-  padding: 12px 14px;
+  padding: 12px 20px;
   border-radius: 10px;
   border: 2px solid rgba(0, 118, 73, 0.2);
   font-family: Outfit, sans-serif;
@@ -176,7 +176,7 @@ html ::backdrop, body ::backdrop {
 }
 
 #wait-room .menu-actions .code-section {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 #wait-room .menu-actions .code-section .code-label {
   margin: 0 0 10px 0;
@@ -206,8 +206,8 @@ html ::backdrop, body ::backdrop {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 10px;
   font-family: Outfit, sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
@@ -223,11 +223,11 @@ html ::backdrop, body ::backdrop {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 24px;
-  border-radius: 12px;
+  padding: 12px 20px;
+  border-radius: 10px;
   font-family: Outfit, sans-serif;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
