@@ -21,37 +21,30 @@
         <div id = "chips-tutorial"></div>
         <dialog id = "main-menu" aria-label = "main menu">
             <div class="menu-header">
-                <h1 id = "main-title" class = "name" translate = "no">🎲 PlayOnTable</h1>
-                <p class="subtitle">Il tuo tavolo virtuale per giocare insieme</p>
+                <h2 id = "main-title" class = "name" translate = "no">🎲 PlayOnTable</h2>
             </div>
             
             <div class="menu-actions">
-                <div class="action-card">
-                    <div class="action-icon">🚀</div>
-                    <h3>Crea una nuova stanza</h3>
-                    <p>Inizia una partita e invita i tuoi amici</p>
+                <div class="action-row">
                     <form id = "form-wait-room" method = "dialog" aria-label = "create room">
                         <button value = "wait-room" class="primary-btn" autofocus>
-                            <span class="btn-icon">➕</span>
-                            <span class="btn-text">Crea Stanza</span>
+                            <span class="btn-icon">🚀</span>
+                            <span class="btn-text">Create Room</span>
                         </button>
                     </form>
                 </div>
                 
                 <div class="divider">
-                    <span>oppure</span>
+                    <span>or</span>
                 </div>
                 
-                <div class="action-card">
-                    <div class="action-icon">🎯</div>
-                    <h3>Unisciti a una stanza</h3>
-                    <p>Inserisci il codice della stanza per partecipare</p>
+                <div class="action-row">
                     <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
                         <div class="input-group">
-                            <input id = "join-code" type = "text" placeholder = "Inserisci il codice (6 caratteri)" pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
+                            <input id = "join-code" type = "text" placeholder = "Enter room code" pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
                             <button type="submit" class="secondary-btn">
-                                <span class="btn-icon">🔗</span>
-                                <span class="btn-text">Entra</span>
+                                <span class="btn-icon">🎯</span>
+                                <span class="btn-text">Join</span>
                             </button>
                         </div>
                     </form>
