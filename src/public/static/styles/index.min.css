@@ -179,10 +179,11 @@ html ::backdrop, body ::backdrop {
   margin-bottom: 15px;
 }
 #wait-room .menu-actions .code-section .code-label {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: center;
+  font-weight: 500;
 }
 #wait-room .menu-actions .code-section .code-display {
   display: flex;
@@ -202,22 +203,25 @@ html ::backdrop, body ::backdrop {
   text-align: center;
   letter-spacing: 2px;
 }
-#wait-room .menu-actions .code-section .code-display .copy-btn {
+#wait-room .menu-actions .code-section .code-display .copy-icon {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-family: Outfit, sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 1.2rem;
   background: rgb(0, 118, 73);
   color: white;
   transition: all 0.3s ease;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#wait-room .menu-actions .code-section .code-display .copy-btn:hover {
+#wait-room .menu-actions .code-section .code-display .copy-icon:hover {
   background: #00a662;
-  transform: translateY(-1px);
+  transform: scale(1.1);
 }
 #wait-room .menu-actions .start-section .primary-btn {
   border: none;
