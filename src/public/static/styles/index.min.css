@@ -178,50 +178,49 @@ html ::backdrop, body ::backdrop {
 #wait-room .menu-actions .code-section {
   margin-bottom: 15px;
 }
-#wait-room .menu-actions .code-section .code-label {
-  margin: 0 0 15px 0;
-  color: #666;
-  font-size: 1rem;
-  text-align: center;
-  font-weight: 500;
-}
 #wait-room .menu-actions .code-section .code-display {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
   background: rgba(0, 118, 73, 0.05);
   border: 2px solid rgba(0, 118, 73, 0.2);
-  border-radius: 10px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 16px;
+}
+#wait-room .menu-actions .code-section .code-display .share-icon {
+  font-size: 1.3rem;
+  color: rgb(0, 118, 73);
+  opacity: 0.7;
 }
 #wait-room .menu-actions .code-section .code-display #show-code {
   flex: 1;
   font-family: "Courier New", monospace;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: rgb(0, 118, 73);
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 #wait-room .menu-actions .code-section .code-display .copy-icon {
   border: none;
   outline: none;
   cursor: pointer;
   padding: 8px;
-  border-radius: 6px;
-  font-size: 1.2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
   background: rgb(0, 118, 73);
   color: white;
   transition: all 0.3s ease;
-  min-width: 36px;
-  height: 36px;
+  min-width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 #wait-room .menu-actions .code-section .code-display .copy-icon:hover {
   background: #00a662;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 118, 73, 0.3);
 }
 #wait-room .menu-actions .start-section .primary-btn {
   border: none;
