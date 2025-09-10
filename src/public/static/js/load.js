@@ -15,7 +15,8 @@ const joinCode = document.getElementById("join-code");
 const showCode = document.getElementById("show-code");
 const copyCode = document.getElementById("copy-code");
 
-startTutorial(() => {mainMenu.showModal();});
+// Mostra il menu principale all'avvio
+mainMenu.showModal();
 
 mainMenu.addEventListener("close", () => {
     if (mainMenu.returnValue === "wait-room") {
@@ -42,11 +43,17 @@ mainMenu.addEventListener("close", () => {
         };
         waitRoom.showModal();
     } else if (mainMenu.returnValue === "wait-host") {
-        initRoom(joinCode.value);
-        waitHost.showModal();
+        // Avvia il tutorial prima di entrare nella stanza
+        startTutorial(() => {
+            initRoom(joinCode.value);
+            waitHost.showModal();
+        });
     }
 });
 
 waitRoom.addEventListener("close", () => {
-    initRoom(roomCode).send("play");
+    // Avvia il tutorial prima di iniziare il gioco
+    startTutorial(() => {
+        initRoom(roomCode).send("play");
+    });
 });
