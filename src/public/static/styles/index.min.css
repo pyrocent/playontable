@@ -109,7 +109,7 @@ html ::backdrop, body ::backdrop {
 }
 #main-menu .menu-actions .action-row .input-group {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 #main-menu .menu-actions .action-row .input-group input {
@@ -132,8 +132,8 @@ html ::backdrop, body ::backdrop {
 }
 #main-menu .menu-actions .action-row .input-group .secondary-btn {
   width: auto;
-  min-width: 80px;
-  padding: 12px 16px;
+  min-width: 70px;
+  padding: 12px 14px;
 }
 #main-menu .menu-actions .divider {
   text-align: center;
