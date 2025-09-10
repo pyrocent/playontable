@@ -26,10 +26,13 @@
             
             <div class="menu-actions">
                 <div class="action-row">
-                    <form id = "form-wait-room" method = "dialog" aria-label = "create room">
-                        <button value = "wait-room" class="primary-btn" autofocus>
-                            Create Room
-                        </button>
+                    <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
+                        <div class="input-group">
+                            <input id = "join-code" type = "text" placeholder = "Enter room code" pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
+                            <button type="submit" class="secondary-btn">
+                                Join
+                            </button>
+                        </div>
                     </form>
                 </div>
                 
@@ -38,13 +41,10 @@
                 </div>
                 
                 <div class="action-row">
-                    <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
-                        <div class="input-group">
-                            <input id = "join-code" type = "text" placeholder = "Enter room code" pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
-                            <button type="submit" class="secondary-btn">
-                                Join
-                            </button>
-                        </div>
+                    <form id = "form-wait-room" method = "dialog" aria-label = "create room">
+                        <button value = "wait-room" class="primary-btn">
+                            Create Room
+                        </button>
                     </form>
                 </div>
             </div>

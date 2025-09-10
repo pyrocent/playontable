@@ -64,7 +64,7 @@ html ::backdrop, body ::backdrop {
 #main-menu .menu-actions {
   padding: 20px;
 }
-#main-menu .menu-actions .action-row {
+#main-menu .menu-actions .action-row:not(:last-child) {
   margin-bottom: 15px;
 }
 #main-menu .menu-actions .action-row .primary-btn, #main-menu .menu-actions .action-row .secondary-btn {

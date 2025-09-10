@@ -68,7 +68,8 @@ html, body
         padding: 20px
         
         .action-row
-            margin-bottom: 15px
+            &:not(:last-child)
+                margin-bottom: 15px
             
             .primary-btn, .secondary-btn
                 border: none
