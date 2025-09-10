@@ -131,9 +131,8 @@ html ::backdrop, body ::backdrop {
   color: #999;
 }
 #main-menu .menu-actions .action-row .input-group .secondary-btn {
-  width: auto;
-  min-width: 70px;
-  padding: 12px 14px;
+  width: 80px;
+  padding: 12px 20px;
 }
 #main-menu .menu-actions .divider {
   text-align: center;
