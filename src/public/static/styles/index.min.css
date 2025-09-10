@@ -37,48 +37,155 @@ html ::backdrop, body ::backdrop {
 }
 
 #main-menu, #wait-room, #wait-host {
-  padding: 20px;
+  padding: 0;
   user-select: none;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-}
-#main-menu .name, #wait-room .name, #wait-host .name {
-  margin: 0;
-  color: #006847;
-  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  min-width: 400px;
 }
 
-#main-menu button, #wait-room button {
-  border: none;
+#main-menu .menu-header {
+  text-align: center;
+  padding: 40px 30px 30px 30px;
+  background: linear-gradient(135deg, rgb(0, 118, 73) 0%, #00a662 100%);
+  border-radius: 20px 20px 0 0;
   color: white;
+}
+#main-menu .menu-header .name {
+  margin: 0 0 10px 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+#main-menu .menu-header .subtitle {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+#main-menu .menu-actions {
+  padding: 30px;
+}
+#main-menu .menu-actions .action-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 118, 73, 0.1);
+  transition: all 0.3s ease;
+}
+#main-menu .menu-actions .action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 118, 73, 0.15);
+}
+#main-menu .menu-actions .action-card .action-icon {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#main-menu .menu-actions .action-card h3 {
+  margin: 0 0 8px 0;
+  color: rgb(0, 118, 73);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+#main-menu .menu-actions .action-card p {
+  margin: 0 0 20px 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+#main-menu .menu-actions .action-card .primary-btn, #main-menu .menu-actions .action-card .secondary-btn {
+  border: none;
   outline: none;
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 14px 24px;
+  border-radius: 12px;
   font-family: Outfit, sans-serif;
-  background-color: rgb(0, 118, 73);
-}
-#main-menu button:hover, #wait-room button:hover {
-  color: rgb(0, 0, 0);
-  background-color: rgba(0, 118, 73, 0.5);
-}
-
-#main-menu #form-wait-host {
-  gap: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   display: flex;
-  margin: 20px 0 10px 0;
-}
-#main-menu #form-wait-host #join-code {
-  padding: 5px;
-  min-width: 0;
-  flex: 1 1 auto;
-  border-radius: 10px;
-  font-family: Outfit, sans-serif;
-  border: 2px solid rgb(0, 0, 0);
-}
-#main-menu #form-wait-room button {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
+}
+#main-menu .menu-actions .action-card .primary-btn .btn-icon, #main-menu .menu-actions .action-card .secondary-btn .btn-icon {
+  font-size: 1.1rem;
+}
+#main-menu .menu-actions .action-card .primary-btn .btn-text, #main-menu .menu-actions .action-card .secondary-btn .btn-text {
+  font-size: 1rem;
+}
+#main-menu .menu-actions .action-card .primary-btn {
+  background: linear-gradient(135deg, rgb(0, 118, 73) 0%, #00a662 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 118, 73, 0.3);
+}
+#main-menu .menu-actions .action-card .primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 118, 73, 0.4);
+}
+#main-menu .menu-actions .action-card .secondary-btn {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+#main-menu .menu-actions .action-card .secondary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+#main-menu .menu-actions .action-card .input-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+#main-menu .menu-actions .action-card .input-group input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 118, 73, 0.2);
+  font-family: Outfit, sans-serif;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+#main-menu .menu-actions .action-card .input-group input:focus {
+  border-color: rgb(0, 118, 73);
+  box-shadow: 0 0 0 3px rgba(0, 118, 73, 0.1);
+  background: white;
+}
+#main-menu .menu-actions .action-card .input-group input::placeholder {
+  color: #999;
+}
+#main-menu .menu-actions .action-card .input-group .secondary-btn {
+  width: auto;
+  min-width: 100px;
+}
+#main-menu .menu-actions .divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+}
+#main-menu .menu-actions .divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 118, 73, 0.3) 50%, transparent 100%);
+}
+#main-menu .menu-actions .divider span {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 0 20px;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 #wait-room form {

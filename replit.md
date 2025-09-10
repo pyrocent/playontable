@@ -5,6 +5,16 @@ PlayOnTable is a web-based multiplayer virtual tabletop gaming platform that all
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Interface language: Italian - user prefers Italian interface text.
+
+# Recent Changes
+
+## September 10, 2025 - Menu Redesign
+- Completely redesigned the main menu to be more modern and intuitive
+- Updated interface language to Italian
+- Added emoji icons and modern card-based layout
+- Improved visual hierarchy with gradients and shadows
+- Enhanced user experience with clear action descriptions
 
 # System Architecture
 
