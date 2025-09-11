@@ -360,7 +360,10 @@ export class PixiGameRenderer {
             
             // Stop event propagation
             event.stopPropagation();
-            this.app.stage.on('pointermove', this.onDragMove.bind(this, sprite));
+            
+            // Salva il handler per rimuoverlo correttamente
+            sprite.dragMoveHandler = this.onDragMove.bind(this, sprite);
+            this.app.stage.on('pointermove', sprite.dragMoveHandler);
         });
 
         sprite.on('pointerup', () => {
@@ -387,18 +390,33 @@ export class PixiGameRenderer {
             sprite.tint = 0xFFFFFF;
             sprite.zIndex = 0;
             
-            // Remove global move listener
-            this.app.stage.off('pointermove');
+            // Remove specific move listener
+            if (sprite.dragMoveHandler) {
+                this.app.stage.off('pointermove', sprite.dragMoveHandler);
+                sprite.dragMoveHandler = null;
+            }
             
             // Emit drag event per compatibilità con il sistema esistente
             if (window.room) {
-                const index = this.getSpriteIndex(sprite);
+                const dragIndex = this.getSpriteIndex(sprite);
                 window.room.send('drag', {
-                    index: index,
+                    dragIndex: dragIndex,
                     x: sprite.x,
                     y: sprite.y,
                     z: sprite.zIndex
                 });
+            }
+        }
+    }
+
+    // Metodo per aggiornare sprite da eventi remoti
+    updateSpriteByIndex(index, x, y, z) {
+        if (index >= 0 && index < this.gameElements.children.length) {
+            const sprite = this.gameElements.children[index];
+            if (sprite) {
+                sprite.x = x;
+                sprite.y = y;
+                sprite.zIndex = z || 0;
             }
         }
     }

@@ -9,6 +9,14 @@ Interface language: Italian - user prefers Italian interface text.
 
 # Recent Changes
 
+## September 11, 2025 - PIXI.js Integration
+- **Performance Upgrade**: Converted entire rendering system from HTML/CSS elements to PIXI.js sprites
+- **Hardware Acceleration**: Game table now uses canvas rendering with GPU optimization
+- **Enhanced Drag & Drop**: Implemented pointer-based interaction system for smooth 60fps gameplay
+- **Real-time Sync**: Full integration with Ably multiplayer system via PIXI sprites
+- **Memory Optimization**: Centralized texture loading and sprite management
+- **Cross-platform**: Improved performance on mobile devices and low-end hardware
+
 ## September 10, 2025 - Menu Redesign
 - Completely redesigned the main menu to be more modern and intuitive
 - Updated interface language to Italian
@@ -19,17 +27,19 @@ Interface language: Italian - user prefers Italian interface text.
 # System Architecture
 
 ## Frontend Architecture
-The frontend is built using vanilla technologies for simplicity and performance:
+The frontend combines vanilla technologies with high-performance graphics rendering:
 - **HTML5** with semantic structure and PWA capabilities
 - **SASS** for modular and maintainable stylesheets 
 - **Vanilla JavaScript** with ES6 modules for component organization
-- **GSAP** library for smooth drag-and-drop interactions and animations
+- **PIXI.js v8** for hardware-accelerated sprite rendering and game graphics
+- **GSAP** library for UI animations (menu system and tutorials)
 - **Driver.js** for interactive tutorials and user onboarding
 
 The frontend follows a modular JavaScript architecture with separate files for different concerns:
 - `load.js` - Application initialization and menu handling
-- `room.js` - Real-time room management and game state
-- `drag.js` - Drag-and-drop functionality for game pieces
+- `pixiRenderer.js` - **NEW**: PIXI.js sprite rendering and canvas management
+- `room.js` - Real-time room management with PIXI integration
+- `drag.js` - Legacy drag-and-drop (fallback compatibility)
 - `tutorial.js` - User onboarding and help system
 - `ably.js` - Real-time communication wrapper
 - `decks.js` - Card deck definitions and management
@@ -57,10 +67,12 @@ The application is designed as a Progressive Web App with:
 - **Security headers** configured for production deployment
 
 ## Game State Management
-- **Client-side state** with real-time synchronization across all players
+- **Hybrid rendering**: PIXI.js sprites with real-time synchronization across all players
 - **Room-based isolation** using nanoid-generated 6-character codes
 - **Private hand management** with visual indicators (red borders)
 - **Deck shuffling** happens client-side with shared random seeds
+- **Sprite synchronization**: Real-time position updates for all game pieces via Ably
+- **Performance optimized**: 60fps canvas rendering with efficient memory management
 
 # External Dependencies
 

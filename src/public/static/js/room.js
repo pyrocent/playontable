@@ -19,7 +19,15 @@ export function initRoom(roomCode) {
 
     room.on("drag", message => {
         const {x, y, z, dragIndex} = message.data;
-        gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
+        // Usa PIXI renderer se disponibile, altrimenti fallback a GSAP per elementi DOM
+        if (window.pixiRenderer && window.pixiRenderer.isReady) {
+            window.pixiRenderer.updateSpriteByIndex(dragIndex, x, y, z);
+        } else {
+            // Fallback per elementi DOM (compatibilità)
+            if (table.children[dragIndex]) {
+                gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
+            }
+        }
     });
 
     room.on("chip", message => {
