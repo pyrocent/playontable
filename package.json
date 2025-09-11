@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "pixi.js": "^8.13.2",
     "sass": "^1.92.1"
   }
 }
