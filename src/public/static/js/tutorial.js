@@ -1,6 +1,6 @@
-import {driver} from "https://cdn.jsdelivr.net/npm/driver.js@1.3.6/+esm";
+import {driver} from "driver.js";
 
-export function startTutorial(onDestroyedCallback = () => {}) {
+export function startTutorial() {
     driver({
         prevBtnText: "⬅️",
         nextBtnText: "➡️",
@@ -62,7 +62,6 @@ export function startTutorial(onDestroyedCallback = () => {}) {
                     align: "center"
                 }
             }
-        ],
-        onDestroyed() {onDestroyedCallback();}
+        ]
     }).drive();
 }

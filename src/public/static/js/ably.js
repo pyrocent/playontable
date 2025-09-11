@@ -1,8 +1,8 @@
-import ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/+esm";
+import * as Ably from "ably";
 
 export class Room {
     constructor(roomCode) {
-        this.ably = new ably.Realtime({authUrl: "https://playontable.com/api/auth", authMethod: "POST"});
+        this.ably = new Ably.Realtime({authUrl: "https://playontable.com/api/auth", authMethod: "POST"});
         this.room = this.ably.channels.get(roomCode);
     }
 

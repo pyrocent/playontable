@@ -1,6 +1,7 @@
+import {gsap} from "gsap"
 import {Room} from "./ably.js";
 import {makeDraggable} from "./drag.js";
-import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm"
+import {startTutorial} from "./tutorial.js";
 import {getItaDeck, getBlueFraDeck, getRedFraDeck, getBlueFraDeckJolly, getRedFraDeckJolly} from "./decks.js";
 
 let room;
@@ -15,19 +16,14 @@ export function initRoom(roomCode) {
     room = new Room(roomCode);
     const table = document.getElementById("table");
 
-    room.on("play", () => {document.getElementById("wait-host").close();});
+    room.on("play", () => {
+        document.getElementById("wait-host").close();
+        startTutorial();
+    });
 
     room.on("drag", message => {
         const {x, y, z, dragIndex} = message.data;
-        // Usa PIXI renderer se disponibile, altrimenti fallback a GSAP per elementi DOM
-        if (window.pixiRenderer && window.pixiRenderer.isReady) {
-            window.pixiRenderer.updateSpriteByIndex(dragIndex, x, y, z);
-        } else {
-            // Fallback per elementi DOM (compatibilità)
-            if (table.children[dragIndex]) {
-                gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
-            }
-        }
+        gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
     });
 
     room.on("chip", message => {
