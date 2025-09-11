@@ -1,4 +1,4 @@
-import * as Ably from "ably";
+import * as Ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/build/ably.min.js";
 
 export class Room {
     constructor(roomCode) {

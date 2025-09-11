@@ -1,5 +1,5 @@
 import {initRoom} from "./room.js";
-import {nanoid} from "@sitnik/nanoid";
+import {nanoid} from "https://cdn.jsdelivr.net/npm/nanoid@5.1.5/+esm";
 
 const roomCode = nanoid(6);
 const mainMenu = document.getElementById("main-menu");
