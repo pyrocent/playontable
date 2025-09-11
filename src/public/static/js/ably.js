@@ -1,4 +1,4 @@
-import * as ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/build/ably.min.js";
+import * as ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/+esm";
 
 export class Room {
     constructor(roomCode) {
