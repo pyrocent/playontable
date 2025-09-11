@@ -1,14 +1,11 @@
 import {initRoom} from "./room.js";
 import {startTutorial} from "./tutorial.js";
+import {PixiGameRenderer} from "./pixiRenderer.js";
 import {nanoid} from "https://cdn.jsdelivr.net/npm/nanoid@5.1.5/+esm";
-import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
-import {injectSpeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/+esm";
-
-inject();
-injectSpeedInsights();
+// Vercel Analytics rimosso temporaneamente per debug PIXI
 
 const roomCode = nanoid(6);
-const mainMenu = document.getElementById("main-menu");
+const mainMenu = document.getElementById("menu");
 const waitRoom = document.getElementById("wait-room");
 const waitHost = document.getElementById("wait-host");
 const joinCode = document.getElementById("join-code");
@@ -17,6 +14,12 @@ const copyCode = document.getElementById("copy-code");
 
 // Mostra il menu principale all'avvio
 mainMenu.showModal();
+
+// Aggiunge l'evento per il tutorial
+document.getElementById("start-tutorial").addEventListener("click", () => {
+    mainMenu.close();
+    startTutorial();
+});
 
 mainMenu.addEventListener("close", () => {
     if (mainMenu.returnValue === "wait-room") {
@@ -42,18 +45,47 @@ mainMenu.addEventListener("close", () => {
             }, 1500);
         };
         waitRoom.showModal();
-    } else if (mainMenu.returnValue === "wait-host") {
+    } else if (mainMenu.returnValue === "join-room") {
+        // Inizializza PIXI in background per join room
+        (async () => {
+            try {
+                const gameContainer = document.getElementById("game-container");
+                const pixiRenderer = new PixiGameRenderer(gameContainer);
+                await pixiRenderer.init();
+                window.pixiRenderer = pixiRenderer;
+            } catch (error) {
+                console.error("Errore inizializzazione PIXI per join:", error);
+            }
+        })();
+        
         // Avvia il tutorial prima di entrare nella stanza
         startTutorial(() => {
-            initRoom(joinCode.value);
-            waitHost.showModal();
+            const roomConnection = initRoom(joinCode.value);
+            if (roomConnection && roomConnection.send) {
+                // Aspetta che la connessione sia stabilita prima di inviare
+                setTimeout(() => waitHost.showModal(), 100);
+            } else {
+                waitHost.showModal();
+            }
         });
     }
 });
 
-waitRoom.addEventListener("close", () => {
-    // Avvia il tutorial prima di iniziare il gioco
-    startTutorial(() => {
-        initRoom(roomCode).send("play");
-    });
+waitRoom.addEventListener("close", async () => {
+    try {
+        // Inizializza il renderer PIXI e attende che sia pronto
+        const gameContainer = document.getElementById("game-container");
+        const pixiRenderer = new PixiGameRenderer(gameContainer);
+        await pixiRenderer.init(); // Attende inizializzazione
+        window.pixiRenderer = pixiRenderer; // Rende disponibile globalmente
+        
+        startTutorial(() => {
+            const roomConnection = initRoom(roomCode);
+            if (roomConnection && roomConnection.send) {
+                roomConnection.send("play");
+            }
+        });
+    } catch (error) {
+        console.error("Errore inizializzazione PIXI:", error);
+    }
 });
