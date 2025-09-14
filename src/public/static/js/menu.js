@@ -1,10 +1,10 @@
 import {initRoom} from "./room.js";
 import {nanoid} from "https://cdn.jsdelivr.net/npm/nanoid@5.1.5/+esm";
-import {vercelanalytics} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
-import {vercelspeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/+esm";
+import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
+import {injectSpeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/+esm";
 
-vercelanalytics();
-vercelspeedInsights();
+inject();
+injectSpeedInsights();
 
 const roomCode = nanoid(6);
 const mainMenu = document.getElementById("main-menu");
