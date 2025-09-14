@@ -12,11 +12,17 @@
     "description": "PlayOnTable.com lets you play any game on a virtual multiplayer table",
     "shortcuts": [
         {
-            "url": "/",
+            "url": "/?shortcut=true",
             "name": "Create new room",
             "short_name": "Create new room",
             "description": "Create a new multiplayer room",
-            "icons": [{"src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/shortcut.png", "sizes": "96x96", "type": "image/png"}]
+            "icons": [
+                {
+                    "sizes": "96x96",
+                    "type": "image/png",
+                    "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/shortcut.png"
+                }
+            ]
         }
     ],
     "icons": [
