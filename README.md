@@ -1,4 +1,4 @@
-# [PlayOnTable.com](https://www.playontable.com/)
+# [PlayOnTable.com](https://playontable.com/)
 
 ![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail-vj0zUV663nFN8eHuzHvFuVBJq3BrhR.png)
 
