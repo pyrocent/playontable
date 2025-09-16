@@ -8,7 +8,7 @@
                 {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
                 {"key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload"},
                 {"key": "Permissions-Policy", "value": "geolocation=(), camera=(), microphone=(), payment=(), browsing-topics=()"},
-                {"key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://rest.ably.io wss://realtime.ably.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"}
+                {"key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdn.vercel-insights.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: blob: https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com; worker-src 'self' blob:; media-src 'self'; manifest-src 'self'"}
             ]
         },
         {
@@ -16,6 +16,13 @@
             "headers": [
                 {"key": "X-Robots-Tag", "value": "noindex, nofollow"}
             ]
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/api/$1",
+            "has": [{"type": "host", "value": "api.playontable.com"}]
         }
     ]
 }
