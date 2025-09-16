@@ -8,7 +8,7 @@
                     "value": "api.playontable.com"
                 }
             ],
-            "destination": "https://playontable.com",
+            "destination": "playontable.com",
             "statusCode": 403
         },
         {
@@ -19,7 +19,7 @@
                     "value": "playontable.com"
                 }
             ],
-            "destination": "https://playontable.com",
+            "destination": "playontable.com",
             "statusCode": 403
         }
     ]
