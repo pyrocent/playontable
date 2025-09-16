@@ -25,4 +25,4 @@ The codebase has these dependencies:
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 - [Google Font](https://fonts.google.com/) (all the web site uses [Outfit](https://fonts.google.com/specimen/Outfit) font)
 
-[PlayOnTable](https://www.playontable.com/) is hosted on [Vercel](https://vercel.com/) and its *.com* web domain is registered on [Ionos](https://www.ionos.it/).
+[PlayOnTable](https://playontable.com/) is hosted on [Vercel](https://vercel.com/) and its *.com* web domain is registered on [Ionos](https://www.ionos.it/).
