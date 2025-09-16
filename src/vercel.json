@@ -1,9 +1,26 @@
 {
-    "rewrites": [
+    "redirects": [
         {
-            "source": "/(.*)",
-            "destination": "/api/$1",
-            "has": [{"type": "host", "value": "api.playontable.com"}]
+            "source": "/((?!api).*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "api.playontable.com"
+                }
+            ],
+            "destination": "https://playontable.com",
+            "statusCode": 403
+        },
+        {
+            "source": "/api/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "playontable.com"
+                }
+            ],
+            "destination": "https://playontable.com",
+            "statusCode": 403
         }
     ]
 }
