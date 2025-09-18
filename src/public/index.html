@@ -21,15 +21,15 @@
         <div id = "chips-tutorial"></div>
         <dialog id = "main-menu" aria-label = "main menu">
             <h2 id = "main-title" class = "name" translate = "no">PlayOnTable</h2>
-            <form id = "form-wait-host" method = "dialog" autocomplete = "off" aria-label = "join room">
+            <form id = "form-wait-menu" method = "dialog" autocomplete = "off" aria-label = "join room">
                 <input id = "join-code" type = "text" placeholder = "Enter Room Code to Join..." pattern = ".{6}" enterkeyhint = "JOIN" writingsuggestions = "false" required>
-                <button value = "wait-host">JOIN</button>
+                <button value = "wait-menu">JOIN</button>
             </form>
-            <form id = "form-wait-room" method = "dialog" aria-label = "create new room">
-                <button value = "wait-room" autofocus>CREATE NEW ROOM</button>
+            <form id = "form-host-menu" method = "dialog" aria-label = "create new room">
+                <button value = "host-menu" autofocus>CREATE NEW ROOM</button>
             </form>
         </dialog>
-        <dialog id = "wait-room" aria-label = "wait room">
+        <dialog id = "host-menu" aria-label = "host menu">
             <form method = "dialog">
                 <span>
                     <h5>Invite Code:</h5>
@@ -39,7 +39,7 @@
                 <button autofocus>START PLAYING</button>
             </form>
         </dialog>
-        <dialog id = "wait-host" aria-label = "wait host">
+        <dialog id = "wait-menu" aria-label = "wait menu">
             <h3 class = "name">Waiting for Host to Start...</h3>
         </dialog>
         <main>

@@ -8,8 +8,8 @@ injectSpeedInsights();
 
 const roomCode = nanoid(6);
 const mainMenu = document.getElementById("main-menu");
-const waitRoom = document.getElementById("wait-room");
-const waitHost = document.getElementById("wait-host");
+const hostMenu = document.getElementById("host-menu");
+const waitMenu = document.getElementById("wait-menu");
 const joinCode = document.getElementById("join-code");
 const showCode = document.getElementById("show-code");
 const copyCode = document.getElementById("copy-code");
@@ -17,7 +17,7 @@ const copyCode = document.getElementById("copy-code");
 const URLparam = new URLSearchParams(window.location.search);
 const shortcut = URLparam.get("shortcut");
 
-function waitRoomSetup() {
+function hostMenuSetup() {
     showCode.innerText = roomCode;
     copyCode.onclick = () => {
         showCode.innerText = "Copied!";
@@ -28,7 +28,7 @@ function waitRoomSetup() {
             showCode.style.color = "#646464";
         }, 2000);
     };
-    waitRoom.showModal();
+    hostMenu.showModal();
 }
 
 if (shortcut === "true") {
@@ -38,14 +38,14 @@ if (shortcut === "true") {
 }
 
 mainMenu.addEventListener("close", () => {
-    if (mainMenu.returnValue === "wait-room") {
-        waitRoomSetup();
-    } else if (mainMenu.returnValue === "wait-host") {
+    if (mainMenu.returnValue === "host-menu") {
+        hostMenuSetup();
+    } else if (mainMenu.returnValue === "wait-menu") {
         initRoom(joinCode.value);
-        waitHost.showModal();
+        waitMenu.showModal();
     }
 });
 
-waitRoom.addEventListener("close", () => {
+waitMenu.addEventListener("close", () => {
     initRoom(roomCode).send("play");
 });
