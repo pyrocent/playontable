@@ -17,7 +17,7 @@ export function initRoom(roomCode) {
     const table = document.getElementById("table");
 
     room.on("play", () => {
-        document.getElementById("wait-host").close();
+        document.getElementById("wait-menu").close();
         startTutorial();
     });
 

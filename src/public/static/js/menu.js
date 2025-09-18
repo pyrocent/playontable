@@ -32,7 +32,7 @@ function hostMenuSetup() {
 }
 
 if (shortcut === "true") {
-    waitRoomSetup();
+    hostMenuSetup();
 } else {
     mainMenu.showModal();
 }
