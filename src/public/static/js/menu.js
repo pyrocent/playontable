@@ -46,6 +46,6 @@ mainMenu.addEventListener("close", () => {
     }
 });
 
-waitMenu.addEventListener("close", () => {
+hostMenu.addEventListener("close", () => {
     initRoom(roomCode).send("play");
 });
