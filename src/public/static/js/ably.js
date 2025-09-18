@@ -2,7 +2,7 @@ import ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/+esm";
 
 export class Room {
     constructor(roomCode) {
-        this.ably = new ably.Realtime({authUrl: "https://api.playontable.com/auth", authMethod: "POST"});
+        this.ably = new ably.Realtime({authUrl: "https://playontable.com/auth", authMethod: "POST"});
         this.room = this.ably.channels.get(roomCode);
     }
 
