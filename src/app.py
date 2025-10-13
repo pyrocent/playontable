@@ -12,7 +12,7 @@ app.add_middleware(
     allow_origins = ["https://playontable.com"]
 )
 
-@app.post("/api/auth")
+@app.post("/auth")
 async def auth():
     response = await ably.auth.request_token()
     return response.to_dict()
