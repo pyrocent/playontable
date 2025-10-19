@@ -1,14 +1,14 @@
-# [PlayOnTable.com](https://playontable.com/)
+# PlayOnTable
 
-![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail-vj0zUV663nFN8eHuzHvFuVBJq3BrhR.png)
+[![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail.png)](https://playontable.com/)
 
-This web site allows you to play many games on a virtual table, for free.
+### [PlayOnTable](https://playontable.com/) lets you play any game on a virtual multiplayer table, for free!
 
-It was developed using the following programming/markup languages:
+It was developed using the following programming and markup languages:
 
 *for the backend*
 
-- **Python** ([FastAPI](https://fastapi.tiangolo.com/))
+- **Python** ([FastAPI framework](https://fastapi.tiangolo.com/))
 
 *for the frontend*
 
@@ -16,7 +16,7 @@ It was developed using the following programming/markup languages:
 - **SASS**
 - **Vanilla JavaScript**
 
-The codebase has these dependencies:
+The codebase has these 6 main dependencies:
 
 - [SASS](https://sass-lang.com/) (for HTML stylesheets)
 - [Ably](https://ably.com/) (for realtime connection)
