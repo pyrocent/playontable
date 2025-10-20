@@ -21,25 +21,17 @@ export function initRoom(roomCode) {
         startTutorial();
     });
 
-    room.on("drag", message => {
-        const {x, y, z, dragIndex} = message.data;
-        gsap.set(table.children[dragIndex], {x: x, y: y, zIndex: z});
+    room.on("drag", ({data: {x, y, z, dragIndex}}) => {
+        gsap.set(table.children[dragIndex], {x, y, zIndex: z});
     });
 
-    room.on("chip", message => {
-        const {src, alt, classes} = message.data;
-        const img = document.createElement("img");
-
-        img.src = src;
-        img.alt = alt;
-        img.className = classes;
-
+    room.on("chip", ({data: {src, alt, classes}}) => {
+        const img = Object.assign(document.createElement("img"), {src, alt, className: classes});
         table.appendChild(img);
         makeDraggable(img);
     });
 
-    room.on("turn", message => {
-        const {randomNumber, cardIndex} = message.data;
+    room.on("turn", ({data: {randomNumber, cardIndex}}) => {
         let deckType;
         let cardBack;
         let randomCard;
@@ -95,9 +87,7 @@ export function initRoom(roomCode) {
         }
     });
 
-    room.on("draw", message => {
-        const {deckType, cardIndex} = message.data;
-
+    room.on("draw", ({data: {deckType, cardIndex}}) => {
         if (deckType === "ita") itaDeck.splice(cardIndex, 1)[0];
         else if (deckType === "fra/blue") blueFraDeck.splice(cardIndex, 1)[0];
         else if (deckType === "fra/red") redFraDeck.splice(cardIndex, 1)[0];
