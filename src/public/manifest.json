@@ -9,7 +9,7 @@
     "short_name": "PlayOnTable",
     "background_color": "#1f2324",
     "display_override": ["standalone", "minimal-ui", "browser"],
-    "description": "PlayOnTable.com lets you play any game on a virtual multiplayer table",
+    "description": "PlayOnTable lets you play any game on a virtual multiplayer table",
     "shortcuts": [
         {
             "url": "/?shortcut=true",
