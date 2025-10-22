@@ -2,6 +2,7 @@
     "scope": "/",
     "start_url": "/",
     "orientation": "any",
+    "iarc_rating_id": "",
     "name": "PlayOnTable",
     "categories": ["games"],
     "display": "fullscreen",
@@ -10,6 +11,7 @@
     "background_color": "#1f2324",
     "display_override": ["standalone", "minimal-ui", "browser"],
     "description": "Lets play any game on virtual multiplayer table, for free!",
+    "launch_handler": {"client_mode": ["auto", "focus-existing", "navigate-existing", "navigate-new"]},
     "shortcuts": [
         {
             "url": "/?shortcut=true",
