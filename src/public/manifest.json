@@ -9,13 +9,13 @@
     "short_name": "PlayOnTable",
     "background_color": "#1f2324",
     "display_override": ["standalone", "minimal-ui", "browser"],
-    "description": "PlayOnTable lets you play any game on a virtual multiplayer table",
+    "description": "Lets play any game on virtual multiplayer table, for free!",
     "shortcuts": [
         {
             "url": "/?shortcut=true",
             "name": "Create new room",
             "short_name": "Create new room",
-            "description": "Create a new multiplayer room",
+            "description": "Create new room",
             "icons": [
                 {
                     "sizes": "96x96",
