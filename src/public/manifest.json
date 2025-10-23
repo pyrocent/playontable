@@ -4,7 +4,7 @@
     "orientation": "any",
     "name": "PlayOnTable",
     "categories": ["games"],
-    "display": "fullscreen",
+    "display": "standalone",
     "theme_color": "#1f2324",
     "short_name": "PlayOnTable",
     "background_color": "#1f2324",
