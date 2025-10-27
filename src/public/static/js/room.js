@@ -103,7 +103,17 @@ export function initRoom(roomCode) {
     });
 
     room.on("dice", ({data: {number}}) => {
-        document.getElementById("dice").setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dice/${number}.png`);
+        const dice = document.getElementById("dice");
+
+        const interval = setInterval(() => {
+            const randomNum = Math.floor(Math.random() * 6) + 1;
+            dice.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dice/${randomNum}.png`);
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            dice.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dice/${number}.png`);
+        }, 2000);
     });
 
     makeDraggable("#table *");
