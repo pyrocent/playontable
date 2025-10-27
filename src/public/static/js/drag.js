@@ -24,7 +24,7 @@ export function makeDraggable(toBeDrag) {
         onClick() {
             if (this.target.classList.contains("card")) {
                 if (this._justHeld) this._justHeld = false
-                else room.send("turn", {randomNumber: Math.random(), cardIndex: [...this.target.parentElement.children].indexOf(this.target)})
+                else room.send("turn", {randomNumber: Math.random(), cardIndex: [...this.target.parentElement.children].indexOf(this.target)});
             }
         },
         onDragStart() {
