@@ -11,9 +11,6 @@ html, body
     & ::backdrop
         background: rgba(0, 0, 0, 0.5)
 
-[id$="-tutorial"]
-    position: fixed
-
 #decks-tutorial
     top: 37.5px
     width: 95px
@@ -32,7 +29,10 @@ html, body
     height: 140px
     left: 152.5px
 
-#main-menu, #host-menu, #wait-menu
+[id$="-tutorial"]
+    position: fixed
+
+[id$="-menu"]
     padding: 20px
     user-select: none
     border-radius: 10px
