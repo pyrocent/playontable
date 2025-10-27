@@ -95,11 +95,9 @@ export function initRoom(roomCode) {
         else if (deckType === "fra/red/jolly") redFraDeckJolly.splice(cardIndex, 1)[0];
     });
 
-    room.on("hide", message => {
+    room.on("hide", ({data: {hand, hideIndex}}) => {
         if (message.connectionId === room.ably.connection.id) return;
-        const {hand, hideIndex} = message.data;
         const item = table.children[hideIndex];
-
         if (hand) item.classList.add("hide");
         else item.classList.remove("hide");
     });
