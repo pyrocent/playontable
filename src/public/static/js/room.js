@@ -104,7 +104,7 @@ export function initRoom(roomCode) {
         else item.classList.remove("hide");
     });
 
-    makeDraggable("#table *:not(.info)");
+    makeDraggable("#table *");
 
     return room;
 }
