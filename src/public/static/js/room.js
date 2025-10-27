@@ -102,6 +102,10 @@ export function initRoom(roomCode) {
         else item.classList.remove("hide");
     });
 
+    room.on("dice", ({data: {number}}) => {
+        document.getElementById("dice").setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dice/${number}.png`);
+    });
+
     makeDraggable("#table *");
 
     return room;
