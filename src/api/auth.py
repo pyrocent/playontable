@@ -1,17 +1,18 @@
+from os import getenv
 from ably import AblyRest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-ably = AblyRest("")
+ably = AblyRest(getenv("ABLY_API_KEY"))
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_methods = ["POST"],
-    allow_origins = ["http://127.0.0.1:3000"]
+    allow_methods = ["GET"],
+    allow_origins = ["https://playontable.com"]
 )
 
-@app.post("/api/auth")
+@app.get("/api/auth")
 async def auth():
     response = await ably.auth.request_token()
     return response.to_dict()
