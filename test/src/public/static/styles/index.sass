@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap")
+
+html, body
+    margin: 0
+    user-select: none
+    background: rgb(31, 35, 36)
+    font-family: Outfit, sans-serif
+    -webkit-tap-highlight-color: transparent
+
+    & ::backdrop
+        background: rgba(0, 0, 0, 0.5)
+
+main
+    gap: 5px
+    padding: 5px
+    display: flex
+    height: calc(100vh - 10px)
+    flex-direction: column-reverse
+
+    #table
+        flex: 1
+        padding: 10px
+        overflow: auto
+        position: relative
+        border-radius: 5px
+        background: rgb(23, 123, 84)
+        border: 10px ridge rgb(239, 158, 87)
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5)
+
+        .hide
+            display: none !important
+        .hand
+            border: 2px solid red !important
+
+        .cubes
+            top: 65px
+
+        .cards
+            border-radius: 5px
+            border: 1px solid rgb(0, 0, 0)
+
+            &.blue
+                left: 45px
+            &.red
+                left: 85px
+            &.no-jolly
+                top: 65px
+                border: 1px solid rgb(255, 255, 255)
+
+        .chips
+            left: 125px
+
+            &.gold
+                top: 50px
+            &.blue
+                top: 90px
+            &.red
+                top: 130px
+            &.green
+                top: 170px
+
+        #board
+            left: 165px
+
+        .chess 
+            &.white
+                left: 450px
+            &.black
+                left: 490px
+            &.queen
+                top: 50px
+            &.bishop
+                top: 90px
+            &.knight
+                top: 130px
+            &.rook
+                top: 170px
+            &.pawn
+                top: 210px
+
+        .dames
+            top: 250px
+
+            &.white
+                left: 452.5px
+            &.black
+                left: 492.5px
+
+        & *
+            position: absolute
+
+    #panel.open
+        gap: 5px
+        flex: 0.05
+        display: flex
+        align-self: stretch
+
+        button
+            flex: 1
+            border: none
+            cursor: pointer
+            border-radius: 5px
+
+            &:active
+                border-radius: 90px
+
+        & ~ #table
+            cursor: pointer
+
+        &.cubes
+            #roll
+                display: block
+
+        &.cards
+            #flip
+                display: block
+
+
+.cubes
+    width: 32px
+.cards
+    height: 50px
+.chips
+    height: 35px
+#board
+    width: 275px
+    height: 275px
+.chess 
+    height: 35px
+.dames
+    height: 30px

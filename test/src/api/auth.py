@@ -1,15 +1,14 @@
-from os import getenv
 from ably import AblyRest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-ably = AblyRest(getenv("ABLY_API_KEY"))
+ably = AblyRest("")
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_methods = ["POST"],
-    allow_origins = ["https://playontable.com"]
+    allow_origins = ["http://127.0.0.1:3000"]
 )
 
 @app.post("/api/auth")

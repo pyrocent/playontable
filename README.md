@@ -1,4 +1,4 @@
-# Play Any Game! [PlayOnTable.com](https://playontable.com/)
+# Play Any Game Now! [PlayOnTable](https://playontable.com/)
 
 [![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail.png)](https://playontable.com/)
 
