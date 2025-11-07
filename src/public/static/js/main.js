@@ -1,7 +1,16 @@
+import ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/+esm";
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
+import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
+import {injectSpeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/+esm";
+
+inject();
+injectSpeedInsights();
 
 let currentPiece;
+const hand = document.getElementById("hand");
+const roll = document.getElementById("roll");
+const flip = document.getElementById("flip");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 
@@ -36,6 +45,15 @@ Draggable.create("#board", {bounds: {top: 10, left: 10}, onClick() {tools(this.t
 Draggable.create(".chess", {bounds: {top: 10, left: 10}, onClick() {tools(this.target, "chess");}});
 Draggable.create(".dames", {bounds: {top: 10, left: 10}, onClick() {tools(this.target, "dames");}});
 
-table.addEventListener("click", (e) => {
-    if (e.target === e.currentTarget) {panel.className = ""; gsap.killTweensOf("*"); gsap.set("*", {filter: "none"})};
+table.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) {panel.className = ""; gsap.killTweensOf("*"); gsap.set("*", {filter: "none"})};
+});
+
+hand.addEventListener("click", () => {
+});
+
+roll.addEventListener("click", () => {
+});
+
+flip.addEventListener("click", () => {
 });
