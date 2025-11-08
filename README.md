@@ -19,7 +19,6 @@ The game was developed using the following programming/markup langs:
 The codebase has these 6 main dependencies:
 
 - [SASS](https://sass-lang.com/) (for HTML stylesheets)
-- [Ably](https://ably.com/) (for realtime connection)
 - [GSAP](https://gsap.com/) (for dragging items on table)
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 - [Google Font](https://fonts.google.com/) (all the the game uses [Outfit font](https://fonts.google.com/specimen/Outfit))

@@ -1,4 +1,3 @@
-import ably from "https://cdn.jsdelivr.net/npm/ably@2.12.0/+esm";
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
