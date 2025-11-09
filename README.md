@@ -6,11 +6,11 @@
 
 The game was developed using the following programming/markup langs:
 
-*For the backend*
+*For the **backend***
 
-- **Python** ([FastAPI framework](https://fastapi.tiangolo.com/))
+- **Python** ([Quart framework](https://quart.palletsprojects.com/en/latest/) for WebSocket connections)
 
-*For the frontend*
+*For the **frontend***
 
 - **SASS**
 - **HTML5**
@@ -22,6 +22,8 @@ The codebase has these 3 main dependencies:
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 - [Google Font](https://fonts.google.com/) (all the the game uses [Outfit font](https://fonts.google.com/specimen/Outfit))
 
-[PlayOnTable.com](https://playontable.com/) is hosted on [Vercel](https://vercel.com/) as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)) and its *.com* web domain is registered on [Ionos](https://www.ionos.it/).
+[PlayOnTable.com](https://playontable.com/) frontend is hosted on [Vercel](https://vercel.com/) as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)), while its backend on [Render](https://render.com/).
 
-This game is also available for Android on [Google Play](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)) compiled thaks to [PWABuilder](https://www.pwabuilder.com/).
+It is also available for Android on [Google Play](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)) compiled thaks to [PWABuilder](https://www.pwabuilder.com/).
+
+PlayOnTable *.com* web domain is registered on [Ionos](https://www.ionos.it/). You can check [there](https://who.is/whois/playontable.com) its WHOIS.
