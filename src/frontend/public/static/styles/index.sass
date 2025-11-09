@@ -59,7 +59,7 @@ main
             &.green
                 top: 170px
 
-        #board
+        .board
             left: 165px
 
         .chess 
@@ -86,39 +86,32 @@ main
             &.black
                 left: 492.5px
 
-        & *
+        & > *
             position: absolute
+            will-change: filter, transform
 
-    #panel.open
+    #panel
         gap: 5px
         flex: 0.05
         display: flex
-        align-self: stretch
 
         button
             flex: 1
             border: none
+            display: none
             cursor: pointer
             border-radius: 5px
 
             &:active
                 border-radius: 90px
 
-        & ~ #table
-            cursor: pointer
+        &[class=""] .room, &:not([class=""]) #hand, &.cubes #roll, &.cards #flip
+            display: block
 
-        #roll, #flip
-            display: none
+&:has(#panel:not([class=""]) #hand, #panel.cubes #roll, #panel.cards #flip) #table
+    cursor: pointer
 
-        &.cubes
-            #roll
-                display: block
-
-        &.cards
-            #flip
-                display: block
-
-main #table
+& #table
     .cubes
         width: 32px
     .cards
