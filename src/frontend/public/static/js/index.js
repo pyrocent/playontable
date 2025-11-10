@@ -20,21 +20,23 @@ gsap.registerPlugin(Draggable);
 Draggable.create("#table > *", {
     bounds: {top: 10, left: 10},
     onClick() {
-        gsap.killTweensOf("*"); gsap.set("*", {filter: "none"});
-        currentPiece = this.target;
-        panel.className = currentPiece.className;
-        gsap.fromTo(this.target,
-            {
-                filter: "drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)"
-            },
-            {
-                yoyo: true,
-                repeat: -1,
-                duration: 0.75,
-                ease: "power1.inOut",
-                filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"
-            }
-        );
+        if (!this.target.classList.contains("clone")) {
+            gsap.killTweensOf("*"); gsap.set("*", {filter: "none"});
+            currentPiece = this.target;
+            panel.className = currentPiece.className;
+            gsap.fromTo(this.target,
+                {
+                    filter: "drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)"
+                },
+                {
+                    yoyo: true,
+                    repeat: -1,
+                    duration: 0.75,
+                    ease: "power1.inOut",
+                    filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"
+                }
+            );
+        }
     },
     onDragStart() {
         if (this.target.classList.contains("clone")) {
