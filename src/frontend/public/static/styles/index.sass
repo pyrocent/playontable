@@ -2,6 +2,7 @@ html, body
     margin: 0
     user-select: none
     background: rgb(0, 0, 0)
+    touch-action: manipulation
     font-family: Outfit, sans-serif
     -webkit-tap-highlight-color: transparent
 
@@ -100,8 +101,8 @@ main
             cursor: pointer
             border-radius: 5px
 
-            &:focus,
             &:active
+                border-radius: 90px
                 background-color: rgb(200, 200, 200)
 
         &:not([class]) .room, &[class=""] .room, &[class]:not([class=""]):not(.hand) #hand, &.hand #fall, &.cubes #roll, &.cards #flip
