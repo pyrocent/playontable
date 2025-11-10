@@ -67,7 +67,7 @@ enter.addEventListener("click", () => {
 
 roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
-        currentPiece.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dice/${Math.floor(Math.random() * 6) + 1}.png`);
+        currentPiece.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dices/${currentPiece.classList[1]}/${Math.floor(Math.random() * 6) + 1}.png`);
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
 });

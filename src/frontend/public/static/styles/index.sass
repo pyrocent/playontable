@@ -29,10 +29,15 @@ main
         .hide
             display: none
         .hand
-            outline: 2px solid rgb(250, 0, 0)
+            outline: 2px solid rgb(0, 255, 0)
 
-        .cubes
-            top: 65px
+        .dices
+            left: 125px
+
+            &.black
+                top: 210px
+            &.red
+                top: 250px
 
         .cards
             border-radius: 5px
@@ -105,15 +110,15 @@ main
                 border-radius: 90px
                 background-color: rgb(200, 200, 200)
 
-        &:not([class]) .room, &[class=""] .room, &[class]:not([class=""]):not(.hand) #hand, &.hand #fall, &.cubes #roll, &.cards #flip
+        &:not([class]) .room, &[class=""] .room, &[class]:not([class=""]):not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
 
-    &:has(#panel[class]:not([class=""]) #hand, #panel.cubes #roll, #panel.cards #flip) #table
+    &:has(#panel[class]:not([class=""]) #hand, #panel.dices #roll, #panel.cards #flip) #table
         cursor: pointer
 
     & #table
-        .cubes
-            width: 32px
+        .dices
+            width: 35px
         .cards
             height: 50px
         .chips
