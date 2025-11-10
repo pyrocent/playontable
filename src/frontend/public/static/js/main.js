@@ -35,6 +35,14 @@ Draggable.create("#table > *", {
                 filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"
             }
         );
+    },
+    onDragStart() {
+        if (this.target.classList.contains("clone")) {
+            const clone = this.target.cloneNode(true);
+            table.appendChild(clone);
+            Draggable.create(clone, this.vars);
+            this.target.classList.remove("clone");
+        }
     }
 });
 
