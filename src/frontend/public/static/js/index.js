@@ -3,9 +3,6 @@ import {inject} from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1.5.0/+esm"
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 import {injectSpeedInsights} from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1.2.0/+esm";
 
-inject();
-injectSpeedInsights();
-
 let currentPiece;
 const hand = document.getElementById("hand");
 const roll = document.getElementById("roll");
@@ -16,7 +13,10 @@ const panel = document.getElementById("panel");
 const start = document.getElementById("start");
 const enter = document.getElementById("enter");
 
+inject();
+injectSpeedInsights();
 gsap.registerPlugin(Draggable);
+
 Draggable.create("#table > *", {
     bounds: {top: 10, left: 10},
     onClick() {
