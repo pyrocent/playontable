@@ -105,10 +105,10 @@ main
             &:active
                 border-radius: 90px
 
-        &[class=""] .room, &:not([class=""]) #hand, &.cubes #roll, &.cards #flip
+        &:not([class]) .room, &[class=""] .room, &[class]:not([class=""]) #hand, &.cubes #roll, &.cards #flip
             display: block
 
-    &:has(#panel:not([class=""]) #hand, #panel.cubes #roll, #panel.cards #flip) #table
+    &:has(#panel[class]:not([class=""]) #hand, #panel.cubes #roll, #panel.cards #flip) #table
         cursor: pointer
 
     & #table
