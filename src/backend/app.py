@@ -1,7 +1,9 @@
-from quart import Quart, websocket
+from fastapi import FastAPI, WebSocket
 
-app = Quart(__name__)
+app = FastAPI()
 
-@app.websocket("/ws/<room>")
-async def ws(room):
-    while True: pass
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        pass

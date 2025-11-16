@@ -8,7 +8,7 @@ The game was developed using the following programming/markup langs:
 
 *For the **backend***
 
-- **Python** ([Quart framework](https://quart.palletsprojects.com/en/latest/) for WebSocket connections)
+- **Python** ([FastAPI framework](https://fastapi.tiangolo.com/) for WebSocket connections)
 
 *For the **frontend***
 
@@ -26,4 +26,4 @@ The codebase has these 3 main dependencies:
 
 It is also available for Android on [Google Play](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)) compiled thaks to [PWABuilder](https://www.pwabuilder.com/).
 
-PlayOnTable *.com* web domain is registered on [Ionos](https://www.ionos.it/). You can check [there](https://who.is/whois/playontable.com) its WHOIS.
+PlayOnTable *".com"* web domain is registered on [Ionos](https://www.ionos.it/). You can check [there](https://who.is/whois/playontable.com) its WHOIS.
