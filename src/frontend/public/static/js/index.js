@@ -1,11 +1,11 @@
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
-let currentPiece;
+let highlighting;
 const hand = document.getElementById("hand");
+const fall = document.getElementById("fall");
 const roll = document.getElementById("roll");
 const flip = document.getElementById("flip");
-const fall = document.getElementById("fall");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 const start = document.getElementById("start");
@@ -17,19 +17,18 @@ Draggable.create("#table > *", {
     bounds: {top: 10, left: 10},
     onClick() {
         if (!this.target.classList.contains("clone")) {
-            gsap.killTweensOf("*"); gsap.set("*", {filter: "none"});
-            currentPiece = this.target;
-            panel.className = currentPiece.className;
-            gsap.fromTo(this.target,
+            if (highlighting) highlighting.cancel();
+            panel.className = this.target.className;
+            highlighting = this.target.animate(
+                [
+                    {filter: "drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)"},
+                    {filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"}
+                ],
                 {
-                    filter: "drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)"
-                },
-                {
-                    yoyo: true,
-                    repeat: -1,
-                    duration: 0.75,
-                    ease: "power1.inOut",
-                    filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"
+                    duration: 750,
+                    iterations: Infinity,
+                    easing: "ease-in-out",
+                    direction: "alternate"
                 }
             );
         }
@@ -45,7 +44,7 @@ Draggable.create("#table > *", {
 });
 
 table.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) {panel.className = ""; gsap.killTweensOf("*"); gsap.set("*", {filter: "none"})};
+    if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}
 });
 
 start.addEventListener("click", () => {
@@ -56,14 +55,14 @@ enter.addEventListener("click", () => {
 
 [hand, fall].forEach(button => {
   button.addEventListener("click", () => {
-    currentPiece.classList.toggle("hand");
-    panel.className = currentPiece.className;
+    highlighting.effect.target.classList.toggle("hand");
+    panel.className = highlighting.effect.target.className;
   });
 });
 
 roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
-        currentPiece.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dices/${currentPiece.classList[1]}/${Math.floor(Math.random() * 6) + 1}.png`);
+        highlighting.effect.target.setAttribute("src", `https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/dices/${highlighting.effect.target.classList[1]}/${Math.floor(Math.random() * 6) + 1}.png`);
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
 });

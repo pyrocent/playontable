@@ -110,10 +110,10 @@ main
                 border-radius: 90px
                 background-color: rgb(200, 200, 200)
 
-        &:not([class]) .room, &[class=""] .room, &[class]:not([class=""]):not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
+        &:not([class]) .room, &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
 
-    &:has(#panel[class]:not([class=""]) #hand, #panel.dices #roll, #panel.cards #flip) #table
+    &:has(#panel[class]) #table
         cursor: pointer
 
     & #table
