@@ -11,8 +11,6 @@ const panel = document.getElementById("panel");
 const start = document.getElementById("start");
 const enter = document.getElementById("enter");
 
-inject();
-injectSpeedInsights();
 gsap.registerPlugin(Draggable);
 
 Draggable.create("#table > *", {
