@@ -22,7 +22,8 @@ The codebase has these 3 main dependencies:
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 - [Google Font](https://fonts.google.com/) (all the the game uses [Outfit font](https://fonts.google.com/specimen/Outfit))
 
-[PlayOnTable.com](https://playontable.com/) frontend and backend are build using [Docker](https://www.docker.com/) and deployed on [Render](https://render.com/) as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
+PlayOnTable backend is build using [Docker](https://www.docker.com/) and deployed on [Render](https://render.com/) with static frontend as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
+
 
 PlayOnTable is also available for Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build thaks to [PWABuilder](https://www.pwabuilder.com/).
 
