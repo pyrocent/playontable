@@ -132,22 +132,3 @@ main #panel:not([class]) .room, main #panel[class]:not(.hand) #hand, main #panel
 main:has(#panel[class]) #table {
   cursor: pointer;
 }
-main #table .dices {
-  width: 35px;
-}
-main #table .cards {
-  height: 50px;
-}
-main #table .chips {
-  height: 35px;
-}
-main #table #board {
-  width: 275px;
-  height: 275px;
-}
-main #table .chess {
-  height: 35px;
-}
-main #table .dames {
-  height: 30px;
-}
