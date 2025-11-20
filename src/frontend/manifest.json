@@ -21,8 +21,8 @@
             "icons": [
                 {
                     "sizes": "96x96",
-                    "type": "image/png",
-                    "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/shortcut.png"
+                    "type": "image/webp",
+                    "src": "static/assets/other/shortcut.webp"
                 }
             ]
         }
@@ -30,15 +30,15 @@
     "icons": [
         {
             "sizes": "192x192",
-            "type": "image/png",
+            "type": "image/webp",
             "purpose": "any maskable",
-            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon192x192.png"
+            "src": "static/assets/other/icon192x192.webp"
         },
         {
             "sizes": "512x512",
-            "type": "image/png",
+            "type": "image/webp",
             "purpose": "any maskable",
-            "src": "https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/icon512x512.png"
+            "src": "static/assets/other/icon512x512.webp"
         }
     ]
 }
