@@ -62,7 +62,7 @@ enter.addEventListener("click", () => {
 
 roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
-        highlighting.effect.target.setAttribute("src", `../assets/dices/${highlighting.effect.target.classList[1]}/${Math.floor(Math.random() * 6) + 1}.png`);
+        highlighting.effect.target.setAttribute("src", `../assets/dices/${highlighting.effect.target.classList[1]}/${Math.floor(Math.random() * 6) + 1}.webp`);
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
 });
