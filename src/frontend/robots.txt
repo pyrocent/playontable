@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: /api/
+Disallow: /sw.js
+Disallow: /static/
 
 Sitemap: https://playontable.com/sitemap.xml
