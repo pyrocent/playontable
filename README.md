@@ -22,8 +22,8 @@ The codebase has these 3 main dependencies:
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 - [Google Font](https://fonts.google.com/) (all the the game uses [Outfit font](https://fonts.google.com/specimen/Outfit))
 
-PlayOnTable backend is deployed on [Render](https://render.com/) as well as the frontend as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
+PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
 
-PlayOnTable is also available for Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build thanks to [PWABuilder](https://www.pwabuilder.com/).
+It's also available on Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build with [PWABuilder](https://www.pwabuilder.com/).
 
-PlayOnTable *".com"* web domain is registered on [Ionos](https://www.ionos.it/) (you can check [there](https://who.is/whois/playontable.com) its WHOIS).
+The "*.com*" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS).
