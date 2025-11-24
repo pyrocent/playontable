@@ -16,11 +16,10 @@ The game was developed using the following programming/markup langs:
 - **HTML5**
 - **Vanilla JavaScript**
 
-The codebase has these 3 main dependencies:
+The codebase has these 2 main dependencies:
 
 - [GSAP](https://gsap.com/) (for dragging items on table)
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
-- [Google Font](https://fonts.google.com/) (all the the game uses [Outfit font](https://fonts.google.com/specimen/Outfit))
 
 PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
 
