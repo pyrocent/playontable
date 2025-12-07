@@ -54,10 +54,10 @@ enter.addEventListener("click", () => {
 });
 
 [hand, fall].forEach(button => {
-  button.addEventListener("click", () => {
-    highlighting.effect.target.classList.toggle("hand");
-    panel.className = highlighting.effect.target.className;
-  });
+    button.addEventListener("click", () => {
+        highlighting.effect.target.classList.toggle("hand");
+        panel.className = highlighting.effect.target.className;
+    });
 });
 
 roll.addEventListener("click", () => {
