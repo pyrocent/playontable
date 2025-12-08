@@ -2,9 +2,7 @@
 
 [![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail.png)](https://playontable.com/)
 
-### Lets play any game on a virtual realtime multiplayer table!
-
-The game was developed using the following programming/markup langs:
+PlayOnTable was developed using the following programming/markup languages:
 
 *For the **backend***
 
@@ -20,6 +18,8 @@ The codebase has these 2 main dependencies:
 
 - [GSAP](https://gsap.com/) (for dragging items on table)
 - [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
+
+---
 
 PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
 
