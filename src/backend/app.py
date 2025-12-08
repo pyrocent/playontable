@@ -1,7 +1,7 @@
 from secrets import choice
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
 rooms = {}
 
 def get_id(context, length = 5):
