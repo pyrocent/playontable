@@ -1,19 +1,10 @@
 from secrets import choice
-from fastapi import FastAPI, WebSocket
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins = ["*"],
-    allow_headers = ["*"],
-    allow_methods = ["GET"],
-    allow_credentials = True
-)
+rooms = {}
 
 def get_id(length): return "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(length))
-
-rooms = {}
 
 class Room:
     def __init__(self, room_id):
@@ -25,7 +16,7 @@ class Room:
 
     def user_exit(self, user_id):
         self.room_users.pop(user_id, None)
-        if not self.room_users: self.room_users.pop(user_id, None)
+        if not self.room_users: rooms.pop(self.room_id, None)
 
 class User:
     def __init__(self, user_room, user_websocket):
@@ -44,13 +35,16 @@ class User:
 
 async def handle_message(user_room, user, message): pass
 
-@app.get("/room_id")
-async def room_id():
-    while True:
-        if (room_id := get_id(5)) not in rooms: return rooms.setdefault(room_id, Room(room_id))
-
-@app.websocket("/websocket/{room_id}")
-async def websocket(websocket: WebSocket, room_id):
-    async with User(rooms[room_id], websocket) as user:
+async def handle_websocket(websocket, room_id):
+    async with User(rooms.setdefault(room_id, Room(room_id)), websocket) as user:
         while True:
             await handle_message(user.user_room, user, await websocket.receive_json())
+
+@app.websocket("/websocket")
+async def websocket(websocket):
+    while True:
+        if (room_id := get_id(5)) not in rooms: await handle_websocket(websocket, room_id)
+
+@app.websocket("/websocket/{room_id}")
+async def websocket(websocket, room_id):
+    if room_id in rooms: await handle_websocket(websocket, room_id)
