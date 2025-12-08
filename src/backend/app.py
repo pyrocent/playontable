@@ -1,5 +1,5 @@
 from secrets import choice
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 
 app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
 rooms = {}
@@ -44,10 +44,10 @@ async def handle_websocket(websocket, room_id):
             await handle_message(user.user_room, user, await websocket.receive_json())
 
 @app.websocket("/websocket")
-async def websocket_start_room(websocket):
+async def websocket_start_room(websocket: WebSocket):
     await handle_websocket(websocket, get_id(rooms))
 
 @app.websocket("/websocket/{room_id}")
-async def websocket_enter_room(websocket, room_id):
+async def websocket_enter_room(websocket: WebSocket, room_id):
     if room_id in rooms: await handle_websocket(websocket, room_id)
     else: await websocket.close(code = 1008)
