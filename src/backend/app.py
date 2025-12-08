@@ -50,3 +50,4 @@ async def websocket_start_room(websocket):
 @app.websocket("/websocket/{room_id}")
 async def websocket_enter_room(websocket, room_id):
     if room_id in rooms: await handle_websocket(websocket, room_id)
+    else: await websocket.close(code = 1008)
