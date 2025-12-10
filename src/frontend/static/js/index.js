@@ -55,26 +55,33 @@ enter.addEventListener("click", () => {
 });
 
 hand.addEventListener("click", () => {
-    panel.className = highlighting.effect.target.className;
+    let item = highlighting.effect.target
+    item.classList.toggle("hand");
+    panel.className = item.className;
     socket.send(JSON.stringify({
         type: "hand",
-        data: Array.from(table.children).indexOf(highlighting.effect.target)
+        data: [Array.from(table.children).indexOf(item)]
     }));
 });
 
 fall.addEventListener("click", () => {
-    panel.className = highlighting.effect.target.className;
+    let item = highlighting.effect.target
+    item.classList.toggle("hand");
+    panel.className = item.className;
     socket.send(JSON.stringify({
         type: "fall",
-        data: Array.from(table.children).indexOf(highlighting.effect.target)
+        data: [Array.from(table.children).indexOf(item)]
     }));
 });
 
 roll.addEventListener("click", () => {
-    socket.send(JSON.stringify({
-        type: "roll",
-        data: Array.from(table.children).indexOf(highlighting.effect.target)
-    }));
+    const rollAnimation = setInterval(() => {
+        socket.send(JSON.stringify({
+            type: "roll",
+            data: [Array.from(table.children).indexOf(highlighting.effect.target), Math.floor(Math.random() * 6) + 1]
+        }));
+    }, 100);
+    setTimeout(() => {clearInterval(rollAnimation);}, 1000);
 });
 
 flip.addEventListener("click", () => {
@@ -82,21 +89,15 @@ flip.addEventListener("click", () => {
 
 socket.addEventListener("message", (json) => {
     const {type, data} = JSON.parse(json.data);
-    const item = table.children[data];
+    const item = table.children[data[0]];
     switch (type) {
         case "room":
-            console.log(data);
             break;
-        case "hand":
-        case "fall":
-            console.log(item);
-            item.classList.toggle("hand");
-            break;
-        case "rool":
-            const rollAnimation = setInterval(() => {
-                highlighting.effect.target.setAttribute("src", `static/assets/dices/${item.classList[1]}/${Math.floor(Math.random() * 6) + 1}.webp`);
-            }, 100);
-            setTimeout(() => {clearInterval(rollAnimation);}, 1000);
+        case "hide":
+        case "show":
+            item.classList.toggle("hide");
+        case "roll":
+            item.setAttribute("src", `static/assets/dices/${item.classList[1]}/${data[1]}.webp`);
             break;
     }
 });

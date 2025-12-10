@@ -1,4 +1,3 @@
-from json import dumps
 from asyncio import Lock
 from secrets import choice
 from dataclasses import dataclass, field
@@ -12,8 +11,8 @@ class Room:
 
     def __post_init__(self): rooms[self.id] = self
 
-    async def broadcast(self, message):
-        async with self.lock: users = list(self.users)
+    async def broadcast(self, message, exclude = None):
+        async with self.lock: users = [user for user in self.users if user != exclude]
         for user in users: await user.websocket.send_json(message)
 
 @dataclass
@@ -33,7 +32,7 @@ class User:
         await self.websocket.close()
         if not self.room.users: rooms.pop(self.room.id, None)
 
-def get_id(context) -> str:
+def get_id(context):
     while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in context: pass
     else: return new_id
 
@@ -41,12 +40,21 @@ async def handle_message(room: Room, user: User, message: dict):
     type = message.get("type")
     data = message.get("data")
     match type:
-        case "hand" | "fall":
-            print(data)
-            await room.broadcast(dumps({
+        case "hand":
+            await room.broadcast({
+                "type": "hide",
+                "data": data
+            }, user)
+        case "fall":
+            await room.broadcast({
+                "type": "show",
+                "data": data
+            }, user)
+        case "roll":
+            await room.broadcast({
                 "type": type,
                 "data": data
-            }))
+            })
         case _: pass
 
 async def handle_websocket(websocket: WebSocket, room: Room):
@@ -67,3 +75,5 @@ async def websocket_start_room(websocket: WebSocket):
 async def websocket_enter_room(websocket: WebSocket, room_id: str):
     if room_id in rooms: await handle_websocket(websocket, rooms[room_id])
     else: await websocket.close(code = 1008, reason = "Try To Join A Non-existent Room")
+
+if __name__ == "__main__": import uvicorn; uvicorn.run("app:app", reload = True)
