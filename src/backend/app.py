@@ -1,53 +1,57 @@
+from asyncio import Lock
 from secrets import choice
-from fastapi import FastAPI, WebSocket
+from dataclasses import dataclass, field
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
-app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
-rooms = {}
+app: FastAPI = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
+rooms: dict[str, Room] = {}
 
-def get_id(context, length = 5):
-    while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(length))) in context: pass
-    return new_id
-
+@dataclass
 class Room:
-    def __init__(self, room_id):
-        self.room_users = {}
-        self.room_id = room_id
+    id: str
+    users: list[User] = field(default_factory = list)
+    lock: Lock = field(default_factory = Lock, repr = False)
 
-    def user_enter(self, user_id, user_websocket):
-        self.room_users[user_id] = user_websocket
+    def __post_init__(self): rooms[self.id] = self
 
-    def user_exit(self, user_id):
-        self.room_users.pop(user_id, None)
-        if not self.room_users: rooms.pop(self.room_id, None)
+    async def broadcast(self, message):
+        async with self.lock: users = self.users
+        for user in users: await user.websocket.send_text(message)
 
+@dataclass
 class User:
-    def __init__(self, user_room, user_websocket):
-        self.user_room = user_room
-        self.user_websocket = user_websocket
-        self.user_id = get_id(user_room.room_users)
+    id: str
+    room: Room
+    websocket: WebSocket
 
     async def __aenter__(self):
-        await self.user_websocket.accept()
-        self.user_room.user_enter(self.user_id, self.user_websocket)
+        await self.websocket.accept()
+        async with self.room.lock: self.room.users.append(self)
+        await self.websocket.send_text(self.room.id)
         return self
 
     async def __aexit__(self, exc_type, exc, tb):
-        self.user_room.user_exit(self.user_id)
-        await self.user_websocket.close()
+        async with self.room.lock: self.room.users.remove(self)
+        await self.websocket.close()
+        if not self.room.users: rooms.pop(self.room.id, None)
 
-async def handle_message(user_room, user, message): pass
+def get_id(context):
+    while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in context: pass
+    else: return new_id
 
-async def handle_websocket(websocket, room_id):
-    async with User(rooms.setdefault(room_id, Room(room_id)), websocket) as user:
-        await websocket.send_text(room_id)
-        while True:
-            await handle_message(user.user_room, user, await websocket.receive_json())
+async def handle_message(room: Room, user: User, message): pass
 
-@app.websocket("/websocket")
+async def handle_websocket(websocket: WebSocket, room: Room):
+    async with User(get_id([user.id for user in room.users]), room, websocket) as user:
+        try:
+            while True: await handle_message(room, user, await websocket.receive_text())
+        except WebSocketDisconnect: pass
+
+@app.websocket("/websocket/start")
 async def websocket_start_room(websocket: WebSocket):
-    await handle_websocket(websocket, get_id(rooms))
+    await handle_websocket(websocket, Room(get_id(rooms)))
 
-@app.websocket("/websocket/{room_id}")
+@app.websocket("/websocket/enter/{room_id}")
 async def websocket_enter_room(websocket: WebSocket, room_id):
-    if room_id in rooms: await handle_websocket(websocket, room_id)
-    else: await websocket.close(code = 1008)
+    if room_id in rooms: await handle_websocket(websocket, rooms[room_id])
+    else: await websocket.close(1008, "Try To Join A Non-existent Room")
