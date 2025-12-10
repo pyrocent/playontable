@@ -89,7 +89,7 @@ socket.addEventListener("message", (json) => {
             break;
         case "hand":
         case "fall":
-            highlighting.effect.item.classList.toggle("hand");
+            item.classList.toggle("hand");
             break;
     }
 });
