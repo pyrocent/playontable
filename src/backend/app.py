@@ -42,6 +42,7 @@ async def handle_message(room: Room, user: User, message: dict):
     data = message.get("data")
     match type:
         case "hand" | "fall":
+            print(data)
             await room.broadcast(dumps({
                 "type": type,
                 "data": data
