@@ -3,9 +3,6 @@ from secrets import choice
 from dataclasses import dataclass, field
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
-app: FastAPI = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
-rooms: dict[str, Room] = {}
-
 @dataclass
 class Room:
     id: str
@@ -47,6 +44,9 @@ async def handle_websocket(websocket: WebSocket, room: Room) -> None:
         try:
             while True: await handle_message(room, user, await websocket.receive_text())
         except WebSocketDisconnect: pass
+
+rooms: dict[str, Room] = {}
+app: FastAPI = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
 
 @app.websocket("/websocket/start")
 async def websocket_start_room(websocket: WebSocket):
