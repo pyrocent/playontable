@@ -58,7 +58,7 @@ hand.addEventListener("click", () => {
     panel.className = highlighting.effect.target.className;
     socket.send(JSON.stringify({
         type: "hand",
-        data: Array.from(table.children).indexOf(target)
+        data: Array.from(table.children).indexOf(highlighting.effect.target)
     }));
 });
 
@@ -66,7 +66,7 @@ fall.addEventListener("click", () => {
     panel.className = highlighting.effect.target.className;
     socket.send(JSON.stringify({
         type: "fall",
-        data: Array.from(table.children).indexOf(target)
+        data: Array.from(table.children).indexOf(highlighting.effect.target)
     }));
 });
 
