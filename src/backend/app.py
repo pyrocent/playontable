@@ -25,7 +25,7 @@ class User:
     async def __aenter__(self):
         await self.websocket.accept()
         async with self.room.lock: self.room.users.append(self)
-        await self.websocket.send_json({"type": "room", "room_id": self.room.id})
+        await self.websocket.send_json({"type": "room", "data": self.room.id})
         return self
 
     async def __aexit__(self, exc_type, exc, tb):
