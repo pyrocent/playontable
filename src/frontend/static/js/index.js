@@ -82,7 +82,7 @@ flip.addEventListener("click", () => {
 
 socket.addEventListener("message", (json) => {
     const {type, data} = JSON.parse(json.data);
-    item = table.children[data];
+    const item = table.children[data];
     switch (type) {
         case "room":
             console.log(data);
