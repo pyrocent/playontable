@@ -71,10 +71,10 @@ fall.addEventListener("click", () => {
 });
 
 roll.addEventListener("click", () => {
-    const rollAnimation = setInterval(() => {
-        highlighting.effect.target.setAttribute("src", `static/assets/dices/${highlighting.effect.target.classList[1]}/${Math.floor(Math.random() * 6) + 1}.webp`);
-    }, 100);
-    setTimeout(() => {clearInterval(rollAnimation);}, 1000);
+    socket.send(JSON.stringify({
+        type: "roll",
+        data: Array.from(table.children).indexOf(highlighting.effect.target)
+    }));
 });
 
 flip.addEventListener("click", () => {
@@ -89,7 +89,14 @@ socket.addEventListener("message", (json) => {
             break;
         case "hand":
         case "fall":
+            console.log(item);
             item.classList.toggle("hand");
+            break;
+        case "rool":
+            const rollAnimation = setInterval(() => {
+                highlighting.effect.target.setAttribute("src", `static/assets/dices/${item.classList[1]}/${Math.floor(Math.random() * 6) + 1}.webp`);
+            }, 100);
+            setTimeout(() => {clearInterval(rollAnimation);}, 1000);
             break;
     }
 });
