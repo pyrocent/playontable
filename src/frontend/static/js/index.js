@@ -10,6 +10,7 @@ const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 const start = document.getElementById("start");
 const enter = document.getElementById("enter");
+const socket = new WebSocket(`ws://api.playontable.com/websocket/`);
 
 gsap.registerPlugin(Draggable);
 
@@ -53,11 +54,20 @@ start.addEventListener("click", () => {
 enter.addEventListener("click", () => {
 });
 
-[hand, fall].forEach(button => {
-    button.addEventListener("click", () => {
-        highlighting.effect.target.classList.toggle("hand");
-        panel.className = highlighting.effect.target.className;
-    });
+hand.addEventListener("click", () => {
+    panel.className = highlighting.effect.target.className;
+    socket.send(JSON.stringify({
+        type: "hand",
+        data: Array.from(table.children).indexOf(target)
+    }));
+});
+
+fall.addEventListener("click", () => {
+    panel.className = highlighting.effect.target.className;
+    socket.send(JSON.stringify({
+        type: "fall",
+        data: Array.from(table.children).indexOf(target)
+    }));
 });
 
 roll.addEventListener("click", () => {
@@ -68,4 +78,18 @@ roll.addEventListener("click", () => {
 });
 
 flip.addEventListener("click", () => {
+});
+
+socket.addEventListener("message", ({json}) => {
+    const {type, data} = JSON.parse(json);
+    item = table.children[data];
+    switch (type) {
+        case "room":
+            console.log(data);
+            break;
+        case "hand":
+        case "fall":
+            highlighting.effect.item.classList.toggle("hand");
+            break;
+    }
 });

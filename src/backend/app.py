@@ -1,3 +1,4 @@
+from json import dumps
 from asyncio import Lock
 from secrets import choice
 from dataclasses import dataclass, field
@@ -13,7 +14,7 @@ class Room:
 
     async def broadcast(self, message):
         async with self.lock: users = list(self.users)
-        for user in users: await user.websocket.send_text(message)
+        for user in users: await user.websocket.send_json(message)
 
 @dataclass
 class User:
@@ -24,7 +25,7 @@ class User:
     async def __aenter__(self):
         await self.websocket.accept()
         async with self.room.lock: self.room.users.append(self)
-        await self.websocket.send_text(self.room.id)
+        await self.websocket.send_json({"type": "room", "room_id": self.room.id})
         return self
 
     async def __aexit__(self, exc_type, exc, tb):
@@ -36,13 +37,22 @@ def get_id(context) -> str:
     while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in context: pass
     else: return new_id
 
-async def handle_message(room: Room, user: User, message): pass
+async def handle_message(room: Room, user: User, message: dict):
+    type = message.get("type")
+    data = message.get("data")
+    match type:
+        case "hand" | "fall":
+            await room.broadcast(dumps({
+                "type": type,
+                "data": data
+            }))
+        case _: pass
 
 async def handle_websocket(websocket: WebSocket, room: Room):
     async with room.lock: user_id = get_id([user.id for user in room.users])
     async with User(user_id, room, websocket) as user:
         try:
-            while True: await handle_message(room, user, await websocket.receive_text())
+            while True: await handle_message(room, user, await websocket.receive_json())
         except WebSocketDisconnect: pass
 
 rooms: dict[str, Room] = {}
