@@ -6,7 +6,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 @dataclass
 class Room:
     id: str
-    users: list[User] = field(default_factory = list)
+    users: list = field(default_factory = list)
     lock: Lock = field(default_factory = Lock, repr = False)
 
     def __post_init__(self) -> None: rooms[self.id] = self
