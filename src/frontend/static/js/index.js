@@ -10,7 +10,7 @@ const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 const start = document.getElementById("start");
 const enter = document.getElementById("enter");
-const socket = new WebSocket(`ws://api.playontable.com/websocket/`);
+const socket = new WebSocket(`wss://api.playontable.com/websocket/`);
 
 gsap.registerPlugin(Draggable);
 
