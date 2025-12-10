@@ -43,7 +43,7 @@ async def handle_message(room: Room, user: User, message) -> None: pass
 
 async def handle_websocket(websocket: WebSocket, room: Room) -> None:
     async with room.lock: user_id = get_id([user.id for user in room.users])
-    async with User(get_id(user_id), room, websocket) as user:
+    async with User(user_id, room, websocket) as user:
         try:
             while True: await handle_message(room, user, await websocket.receive_text())
         except WebSocketDisconnect: pass
