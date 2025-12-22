@@ -120,7 +120,7 @@ socket.addEventListener("message", (json) => {
         case "play":
             a.close();
             c.close();
-            multiplayer = True;
+            multiplayer = true;
             panel.className = "multiplayer";
             break;
         case "drag":
