@@ -55,7 +55,6 @@ app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
 
 @app.websocket("/websocket/")
 async def websocket(websocket: WebSocket):
-
     async with User(room := Room(id = get_id(rooms.keys())), websocket) as user:
         users[user] = room.id
         rooms[room.id] = room
