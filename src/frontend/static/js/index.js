@@ -49,7 +49,7 @@ Draggable.create("#table > *", {
     onDrag() {
         socket.send(JSON.stringify({
             hook: "drag",
-            data: [Array.from(table.children).indexOf(item), [this.x, this.y]]
+            data: [Array.from(table.children).indexOf(this.target), [this.x, this.y]]
         }));
     }
 });
