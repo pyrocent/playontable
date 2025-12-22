@@ -2,8 +2,8 @@ from asyncio import Lock
 from secrets import choice
 from fastapi import FastAPI, WebSocket
 
-def get_id(context, /):
-    while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in context: pass
+def get_id():
+    while (new_id := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in list(rooms.keys()): pass
     else: return new_id
 
 class Room:
@@ -51,7 +51,7 @@ app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
 
 @app.websocket("/websocket/")
 async def websocket(websocket: WebSocket):
-    room = Room(id = get_id(rooms.keys()))
+    room = Room(id = get_id())
     async with User(room, websocket) as user:
         users[user] = room.id
         rooms[room.id] = room
