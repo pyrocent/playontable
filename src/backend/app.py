@@ -23,7 +23,7 @@ class User:
 
     async def __aenter__(self):
         await self.websocket.accept()
-        self.room.users.add(self)
+        async with self.room.lock: self.room.users.add(self)
         await self.websocket.send_json({"hook": "room", "data": self.room.id})
         return self
 
@@ -33,18 +33,16 @@ class User:
 
 async def handle_message(user, message, /):
     match message:
-        case {"hook": "play", "data": room_id}:
-            del rooms[room_id]
+        case {"hook": "play", "data": id}:
+            del rooms[id]
             for user in list(users.keys()):
-                if users[user] == room_id:
-                    del users[user]
-
+                if users[user] == id: del users[user]
             await user.room.broadcast(message)
-        case {"hook": "join", "data": room_id}:
-            if room := rooms.get(room_id):
+        case {"hook": "join", "data": id}:
+            if room := rooms.get(id):
                 user.room = room
-                users[user] = room_id
-                room.users.add(user)
+                users[user] = id
+                async with room.lock: room.users.add(user)
         case {"hook": hook, "data": _} if hook in ("hand", "fall"): await user.room.broadcast(message, exclude = user)
         case {"hook": hook, "data": _} if hook in ("roll", "flip"): await user.room.broadcast(message)
 
