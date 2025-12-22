@@ -117,7 +117,6 @@ socket.addEventListener("message", (json) => {
             item.classList.toggle("hide");
             break;
         case "roll":
-            console.log(data);
             item.setAttribute("src", `static/assets/dices/${item.classList[1]}/${data[1]}.webp`);
             break;
     }
