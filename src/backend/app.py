@@ -45,10 +45,8 @@ async def handle_message(user, message, /):
                 user.room = room
                 users[user] = room_id
                 room.users.add(user)
-        case {"hook": hook, "data": data} if hook in ("hand", "fall"):
-            await user.room.broadcast(message, exclude = user)
-        case {"hook": "roll", "data": data}:
-            await user.room.broadcast(message)
+        case {"hook": hook, "data": _} if hook in ("hand", "fall"): await user.room.broadcast(message, exclude = user)
+        case {"hook": hook, "data": _} if hook in ("roll", "flip"): await user.room.broadcast(message)
 
 users, rooms = {}, {}
 app = FastAPI(docs_url = None, redoc_url = None, openapi_url = None)
