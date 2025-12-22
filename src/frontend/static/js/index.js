@@ -1,7 +1,7 @@
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
-let highlighting;
+let highlighting, multiplayer;
 const room = document.getElementById("room");
 const a = document.getElementById("a");
 const b = document.getElementById("b");
@@ -55,7 +55,10 @@ Draggable.create("#table > *", {
 });
 
 table.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}
+    if (event.target === event.currentTarget && highlighting) {
+        highlighting.cancel();
+        if (!multiplayer) panel.removeAttribute("class");
+    }
 });
 
 start.addEventListener("click", () => {
@@ -117,6 +120,8 @@ socket.addEventListener("message", (json) => {
         case "play":
             a.close();
             c.close();
+            multiplayer = True;
+            panel.className = "multiplayer";
             break;
         case "drag":
             gsap.to(item, {x: data[1][0], y: data[1][1]});
