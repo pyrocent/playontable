@@ -112,8 +112,8 @@ socket.addEventListener("message", (json) => {
             a.close();
             c.close();
             break;
-        case "hide":
-        case "show":
+        case "hand":
+        case "fall":
             item.classList.toggle("hide");
             break;
         case "roll":
