@@ -61,11 +61,11 @@ enter.addEventListener("click", () => {
 });
 
 b.addEventListener("click", () => {
-    socket.send(JSON.stringify({type: "play", data: room.innerText}));
+    socket.send(JSON.stringify({hook: "play", data: room.innerText}));
 });
 
 d.addEventListener("input", () => {
-    if (d.value.length === 5) socket.send(JSON.stringify({type: "join", data: d.value}));
+    if (d.value.length === 5) socket.send(JSON.stringify({hook: "join", data: d.value}));
 });
 
 hand.addEventListener("click", () => {
@@ -73,7 +73,7 @@ hand.addEventListener("click", () => {
     item.classList.toggle("hand");
     panel.className = item.className;
     socket.send(JSON.stringify({
-        type: "hand",
+        hook: "hand",
         data: [Array.from(table.children).indexOf(item)]
     }));
 });
@@ -83,7 +83,7 @@ fall.addEventListener("click", () => {
     item.classList.toggle("hand");
     panel.className = item.className;
     socket.send(JSON.stringify({
-        type: "fall",
+        hook: "fall",
         data: [Array.from(table.children).indexOf(item)]
     }));
 });
@@ -91,7 +91,7 @@ fall.addEventListener("click", () => {
 roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
         socket.send(JSON.stringify({
-            type: "roll",
+            hook: "roll",
             data: [Array.from(table.children).indexOf(highlighting.effect.target), Math.floor(Math.random() * 6) + 1]
         }));
     }, 100);
@@ -102,9 +102,9 @@ flip.addEventListener("click", () => {
 });
 
 socket.addEventListener("message", (json) => {
-    const {type, data} = JSON.parse(json.data);
+    const {hook, data} = JSON.parse(json.data);
     const item = table.children[data[0]];
-    switch (type) {
+    switch (hook) {
         case "room":
             room.innerText = data
             break;
