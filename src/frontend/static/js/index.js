@@ -45,6 +45,12 @@ Draggable.create("#table > *", {
             Draggable.create(clone, this.vars);
             this.target.classList.remove("clone");
         }
+    },
+    onDrag() {
+        socket.send(JSON.stringify({
+            hook: "drag",
+            data: [Array.from(table.children).indexOf(item), [this.x, this.y]]
+        }));
     }
 });
 
@@ -111,6 +117,9 @@ socket.addEventListener("message", (json) => {
         case "play":
             a.close();
             c.close();
+            break;
+        case "drag":
+            gsap.to(item, {x: data[1][0], y: data[1][1]});
             break;
         case "hand":
         case "fall":

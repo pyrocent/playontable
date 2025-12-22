@@ -43,7 +43,7 @@ async def handle_message(user, message, /):
                 user.room = room
                 users[user] = id
                 async with room.lock: room.users.add(user)
-        case {"hook": hook, "data": _} if hook in ("hand", "fall"): await user.room.broadcast(message, exclude = user)
+        case {"hook": hook, "data": _} if hook in ("drag", "hand", "fall"): await user.room.broadcast(message, exclude = user)
         case {"hook": hook, "data": _} if hook in ("roll", "flip"): await user.room.broadcast(message)
 
 users, rooms = {}, {}
