@@ -26,7 +26,7 @@ class User:
 async def handle_message(current_user, message, /):
     match message:
         case {"hook": "join", "data": id}:
-            if host := users.pop(id, None) is not None and host is not current_user:
+            if (host := users.pop(id, None)) is not None and host is not current_user:
                 merged = current_user.room | host.room
                 for user in merged: user.room = merged
         case {"hook": hook, "data": _} if hook in {"drag", "hand", "fall"}: await current_user.broadcast(message, exclude = current_user)
