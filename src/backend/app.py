@@ -36,7 +36,7 @@ async def handle_message(current_user, message, /):
             current_user.room.discard(current_user)
             current_user.room = {current_user}
         case {"hook": hook, "data": _} if hook in {"drag", "hand", "fall"}: await current_user.broadcast(message, exclude = current_user)
-        case {"hook": hook, "data": _} if hook in {"roll", "flip"}: await current_user.broadcast(message)
+        case {"hook": hook, "data": _} if hook in {"play", "roll", "flip"}: await current_user.broadcast(message)
 
 users = {}
 app = FastAPI(openapi_url = None)
