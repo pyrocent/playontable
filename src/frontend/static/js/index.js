@@ -3,18 +3,16 @@ import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.
 
 let highlighting, multiplayer;
 const room = document.getElementById("room");
-const a = document.getElementById("a");
-const b = document.getElementById("b");
-const c = document.getElementById("c");
-const d = document.getElementById("d");
 const hand = document.getElementById("hand");
 const fall = document.getElementById("fall");
 const roll = document.getElementById("roll");
 const flip = document.getElementById("flip");
+const menu = document.getElementById("menu");
+const code = document.getElementById("code");
+const play = document.getElementById("play");
+const join = document.getElementById("join");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
-const start = document.getElementById("start");
-const enter = document.getElementById("enter");
 let socket = new WebSocket("wss://api.playontable.com/websocket/");
 
 gsap.registerPlugin(Draggable);
@@ -61,19 +59,15 @@ table.addEventListener("click", (event) => {
     }
 });
 
-start.addEventListener("click", () => {
-    a.showModal();
+room.addEventListener("click", () => {
+    menu.showModal();
 });
 
-enter.addEventListener("click", () => {
-    c.showModal();
+play.addEventListener("click", () => {
+    socket.send(JSON.stringify({hook: "play", data: code.innerText}));
 });
 
-b.addEventListener("click", () => {
-    socket.send(JSON.stringify({hook: "play", data: room.innerText}));
-});
-
-d.addEventListener("input", () => {
+join.addEventListener("input", () => {
     if (d.value.length === 5) socket.send(JSON.stringify({hook: "join", data: d.value}));
 });
 
@@ -114,12 +108,11 @@ socket.addEventListener("message", (json) => {
     const {hook, data} = JSON.parse(json.data);
     const item = table.children[data[0]];
     switch (hook) {
-        case "room":
-            room.innerText = data
+        case "code":
+            code.innerText = data
             break;
         case "play":
-            a.close();
-            c.close();
+            menu.close();
             multiplayer = true;
             panel.className = "multiplayer";
             break;
