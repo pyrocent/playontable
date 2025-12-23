@@ -68,7 +68,7 @@ play.addEventListener("click", () => {
 });
 
 join.addEventListener("input", () => {
-    if (code.value.length === 5) socket.send(JSON.stringify({hook: "join", data: code.value}));
+    if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));
 });
 
 hand.addEventListener("click", () => {
