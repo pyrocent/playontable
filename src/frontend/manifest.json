@@ -32,13 +32,13 @@
             "sizes": "192x192",
             "type": "image/webp",
             "purpose": "any maskable",
-            "src": "static/assets/other/icon192x192.webp"
+            "src": "static/assets/other/icons/icon192x192.webp"
         },
         {
             "sizes": "512x512",
             "type": "image/webp",
             "purpose": "any maskable",
-            "src": "static/assets/other/icon512x512.webp"
+            "src": "static/assets/other/icons/icon512x512.webp"
         }
     ]
 }
