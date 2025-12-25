@@ -20,17 +20,15 @@ class User:
         self.room.discard(self)
         await self.websocket.close()
 
-    async def broadcast(self, message, /, *, exclude = None):
+    async def broadcast(self, message, /, *, exclude):
         for recipient in [user for user in self.room if user is not exclude]: await recipient.websocket.send_json(message)
 
 async def handle_message(current_user, message, /):
-    match message:
-        case {"hook": "join", "data": code}:
-            if (host := users.pop(code, None)) is not None and host is not current_user:
-                merged = current_user.room | host.room
-                for user in merged: user.room = merged
-        case {"hook": hook, "data": _} if hook in {"drag", "hand", "fall"}: await current_user.broadcast(message, exclude = current_user)
-        case {"hook": hook, "data": _} if hook in {"play", "roll", "flip"}: await current_user.broadcast(message)
+    if message.hook == "join":
+        if (host := users.pop(message.data, None)) is not None and host is not current_user:
+            merged = current_user.room | host.room
+            for user in merged: user.room = merged
+    else: await current_user.broadcast(message, exclude = current_user if message.hook in {"play", "roll", "flip"} else None)
 
 users = {}
 app = FastAPI(openapi_url = None)
