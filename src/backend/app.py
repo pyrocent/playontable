@@ -24,7 +24,7 @@ class User:
         for recipient in [user for user in self.room if user is not exclude]: await recipient.websocket.send_json(message)
 
 async def handle_message(current_user, message, /):
-    if message.hook == "join" and (host := users.pop(message.data, None)) is not None and host is not current_user:
+    if (message.hook == "join") and ((host := users.pop(message.data, None)) is not None) and (host is not current_user):
         merged = current_user.room | host.room
         for user in merged: user.room = merged
     else: await current_user.broadcast(message, exclude = current_user if message.hook in {"play", "roll", "flip"} else None)
