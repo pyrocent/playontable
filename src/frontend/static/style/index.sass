@@ -21,17 +21,17 @@ main
     flex-direction: column-reverse
 
     #menu:open
-        gap: 10px
-        width: 250px
+        gap: 5px 
+        width: 350px
         border: none
-        padding: 10px
+        padding: 5px
         display: flex
         user-select: none
         aspect-ratio: 3/2
         border-radius: 5px
         align-items: center
         flex-direction: column
-        justify-content: space-around
+        justify-content: space-between
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
 
         #code
@@ -45,28 +45,27 @@ main
             color: rgb(35, 35, 35)
 
         #join
+            flex: 1
             padding: 0
-            height: 100%
             text-align: center
             border-radius: 5px
-            align-items: center
             font-family: inherit
             width: calc(100% - 2px)
             border: 1px solid rgb(35, 35, 35)
 
         .play
+            flex: 1
             width: 100%
-            height: 100%
             border: none
             cursor: pointer
             border-radius: 5px
             font-family: inherit
             color: rgb(255, 255, 255)
             background-color: rgb(23, 123, 84)
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5)
+            box-shadow: 0 0 2.5px rgba(0, 0, 0, 0.5)
 
         span
-            gap: 10px
+            gap: 5px
             width: 100%
             display: flex
             align-items: center
@@ -81,6 +80,7 @@ main
 
     #panel
         gap: 5px
+        display: none
 
         button
             flex: 1
@@ -96,6 +96,10 @@ main
 
         &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
+
+    &:has(#panel[class]) #panel
+        flex: 0.05
+        display: flex
 
     &:has(#panel[class]) #table
         cursor: pointer
