@@ -1,19 +1,19 @@
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
-let highlighting, multiplayer;
-const room = document.getElementById("room");
+let highlighting;
+const menu = document.getElementById("menu");
+const code = document.getElementById("code");
+const join = document.getElementById("join");
 const hand = document.getElementById("hand");
 const fall = document.getElementById("fall");
 const roll = document.getElementById("roll");
 const flip = document.getElementById("flip");
-const menu = document.getElementById("menu");
-const code = document.getElementById("code");
-const play = document.getElementById("play");
-const join = document.getElementById("join");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 let socket = new WebSocket("wss://api.playontable.com/websocket/");
+
+menu.showModal();
 
 gsap.registerPlugin(Draggable);
 Draggable.create("#table > *", {
@@ -52,23 +52,16 @@ Draggable.create("#table > *", {
     }
 });
 
-table.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget && highlighting) {
-        highlighting.cancel();
-        if (!multiplayer) panel.removeAttribute("class");
-    }
-});
-
-room.addEventListener("click", () => {
-    menu.showModal();
-});
-
-play.addEventListener("click", () => {
-    socket.send(JSON.stringify({hook: "play", data: code.innerText}));
+document.querySelectorAll(".play").forEach(play => {
+    play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play", data: code.innerText}));});
 });
 
 join.addEventListener("input", () => {
     if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));
+});
+
+table.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}
 });
 
 hand.addEventListener("click", () => {
@@ -113,8 +106,6 @@ socket.addEventListener("message", (json) => {
             break;
         case "play":
             menu.close();
-            multiplayer = true;
-            panel.className = "multiplayer";
             break;
         case "drag":
             gsap.to(item, {x: data[1][0], y: data[1][1]});

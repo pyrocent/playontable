@@ -27,7 +27,7 @@ async def handle_message(current_user, message, /):
     if (message.get("hook") == "join") and (host := users.pop(message.get("data"), None) is not None or current_user):
         merged = current_user.room | host.room
         for user in merged: user.room = merged
-    else: await current_user.broadcast(message, exclude = current_user if message.get("hook") in {"play", "roll", "flip"} else None)
+    else: await current_user.broadcast(message, exclude = current_user if message.get("hook") in {"drag", "hand", "fall"} else None)
 
 users = {}
 app = FastAPI(openapi_url = None)
