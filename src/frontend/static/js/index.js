@@ -47,13 +47,14 @@ Draggable.create("#table > *", {
     onDrag() {
         socket.send(JSON.stringify({
             hook: "drag",
-            data: [Array.from(table.children).indexOf(this.target), [this.x, this.y]]
+            index: Array.from(table.children).indexOf(this.target),
+            data: {x: this.x, y: this.y}
         }));
     }
 });
 
 document.querySelectorAll(".play").forEach(play => {
-    play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play", data: code.innerText}));});
+    play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play"}));});
 });
 
 join.addEventListener("input", () => {
@@ -70,7 +71,7 @@ hand.addEventListener("click", () => {
     panel.className = item.className;
     socket.send(JSON.stringify({
         hook: "hand",
-        data: [Array.from(table.children).indexOf(item)]
+        index: Array.from(table.children).indexOf(item)
     }));
 });
 
@@ -80,7 +81,7 @@ fall.addEventListener("click", () => {
     panel.className = item.className;
     socket.send(JSON.stringify({
         hook: "fall",
-        data: [Array.from(table.children).indexOf(item)]
+        index: Array.from(table.children).indexOf(item)
     }));
 });
 
@@ -88,7 +89,8 @@ roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
         socket.send(JSON.stringify({
             hook: "roll",
-            data: [Array.from(table.children).indexOf(highlighting.effect.target), Math.floor(Math.random() * 6) + 1]
+            index: Array.from(table.children).indexOf(highlighting.effect.target),
+            data: Math.floor(Math.random() * 6) + 1
         }));
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
@@ -98,8 +100,8 @@ flip.addEventListener("click", () => {
 });
 
 socket.addEventListener("message", (json) => {
-    const {hook, data} = JSON.parse(json.data);
-    const item = table.children[data[0]];
+    const {hook, index, data} = JSON.parse(json.data);
+    const child = (index !== undefined && index !== null) ? table.children[index] : null;
     switch (hook) {
         case "code":
             code.innerText = data
@@ -108,14 +110,14 @@ socket.addEventListener("message", (json) => {
             menu.close();
             break;
         case "drag":
-            gsap.to(item, {x: data[1][0], y: data[1][1]});
+            gsap.to(child, data);
             break;
         case "hand":
         case "fall":
-            item.classList.toggle("hide");
+            child.classList.toggle("hide");
             break;
         case "roll":
-            item.setAttribute("src", `static/assets/dices/${item.classList[1]}/${data[1]}.webp`);
+            child.setAttribute("src", `static/assets/dices/${child.classList[1]}/${data}.webp`);
             break;
     }
 });

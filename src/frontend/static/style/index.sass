@@ -21,32 +21,33 @@ main
     flex-direction: column-reverse
 
     #menu:open
-        gap: 5px 
-        width: 350px
+        gap: 10px
         border: none
-        padding: 5px
+        width: 250px
+        padding: 10px
         display: flex
         user-select: none
-        aspect-ratio: 3/2
         border-radius: 5px
-        align-items: center
+        align-items: stretch
         flex-direction: column
         justify-content: space-between
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
 
         #code
             margin: 0
-            padding: 5px 10px
+            padding: 5px 0
             border-radius: 5px
+            text-align: center
             background-color: rgb(230, 230, 230)
 
         #info
             margin: 0
+            text-align: center
             color: rgb(35, 35, 35)
 
         #join
             flex: 1
-            padding: 0
+            padding: 10px 0
             text-align: center
             border-radius: 5px
             font-family: inherit
@@ -55,8 +56,8 @@ main
 
         .play
             flex: 1
-            width: 100%
             border: none
+            padding: 10px 0
             cursor: pointer
             border-radius: 5px
             font-family: inherit
@@ -66,11 +67,10 @@ main
 
         span
             gap: 5px
-            width: 100%
             display: flex
             align-items: center
 
-            h5
+            h6
                 margin: 0
                 color: rgb(35, 35, 35)
 
