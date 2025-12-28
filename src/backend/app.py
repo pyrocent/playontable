@@ -1,4 +1,5 @@
 from secrets import choice
+from asyncio import gather
 from fastapi import FastAPI, WebSocket
 
 def get_code():
@@ -21,8 +22,7 @@ class User:
         users.pop(self.code, None)
         await self.websocket.close()
 
-    async def broadcast(self, message: dict, /, *, exclude: User | None):
-        for recipient in [user for user in self.room if user is not exclude]: await recipient.websocket.send_json(message)
+    async def broadcast(self, message: dict, /, *, exclude: User | None): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True)
 
 async def handle_message(current_user: User, message: dict, /):
     if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
