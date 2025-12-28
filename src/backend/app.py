@@ -18,13 +18,14 @@ class User:
 
     async def __aexit__(self, exc_type, exc, tb):
         self.room.discard(self)
+        users.pop(self.code, None)
         await self.websocket.close()
 
     async def broadcast(self, message, /, *, exclude):
         for recipient in [user for user in self.room if user is not exclude]: await recipient.websocket.send_json(message)
 
 async def handle_message(current_user, message, /):
-    if (message.get("hook") == "join") and ((host := users.pop(message.get("data"), None)) is not None) and (host is not current_user):
+    if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
         merged = current_user.room | host.room
         for user in merged: user.room = merged
     elif message.get("hook") != "join": await current_user.broadcast(message, exclude = current_user if message.get("hook") in {"drag", "hand", "fall"} else None)
