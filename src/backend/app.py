@@ -7,10 +7,10 @@ def get_code():
     else: return code
 
 class User:
-    def __init__(self, code: str, websocket: WebSocket, /):
-        self.code: str = code
-        self.room: set[User] = {self}
-        self.websocket: WebSocket = websocket
+    def __init__(self, code, websocket, /):
+        self.code = code
+        self.room = {self}
+        self.websocket = websocket
 
     async def __aenter__(self):
         await self.websocket.accept()
@@ -22,15 +22,15 @@ class User:
         users.pop(self.code, None)
         await self.websocket.close()
 
-    async def broadcast(self, message: dict, /, *, exclude: User | None): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True)
+    async def broadcast(self, message, /, *, exclude): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True)
 
-async def handle_message(current_user: User, message: dict, /):
+async def handle_message(current_user, message, /):
     if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
-        merged: set[User] = current_user.room | host.room
+        merged = current_user.room | host.room
         for user in merged: user.room = merged
     elif message.get("hook") != "join": await current_user.broadcast(message, exclude = current_user if message.get("hook") in {"drag", "hand", "fall"} else None)
 
-users: dict[str, User] = {}
+users = {}
 
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
