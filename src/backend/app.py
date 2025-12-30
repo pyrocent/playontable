@@ -35,5 +35,4 @@ users = {}
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
     async with User(get_code(), websocket) as user:
-        users[user.code] = user
-        while True: await handle_message(user, await websocket.receive_json())
+        while True: await handle_message(users.setdefault(user.code, user), await websocket.receive_json())
