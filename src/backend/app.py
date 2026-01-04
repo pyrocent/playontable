@@ -2,15 +2,12 @@ from secrets import choice
 from asyncio import gather
 from fastapi import FastAPI, WebSocket
 
-def get_code():
-    while (code := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5))) in users: pass
-    else: return code
-
 class User:
-    def __init__(self, code, websocket, /):
+    def __init__(self, websocket, /):
+        while users.setdefault(code := "".join(choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(5)), self) is not self: pass
         self.code = code
+        self.room = {self}
         self.websocket = websocket
-        self.room = {users.setdefault(code, self)}
 
     async def __aenter__(self):
         await self.websocket.accept()
@@ -19,10 +16,10 @@ class User:
 
     async def __aexit__(self, exc_type, exc, tb):
         self.room.discard(self)
-        users.pop(self.code, None)
+        if users.get(self.code) is self: users.pop(self.code, None)
         await self.websocket.close()
 
-    async def broadcast(self, message, /, *, exclude): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True)
+    async def broadcast(self, message, /, *, exclude = None): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True)
 
 async def handle_message(current_user, message, /):
     if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
@@ -33,5 +30,5 @@ users = {}
 
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
-    async with User(get_code(), websocket) as user:
+    async with User(websocket) as user:
         while True: await handle_message(user, await websocket.receive_json())
