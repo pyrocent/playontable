@@ -60,7 +60,6 @@ document.querySelectorAll(".play").forEach(play => {
 
 share.addEventListener("click", () => {
     navigator.share({
-        title: "Join Room",
         text:  code.innerText
     });
 });
