@@ -9,8 +9,8 @@ def get_code():
 class User:
     def __init__(self, code, websocket, /):
         self.code = code
-        self.room = {self}
         self.websocket = websocket
+        self.room = {users.setdefault(code, self)}
 
     async def __aenter__(self):
         await self.websocket.accept()
@@ -26,8 +26,7 @@ class User:
 
 async def handle_message(current_user, message, /):
     if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
-        merged = current_user.room | host.room
-        for user in merged: user.room = merged
+        for user in (merged := current_user.room | host.room): user.room = merged
     elif message.get("hook") != "join": await current_user.broadcast(message, exclude = current_user if message.get("hook") in {"drag", "hand", "fall"} else None)
 
 users = {}
@@ -35,4 +34,4 @@ users = {}
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
     async with User(get_code(), websocket) as user:
-        while True: await handle_message(users.setdefault(user.code, user), await websocket.receive_json())
+        while True: await handle_message(user, await websocket.receive_json())
