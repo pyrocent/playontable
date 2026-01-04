@@ -61,8 +61,7 @@ document.querySelectorAll(".play").forEach(play => {
 share.addEventListener("click", () => {
     navigator.share({
         title: "Join Room",
-        text:  code.innerText,
-        url: window.location.href
+        text:  code.innerText
     });
 });
 
