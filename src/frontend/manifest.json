@@ -14,10 +14,10 @@
     "launch_handler": {"client_mode": ["auto", "focus-existing", "navigate-existing", "navigate-new"]},
     "shortcuts": [
         {
-            "url": "/?shortcut=true",
-            "name": "Create new room",
-            "short_name": "Create new room",
-            "description": "Create new room",
+            "url": "/",
+            "name": "Start Room",
+            "short_name": "Start room",
+            "description": "Start room",
             "icons": [
                 {
                     "sizes": "96x96",
