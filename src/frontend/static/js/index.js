@@ -4,12 +4,12 @@ import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.
 let highlighting;
 const menu = document.getElementById("menu");
 const code = document.getElementById("code");
-const copy = document.getElementById("copy");
 const join = document.getElementById("join");
 const hand = document.getElementById("hand");
 const fall = document.getElementById("fall");
 const roll = document.getElementById("roll");
 const flip = document.getElementById("flip");
+const share = document.getElementById("share");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
 let socket = new WebSocket("wss://api.playontable.com/websocket/");
@@ -58,21 +58,12 @@ document.querySelectorAll(".play").forEach(play => {
     play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play"}));});
 });
 
-copy.addEventListener("click", () => {
-    const code_backup = code.innerText;
-    navigator.clipboard.writeText(code_backup);
-
-    code.innerText = "Copied!";
-    code.style.color = "#FFFFFF";
-    code.style.backgroundColor = "#177B54";
-    copy.src = "static/assets/other/copy/white.webp";
-
-    setTimeout(() => {
-        code.innerText = code_backup;
-        code.style.color = "#000000";
-        code.style.backgroundColor = "#E6E6E6";
-        copy.src = "static/assets/other/copy/black.webp";
-    }, 1250);
+share.addEventListener("click", () => {
+    navigator.share({
+        title: "Join Room",
+        text:  code.innerText,
+        url: window.location.href
+    });
 });
 
 join.addEventListener("input", () => {
