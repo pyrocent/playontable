@@ -59,6 +59,7 @@ main
             border: 1px solid rgb(35, 35, 35)
 
         #room.shake
+            background-color: #ff6666
             animation: shake 1.5s ease-in-out
 
         .play
@@ -74,10 +75,6 @@ main
 
         .play:focus
             outline: none
-
-        .play:hover
-            border-radius: 90px
-            background-color: rgb(20, 100, 70)
 
         span
             display: flex
@@ -195,6 +192,12 @@ main
         & > *
             position: absolute
             will-change: filter, transform
+
+@media (hover: hover) and (pointer: fine)
+    #menu:open
+        .play:hover:not(.shake)
+            border-radius: 90px
+            background-color: rgb(15, 70, 50)
 
 @keyframes shake
     0%
