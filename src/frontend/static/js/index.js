@@ -4,17 +4,17 @@ import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.
 let highlighting;
 const menu = document.getElementById("menu");
 const code = document.getElementById("code");
+const send = document.getElementById("send");
+const room = document.getElementById("room");
 const join = document.getElementById("join");
+const solo = document.getElementById("solo");
 const hand = document.getElementById("hand");
 const fall = document.getElementById("fall");
 const roll = document.getElementById("roll");
 const flip = document.getElementById("flip");
-const share = document.getElementById("share");
 const table = document.getElementById("table");
 const panel = document.getElementById("panel");
-let socket = new WebSocket("wss://api.playontable.com/websocket/");
-
-menu.showModal();
+const socket = new WebSocket("wss://api.playontable.com/websocket/");
 
 gsap.registerPlugin(Draggable);
 Draggable.create("#table > *", {
@@ -54,21 +54,11 @@ Draggable.create("#table > *", {
     }
 });
 
-document.querySelectorAll(".play").forEach(play => {
-    play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play"}));});
-});
-
-join.addEventListener("input", () => {
-    if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));
-});
-
-share.addEventListener("click", () => {
-    navigator.share({text: code.innerText});
-});
-
-table.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}
-});
+menu.showModal();
+send.addEventListener("click", () => {navigator.share({text: code.innerText});});
+room.addEventListener("click", () => {socket.send(JSON.stringify({hook: "room"}));});
+join.addEventListener("input", () => {if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));});
+solo.addEventListener("click", () => {socket.send(JSON.stringify({hook: "solo"}));});
 
 hand.addEventListener("click", () => {
     let item = highlighting.effect.target
@@ -104,6 +94,8 @@ roll.addEventListener("click", () => {
 flip.addEventListener("click", () => {
 });
 
+table.addEventListener("click", (event) => {if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}});
+
 socket.addEventListener("message", (json) => {
     const {hook, index, data} = JSON.parse(json.data);
     const child = (index !== undefined && index !== null) ? table.children[index] : null;
@@ -111,7 +103,11 @@ socket.addEventListener("message", (json) => {
         case "code":
             code.innerText = data
             break;
-        case "play":
+        case "fail":
+            console.log("fail");
+            break;
+        case "room":
+        case "solo":
             menu.close();
             break;
         case "drag":
