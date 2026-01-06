@@ -105,11 +105,13 @@ socket.addEventListener("message", (json) => {
             break;
         case "fail":
             room.classList.toggle("shake");
+            room.textContent = "YOU ARE ALONE!";
             room.style.backgroundColor = "#FF6666";
             setTimeout(() => {
                 room.classList.toggle("shake");
+                room.textContent = "START ROOM";
                 room.style.backgroundColor = "";
-            }, 1000);
+            }, 1500);
             break;
         case "room":
         case "solo":
