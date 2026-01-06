@@ -16,8 +16,8 @@
         {
             "url": "/",
             "name": "Start Room",
-            "short_name": "Start room",
-            "description": "Start room",
+            "short_name": "Start Room",
+            "description": "Start Room",
             "icons": [
                 {
                     "sizes": "96x96",

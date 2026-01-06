@@ -58,14 +58,12 @@ document.querySelectorAll(".play").forEach(play => {
     play.addEventListener("click", () => {socket.send(JSON.stringify({hook: "play"}));});
 });
 
-share.addEventListener("click", () => {
-    navigator.share({
-        text:  code.innerText
-    });
-});
-
 join.addEventListener("input", () => {
     if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));
+});
+
+share.addEventListener("click", () => {
+    navigator.share({text: code.innerText});
 });
 
 table.addEventListener("click", (event) => {
