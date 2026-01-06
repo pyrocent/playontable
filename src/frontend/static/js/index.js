@@ -104,7 +104,12 @@ socket.addEventListener("message", (json) => {
             code.innerText = data
             break;
         case "fail":
-            console.log("fail");
+            room.classList.toggle("shake");
+            room.style.backgroundColor = "#FF6666";
+            setTimeout(() => {
+                room.classList.toggle("shake");
+                room.style.backgroundColor = "";
+            }, 1000);
             break;
         case "room":
         case "solo":
