@@ -19,7 +19,7 @@ class User:
         if users.get(self.code) is self: users.pop(self.code, None)
         await self.websocket.close()
 
-    async def broadcast(self, message, /, *, exclude = None): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True) if message.get("hook") != "room" and len(self.room) <= 1 else await self.websocket.send_json({"hook": "fail"})
+    async def broadcast(self, message, /, *, exclude = None): await gather(*(user.websocket.send_json(message) for user in self.room if user is not exclude), return_exceptions = True) if message.get("hook") != "room" and len(self.room) > 1 else await self.websocket.send_json({"hook": "fail"})
 
 async def handle(current_user, message = None, /):
     if (message.get("hook") == "join") and ((host := users.get(message.get("data"))) is not None) and (host is not current_user):
