@@ -1,12 +1,12 @@
-# Play Any Game Now! [PlayOnTable](https://playontable.com/)
+# [![](src\frontend\static\assets\other\icons\icon40x40.webp)](https://playontable.com/) Play Any Game Now! [PlayOnTable](https://playontable.com/)
 
-[![](https://gwu0gmqhaw3wrynk.public.blob.vercel-storage.com/other/thumbnail.png)](https://playontable.com/)
+## Codebase
 
 PlayOnTable was developed using the following programming/markup languages:
 
 *For the **backend***
 
-- **Python** ([FastAPI framework](https://fastapi.tiangolo.com/) for WebSocket connections)
+- **Python**
 
 *For the **frontend***
 
@@ -14,12 +14,18 @@ PlayOnTable was developed using the following programming/markup languages:
 - **HTML5**
 - **Vanilla JavaScript**
 
-The codebase has these 2 main dependencies:
+## Dependencies
+
+Python backend `requirements.txt` file contains two dependencies:
+
+- [FastAPI](https://fastapi.tiangolo.com/) (for WebSocket connections)
+- [Uvicorn](https://uvicorn.dev/) (as ASGI web server)
+
+Frontend depends on only one JavaScript library delivered from [jsDelivr](https://www.jsdelivr.com/) CDN:
 
 - [GSAP](https://gsap.com/) (for dragging items on table)
-- [Nanoid](https://www.npmjs.com/package/nanoid) (for generating rooms codes)
 
----
+## Production
 
 PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
 
