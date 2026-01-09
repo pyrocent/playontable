@@ -1,4 +1,4 @@
-# [![](src/frontend/static/assets/other/icons/icon40x40.webp)](https://playontable.com/) Play Any Game Now! [PlayOnTable](https://playontable.com/)
+# ![](src/frontend/static/assets/other/icons/icon40x40.webp) Play Any Game Now! [PlayOnTable](https://playontable.com/)
 
 ## Codebase
 
