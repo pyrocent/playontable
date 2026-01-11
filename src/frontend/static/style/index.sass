@@ -40,7 +40,7 @@ main
             padding: 5px 0
             border-radius: 5px
             text-align: center
-            background-color: rgb(230, 230, 230)
+            background: rgb(204, 204, 204)
 
         #send
             top: 50%
@@ -52,14 +52,14 @@ main
         #join
             flex: 1
             padding: 10px 0
+            border: 1px solid
             text-align: center
             border-radius: 5px
             font-family: inherit
             width: calc(100% - 2px)
-            border: 1px solid rgb(35, 35, 35)
 
         #room.shake
-            background-color: #ff6666
+            background: rgb(255, 102, 102)
             animation: shake 1.5s ease-in-out
 
         .play
@@ -70,7 +70,7 @@ main
             border-radius: 5px
             font-family: inherit
             color: rgb(255, 255, 255)
-            background-color: rgb(23, 123, 84)
+            background: rgb(23, 123, 84)
             box-shadow: 0 0 2.5px rgba(0, 0, 0, 0.5)
 
         .play:focus
@@ -83,11 +83,10 @@ main
 
             h6
                 margin: 0
-                color: rgb(35, 35, 35)
 
             hr
                 flex: 0.4
-                border-top: 1px solid rgb(200, 200, 200)
+                border-top: 1px solid rgb(204, 204, 204)
 
     #panel
         gap: 5px
@@ -100,10 +99,6 @@ main
             cursor: pointer
             border-radius: 5px
             font-family: inherit
-
-            &:active
-                border-radius: 90px
-                background-color: rgb(200, 200, 200)
 
         &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
@@ -139,8 +134,8 @@ main
                 top: 250px
 
         .cards
+            border: 1px solid
             border-radius: 5px
-            border: 1px solid rgb(0, 0, 0)
 
             &.blue
                 left: 45px
@@ -197,7 +192,15 @@ main
     #menu:open
         .play:hover:not(.shake)
             border-radius: 90px
-            background-color: rgb(15, 70, 50)
+            background: rgb(15, 80, 55)
+
+    #panel[class]
+        #hand:hover,
+        #fall:hover,
+        #roll:hover,
+        #flip:hover
+            border-radius: 90px
+            background: rgb(204, 204, 204)
 
 @keyframes shake
     0%
