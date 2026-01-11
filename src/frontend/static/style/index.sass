@@ -100,13 +100,6 @@ main
         &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
 
-    &:has(#panel[class]) #panel
-        flex: 0.05
-        display: flex
-
-    &:has(#panel[class]) #table
-        cursor: pointer
-
     #table
         flex: 1
         padding: 10px
@@ -184,6 +177,14 @@ main
         & > *
             position: absolute
             will-change: filter, transform
+
+    &:has(#panel[class])
+        #panel
+            flex: 0.05
+            display: flex
+
+        #table
+            cursor: pointer
 
 @media (hover: hover) and (pointer: fine)
     #menu:open
