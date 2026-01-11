@@ -5,9 +5,8 @@
 html, body
     margin: 0
     user-select: none
+    touch-action: none
     background: rgb(0, 0, 0)
-    touch-action: manipulation
-    font-family: Outfit-Bold, sans-serif
     -webkit-tap-highlight-color: transparent
 
     & ::backdrop
@@ -21,7 +20,6 @@ main
     flex-direction: column-reverse
 
     #menu:open
-        gap: 10px
         border: none
         width: 250px
         padding: 10px
@@ -34,43 +32,25 @@ main
         justify-content: space-between
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
 
-        #code
-            flex: 1
-            margin: 0
-            padding: 5px 0
-            border-radius: 5px
-            text-align: center
-            background: rgb(204, 204, 204)
-
-        #send
-            top: 50%
-            right: 5px
-            cursor: pointer
-            position: absolute
-            transform: translateY(-50%)
-
-        #join
-            flex: 1
-            padding: 10px 0
-            border: 1px solid
-            text-align: center
-            border-radius: 5px
-            font-family: inherit
-            width: calc(100% - 2px)
-
         #room.shake
             background: rgb(255, 102, 102)
             animation: shake 1.5s ease-in-out
 
-        .play
-            flex: 1
-            border: none
+        #join
             padding: 10px 0
-            cursor: pointer
+            border: 1px solid
+            text-align: center
             border-radius: 5px
-            font-family: inherit
+            font-family: Outfit-Bold, sans-serif
+
+        .play
+            border: none
+            cursor: pointer
+            padding: 10.8px 0
+            border-radius: 5px
             color: rgb(255, 255, 255)
             background: rgb(23, 123, 84)
+            font-family: Outfit-Bold, sans-serif
             box-shadow: 0 0 2.5px rgba(0, 0, 0, 0.5)
 
         .play:focus
@@ -81,12 +61,29 @@ main
             position: relative
             align-items: center
 
-            h6
+            #code
+                flex: 1
                 margin: 0
+                padding: 7.6px 0
+                border-radius: 5px
+                text-align: center
+                background: rgb(204, 204, 204)
+                font-family: Outfit-Bold, sans-serif
+
+            #send
+                top: 50%
+                right: 7.6px
+                cursor: pointer
+                position: absolute
+                transform: translateY(-50%)
 
             hr
                 flex: 0.4
                 border-top: 1px solid rgb(204, 204, 204)
+
+            h6
+                margin: 0
+                font-family: Outfit-Bold, sans-serif
 
     #panel
         gap: 5px
@@ -98,7 +95,7 @@ main
             display: none
             cursor: pointer
             border-radius: 5px
-            font-family: inherit
+            font-family: Outfit-Bold, sans-serif
 
         &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
