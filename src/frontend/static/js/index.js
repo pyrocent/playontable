@@ -1,19 +1,12 @@
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
-let highlighting;
-const menu = document.getElementById("menu");
-const code = document.getElementById("code");
-const send = document.getElementById("send");
-const room = document.getElementById("room");
-const join = document.getElementById("join");
-const solo = document.getElementById("solo");
-const hand = document.getElementById("hand");
-const fall = document.getElementById("fall");
-const roll = document.getElementById("roll");
-const flip = document.getElementById("flip");
-const table = document.getElementById("table");
-const panel = document.getElementById("panel");
+const {
+    menu, code, send, room, join, solo, hand, fall, roll, flip, table, panel
+} = Object.fromEntries(
+    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "roll", "flip", "table", "panel"].map(id => [id, document.getElementById(id)
+]));
+
 const socket = new WebSocket("wss://api.playontable.com/websocket/");
 
 gsap.registerPlugin(Draggable);
@@ -23,7 +16,7 @@ Draggable.create("#table > *", {
         if (!this.target.classList.contains("clone")) {
             if (highlighting) highlighting.cancel();
             panel.className = this.target.className;
-            highlighting = this.target.animate(
+            let highlighting = this.target.animate(
                 [
                     {filter: "drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)"},
                     {filter: "drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)"}
