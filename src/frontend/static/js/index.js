@@ -48,8 +48,8 @@ Draggable.create("#table > *", {
     onDrag() {
         socket.send(JSON.stringify({
             hook: "drag",
-            index: Array.from(table.children).indexOf(this.target),
-            data: {x: this.x, y: this.y}
+            data: {x: this.x, y: this.y},
+            item: Array.from(table.children).indexOf(this.target)
         }));
     }
 });
@@ -60,32 +60,21 @@ room.addEventListener("click", () => {socket.send(JSON.stringify({hook: "room"})
 join.addEventListener("input", () => {if (join.value.length === 5) socket.send(JSON.stringify({hook: "join", data: join.value}));});
 solo.addEventListener("click", () => {socket.send(JSON.stringify({hook: "solo"}));});
 
-hand.addEventListener("click", () => {
-    let item = highlighting.effect.target
+const toggleHandAndSend = (hook) => {
+    const item = highlighting?.effect?.target;
     item.classList.toggle("hand");
     panel.className = item.className;
-    socket.send(JSON.stringify({
-        hook: "hand",
-        index: Array.from(table.children).indexOf(item)
-    }));
-});
+    socket.send(JSON.stringify({hook, item: Array.from(table.children).indexOf(item)}));
+};
 
-fall.addEventListener("click", () => {
-    let item = highlighting.effect.target
-    item.classList.toggle("hand");
-    panel.className = item.className;
-    socket.send(JSON.stringify({
-        hook: "fall",
-        index: Array.from(table.children).indexOf(item)
-    }));
-});
-
+hand.addEventListener("click", () => toggleHandAndSend("hand"));
+fall.addEventListener("click", () => toggleHandAndSend("fall"));
 roll.addEventListener("click", () => {
     const rollAnimation = setInterval(() => {
         socket.send(JSON.stringify({
             hook: "roll",
-            index: Array.from(table.children).indexOf(highlighting.effect.target),
-            data: Math.floor(Math.random() * 6) + 1
+            data: Math.floor(Math.random() * 6) + 1,
+            item: Array.from(table.children).indexOf(highlighting?.effect?.target)
         }));
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
@@ -96,9 +85,9 @@ flip.addEventListener("click", () => {
 
 table.addEventListener("click", (event) => {if (event.target === event.currentTarget && highlighting) {highlighting.cancel(); panel.removeAttribute("class");}});
 
-socket.addEventListener("message", (json) => {
-    const {hook, index, data} = JSON.parse(json.data);
-    const child = (index !== undefined && index !== null) ? table.children[index] : null;
+socket.addEventListener("message", (({data: json}) => {
+    const {hook, data, item} = JSON.parse(json);
+    const child = (item !== undefined && item !== null) ? table.children[item] : null;
     switch (hook) {
         case "code":
             code.innerText = data
@@ -125,5 +114,7 @@ socket.addEventListener("message", (json) => {
         case "roll":
             child.setAttribute("src", `static/assets/dices/${child.classList[1]}/${data}.webp`);
             break;
+        case "flip":
+            break;
     }
-});
+}));
