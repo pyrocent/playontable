@@ -9,8 +9,8 @@
     "short_name": "PlayOnTable",
     "background_color": "#000000",
     "iarc_rating_id": "2055efa8-bf65-4787-8cc2-10fb0e1640d1",
-    "display_override": ["standalone", "minimal-ui", "browser"],
     "description": "Lets play any game on a virtual realtime multiplayer table!",
+    "display_override": ["standalone", "minimal-ui", "browser", "window-controls-overlay"],
     "launch_handler": {"client_mode": ["auto", "focus-existing", "navigate-existing", "navigate-new"]},
     "shortcuts": [
         {
