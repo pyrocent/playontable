@@ -1,6 +1,5 @@
 import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
-import {customBackHandling} from "https://cdn.jsdelivr.net/npm/webtonative@1.0.84/+esm";
 
 const {
     menu, code, send, room, join, solo, hand, fall, draw, roll, flip, trash, table, panel
@@ -40,7 +39,6 @@ Draggable.create("#table > *", {
 });
 
 menu.showModal();
-customBackHandling({enable: true});
 menu.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
 
 let trapActive = false;
