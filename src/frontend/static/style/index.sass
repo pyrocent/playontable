@@ -97,7 +97,7 @@ main
             border-radius: 5px
             font-family: Outfit-Bold, sans-serif
 
-        &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
+        &[class]:not(.hand) #hand, &.hand #fall, &.decks #draw, &.dices #roll, &.cards #flip
             display: block
 
         &[class]
@@ -136,11 +136,12 @@ main
             transition: opacity 1s linear, visibility 0s linear 1s
 
         .hand
-            outline: 2px solid rgb(0, 255, 0)
+            outline-offset: 3px
+            outline: 3px solid rgb(0, 255, 0)
 
         .dices
             left: 125px
-            border-radius: 2.5px
+            border-radius: 5px
 
             &.black
                 top: 210px
@@ -148,16 +149,35 @@ main
                 top: 250px
 
         .decks
-            border: 1px solid
-            border-radius: 2.5px
+            top: 10px
+            height: 51.6px
+            padding-top: 4.5px
 
-            &.blue
-                left: 45px
-            &.red
-                left: 85px
-            &.no-jolly
-                top: 65px
-                border: 1px solid rgb(255, 255, 255)
+            &.ita
+                width: 32.6px
+            &.fra
+                width: 35.6px
+
+                &.blue
+                    left: 45px
+                &.red
+                    left: 85px
+                &.jolly
+                    top: 70px
+
+                    .cards
+                        border: 1px solid rgb(204, 204, 204)
+
+            .cards
+                border: 1px solid
+                border-radius: 1.5px
+
+                &:nth-child(2)
+                    transform: translateY(-1.5px)
+                &:nth-child(3)
+                    transform: translateY(-3px)
+                &:nth-child(4)
+                    transform: translateY(-4.5px)
 
         .chips
             left: 125px

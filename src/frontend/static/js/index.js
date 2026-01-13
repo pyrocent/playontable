@@ -2,9 +2,9 @@ import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
 const {
-    menu, code, send, room, join, solo, hand, fall, roll, flip, table, panel
+    menu, code, send, room, join, solo, hand, fall, draw, roll, flip, table, panel
 } = Object.fromEntries(
-    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "roll", "flip", "table", "panel"].map(id => [id, document.getElementById(id)]
+    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "draw", "roll", "flip", "table", "panel"].map(id => [id, document.getElementById(id)]
 ));
 
 const socket = new WebSocket("wss://api.playontable.com/websocket/");
@@ -64,6 +64,9 @@ roll.addEventListener("click", () => {
         }));
     }, 100);
     setTimeout(() => {clearInterval(rollAnimation);}, 1000);
+});
+
+draw.addEventListener("click", () => {
 });
 
 flip.addEventListener("click", () => {
