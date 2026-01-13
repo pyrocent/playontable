@@ -26,8 +26,8 @@
             "icons": [
                 {
                     "sizes": "96x96",
-                    "type": "image/webp",
-                    "src": "static/assets/other/shortcut.webp"
+                    "type": "image/png",
+                    "src": "https://playontable.com/static/assets/other/shortcut.png"
                 }
             ]
         }
