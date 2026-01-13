@@ -29,16 +29,16 @@
     ],
     "icons": [
         {
-            "src": "static/assets/other/icons/icon192x192.webp",
+            "purpose": "any",
             "sizes": "192x192",
             "type": "image/webp",
-            "purpose": "any"
+            "src": "https://www.playontable.com/static/assets/other/icons/icon192x192.webp"
         },
         {
-            "src": "static/assets/other/icons/icon512x512.webp",
             "sizes": "512x512",
             "type": "image/webp",
-            "purpose": "maskable"
+            "purpose": "maskable",
+            "src": "https://www.playontable.com/static/assets/other/icons/icon512x512.webp"
         }
     ]
 }
