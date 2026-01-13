@@ -11,17 +11,17 @@ PlayOnTable was developed using the following programming/markup languages:
 *For the **frontend***
 
 - **SASS**
-- **HTML5**
-- **Vanilla JavaScript**
+- **HTML**
+- **JavaScript**
 
 ## Dependencies
 
-Python backend `requirements.txt` file contains two dependencies:
+Python backend `requirements.txt` file contains 2 dependencies:
 
 - [FastAPI](https://fastapi.tiangolo.com/) (for WebSocket connections)
 - [Uvicorn](https://uvicorn.dev/) (as ASGI web server)
 
-Frontend depends on only one JavaScript library delivered from [jsDelivr](https://www.jsdelivr.com/) CDN:
+Frontend depends on 1 JavaScript library delivered from [jsDelivr](https://www.jsdelivr.com/) CDN:
 
 - [GSAP](https://gsap.com/) (for dragging items on table)
 
