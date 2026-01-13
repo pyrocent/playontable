@@ -9,6 +9,7 @@
     "theme_color": "#000000",
     "short_name": "PlayOnTable",
     "background_color": "#000000",
+    "id": "https://playontable.com/",
     "iarc_rating_id": "2055efa8-bf65-4787-8cc2-10fb0e1640d1",
     "description": "Lets play any game on a virtual realtime multiplayer table!",
     "display_override": ["standalone", "minimal-ui", "browser", "window-controls-overlay"],
