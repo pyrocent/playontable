@@ -68,9 +68,9 @@ flip.addEventListener("click", () => {
 });
 
 table.addEventListener("click", (event) => {if (event.target === event.currentTarget) {
-    const item = getSelectedItem()
-    if (item) item.classList.remove("selected");
     panel.removeAttribute("class");
+    const item = getSelectedItem();
+    if (item) item.classList.remove("selected");
 }});
 
 socket.addEventListener("message", (({data: json}) => {
@@ -100,6 +100,10 @@ socket.addEventListener("message", (({data: json}) => {
         case "hand":
         case "fall":
             child.classList.toggle("hide");
+            if (child === getSelectedItem()) {
+                panel.removeAttribute("class");
+                child.classList.remove("selected");
+            }
             break;
         case "roll":
             child.setAttribute("src", `static/assets/dices/${child.classList[1]}/${data}.webp`);
