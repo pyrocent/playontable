@@ -34,7 +34,7 @@ main
 
         #room.shake
             background: rgb(255, 102, 102)
-            animation: shake 1.5s ease-in-out
+            animation: shake 1.5s linear, hold 3s linear 1.5s
 
         #join
             padding: 10px 0
@@ -99,6 +99,10 @@ main
 
         &[class]:not(.hand) #hand, &.hand #fall, &.dices #roll, &.cards #flip
             display: block
+
+        &[class]
+            flex: 0.05
+            display: flex
 
     #table
         flex: 1
@@ -178,12 +182,11 @@ main
             position: absolute
             will-change: filter, transform
 
-    &:has(#panel[class])
-        #panel
-            flex: 0.05
-            display: flex
+        & > .selected
+            animation: glow 1s ease-in-out infinite alternate
+            filter: drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)
 
-        #table
+        &:has(> .selected)
             cursor: pointer
 
 @media (hover: hover) and (pointer: fine)
@@ -203,15 +206,35 @@ main
 @keyframes shake
     0%
         transform: translateX(0)
-    15%
+    10%
         transform: translateX(-5px)
-    30%
+    20%
         transform: translateX(5px)
-    45%
+    30%
+        transform: translateX(-5px)
+    40%
+        transform: translateX(5px)
+    50%
         transform: translateX(-5px)
     60%
         transform: translateX(5px)
-    75%
-        transform: translateX(-3px)
+    70%
+        transform: translateX(-5px)
+    80%
+        transform: translateX(5px)
+    90%
+        transform: translateX(-5px)
     100%
         transform: translateX(0)
+
+@keyframes hold
+    from
+        transform: translateX(0)
+    to
+        transform: translateX(0)
+
+@keyframes glow
+    from
+        filter: drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)
+    to
+        filter: drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)
