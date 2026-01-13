@@ -33,8 +33,8 @@ main
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
 
         #room.shake
+            animation: shake 1.5s linear
             background: rgb(255, 102, 102)
-            animation: shake 1.5s linear, hold 3s linear 1.5s
 
         #join
             padding: 10px 0
@@ -225,12 +225,6 @@ main
     90%
         transform: translateX(-5px)
     100%
-        transform: translateX(0)
-
-@keyframes hold
-    from
-        transform: translateX(0)
-    to
         transform: translateX(0)
 
 @keyframes glow
