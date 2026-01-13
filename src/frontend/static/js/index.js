@@ -39,7 +39,8 @@ Draggable.create("#table > *", {
 });
 
 menu.showModal();
-menu.addEventListener("backbutton", (event) => {event.preventDefault();});
+history.pushState(null, null, location.href);
+window.onpopstate = function () {history.go(1);};
 menu.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
 
 send.addEventListener("click", () => {navigator.share({text: code.innerText});});
