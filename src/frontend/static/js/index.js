@@ -13,18 +13,10 @@ gsap.registerPlugin(Draggable);
 Draggable.create("#table > *", {
     bounds: {top: 10, left: 10},
     onClick() {
-        if (!this.target.classList.contains("clone")) {
+        if (this.target.classList.contains("clone")) {
             table.querySelectorAll(".selected").forEach(item => item.classList.remove("selected"));
             this.target.classList.add("selected");
             panel.className = this.target.className;
-        }
-    },
-    onDragStart() {
-        if (this.target.classList.contains("clone")) {
-            const clone = this.target.cloneNode(true);
-            table.appendChild(clone);
-            Draggable.create(clone, this.vars);
-            this.target.classList.remove("clone");
         }
     },
     onDrag() {
@@ -33,7 +25,17 @@ Draggable.create("#table > *", {
             data: {x: this.x, y: this.y},
             item: Array.from(table.children).indexOf(this.target)
         }));
-    }
+    },
+    onDragStart() {
+        this.target.classList.add("dragging");
+        if (!this.target.classList.contains("clone")) {
+            const clone = this.target.cloneNode(true);
+            table.prepend(clone);
+            Draggable.create(clone, this.vars);
+            this.target.classList.add("clone");
+        }
+    },
+    onDragEnd() {this.target.classList.remove("dragging");}
 });
 
 menu.showModal();
