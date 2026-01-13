@@ -1,5 +1,6 @@
 {
     "lang": "en",
+    "dir": "ltr",
     "scope": "/",
     "start_url": "/",
     "orientation": "any",
