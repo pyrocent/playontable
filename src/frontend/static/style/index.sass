@@ -1,6 +1,6 @@
 @font-face
-  font-family: Outfit-Bold
-  src: url("../assets/other/Outfit-Bold.woff2") format("woff2")
+    font-family: Outfit-Bold
+    src: url("../assets/other/Outfit-Bold.woff2") format("woff2")
 
 html, body
     margin: 0
@@ -31,6 +31,9 @@ main
         flex-direction: column
         justify-content: space-between
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+
+        #room
+            will-change: transform
 
         #room.shake
             animation: shake 1.5s linear
@@ -231,4 +234,4 @@ main
     from
         filter: drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)
     to
-        filter: drop-shadow(0 0 5px rgba(255, 230, 120, 0.9)) brightness(1.2)
+        filter: drop-shadow(0 0 5px rgb(255, 230, 120)) brightness(1.2)
