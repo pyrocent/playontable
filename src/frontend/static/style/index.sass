@@ -91,11 +91,15 @@ main
 
         button
             flex: 1
+            padding: 0
             border: none
             display: none
             cursor: pointer
             border-radius: 5px
             font-family: Outfit-Bold, sans-serif
+
+        #trash
+            cursor: pointer
 
         &[class]:not(.hand) #hand, &.hand #fall, &.decks #draw, &.dices #roll, &.cards #flip
             display: block
@@ -124,7 +128,7 @@ main
             will-change: transform
 
         .selected
-            animation: glow 1s ease-in-out infinite alternate
+            animation: glow 1.5s ease-in-out infinite alternate
 
         &:has(> .selected)
             cursor: pointer
@@ -196,9 +200,9 @@ main
 
         .chess
             &.white
-                left: 450px
+                left: 445px
             &.black
-                left: 490px
+                left: 485px
             &.queen
                 top: 50px
             &.bishop
@@ -214,9 +218,9 @@ main
             top: 250px
 
             &.white
-                left: 452.5px
+                left: 448px
             &.black
-                left: 492.5px
+                left: 488px
 
 @media (hover: hover) and (pointer: fine)
     #menu:open
@@ -231,6 +235,9 @@ main
         #flip:hover
             border-radius: 90px
             background: rgb(204, 204, 204)
+
+        #trash:hover
+            animation: tada 1.5s ease-in-out
 
 @keyframes shake
     0%
@@ -261,3 +268,27 @@ main
         filter: drop-shadow(0 0 0 rgb(255, 230, 120)) brightness(1)
     to
         filter: drop-shadow(0 0 5px rgb(255, 230, 120)) brightness(1.2)
+
+@keyframes tada
+    0%
+        transform: scale(1) rotate(0)
+    10%
+        transform: scale(0.97) rotate(-5deg)
+    20%
+        transform: scale(0.97) rotate(5deg)
+    30%
+        transform: scale(1) rotate(-5deg)
+    40%
+        transform: scale(1.03) rotate(5deg)
+    50%
+        transform: scale(1.03) rotate(-5deg)
+    60%
+        transform: scale(1.03) rotate(5deg)
+    70%
+        transform: scale(1) rotate(-5deg)
+    80%
+        transform: scale(0.97) rotate(5deg)
+    90%
+        transform: scale(0.97) rotate(-5deg)
+    100%
+        transform: scale(1) rotate(0)

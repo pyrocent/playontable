@@ -2,9 +2,9 @@ import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
 const {
-    menu, code, send, room, join, solo, hand, fall, draw, roll, flip, table, panel
+    menu, code, send, room, join, solo, hand, fall, draw, roll, flip, trash, table, panel
 } = Object.fromEntries(
-    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "draw", "roll", "flip", "table", "panel"].map(id => [id, document.getElementById(id)]
+    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "draw", "roll", "flip", "trash", "table", "panel"].map(id => [id, document.getElementById(id)]
 ));
 
 const socket = new WebSocket("wss://api.playontable.com/websocket/");
@@ -39,6 +39,7 @@ Draggable.create("#table > *", {
 });
 
 menu.showModal();
+menu.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
 
 send.addEventListener("click", () => {navigator.share({text: code.innerText});});
 room.addEventListener("click", () => {socket.send(JSON.stringify({hook: "room"}));});
@@ -77,6 +78,11 @@ table.addEventListener("click", (event) => {if (event.target === event.currentTa
     const item = getSelectedItem();
     if (item) item.classList.remove("selected");
 }});
+
+trash.addEventListener("click", () => {
+    getSelectedItem().remove();
+    panel.removeAttribute("class");
+});
 
 socket.addEventListener("message", (({data: json}) => {
     const {hook, data, item} = JSON.parse(json);
