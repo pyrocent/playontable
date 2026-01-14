@@ -2,9 +2,9 @@ import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm";
 import {Draggable} from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/Draggable.min.js";
 
 const {
-    menu, code, send, room, join, solo, hand, fall, draw, roll, flip, trash, table, panel
+    lobby, table, panel, code, send, room, join, solo, hand, fall, draw, roll, flip, wipe
 } = Object.fromEntries(
-    ["menu", "code", "send", "room", "join", "solo", "hand", "fall", "draw", "roll", "flip", "trash", "table", "panel"].map(id => [id, document.getElementById(id)]
+    ["lobby", "table", "panel", "code", "send", "room", "join", "solo", "hand", "fall", "draw", "roll", "flip", "wipe"].map(id => [id, document.getElementById(id)]
 ));
 
 const socket = new WebSocket("wss://api.playontable.com/websocket/");
@@ -38,73 +38,8 @@ Draggable.create("#table > *", {
     onDragEnd() {this.target.classList.remove("dragging");}
 });
 
-menu.showModal();
-menu.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
-
-let trapActive = false;
-let rePushLock = false;
-
-function enableBackTrap() {
-  if (trapActive) return;
-  trapActive = true;
-
-  // crea una "barriera" nella history
-  history.pushState({ backTrap: true }, "");
-
-  const onPopState = (e) => {
-    if (!trapActive) return;
-
-    // Evita loop in alcuni browser
-    if (rePushLock) return;
-    rePushLock = true;
-
-    // L'utente ha premuto indietro: rimetti la barriera subito,
-    // così NON si torna indietro e NON chiudi il menu.
-    history.pushState({ backTrap: true }, "");
-
-    // sblocca nel prossimo tick
-    setTimeout(() => { rePushLock = false; }, 0);
-  };
-
-  window.addEventListener("popstate", onPopState);
-
-  // restituisco una funzione di cleanup
-  return () => {
-    trapActive = false;
-    window.removeEventListener("popstate", onPopState);
-  };
-}
-
-let disableTrap = null;
-
-function openMenu() {
-  menu.showModal();
-
-  // opzionale: blocca Escape
-  menu.addEventListener("keydown", onKeydown, { passive: false });
-
-  disableTrap = enableBackTrap();
-}
-
-function closeMenu() {
-  if (menu.open) menu.close();
-
-  menu.removeEventListener("keydown", onKeydown);
-
-  // disabilita trap
-  if (disableTrap) {
-    disableTrap();
-    disableTrap = null;
-
-    // ripulisci l'entry fittizio UNA volta (torna allo stato precedente)
-    // Nota: questo fa "consumare" un back, ma ora il menu è chiuso.
-    history.back();
-  }
-}
-
-function onKeydown(e) {
-  if (e.key === "Escape") e.preventDefault();
-}
+lobby.showModal();
+lobby.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
 
 send.addEventListener("click", () => {navigator.share({text: code.innerText});});
 room.addEventListener("click", () => {socket.send(JSON.stringify({hook: "room"}));});
@@ -138,16 +73,16 @@ draw.addEventListener("click", () => {
 flip.addEventListener("click", () => {
 });
 
+wipe.addEventListener("click", () => {
+    getSelectedItem().remove();
+    panel.removeAttribute("class");
+});
+
 table.addEventListener("click", (event) => {if (event.target === event.currentTarget) {
     panel.removeAttribute("class");
     const item = getSelectedItem();
     if (item) item.classList.remove("selected");
 }});
-
-trash.addEventListener("click", () => {
-    getSelectedItem().remove();
-    panel.removeAttribute("class");
-});
 
 socket.addEventListener("message", (({data: json}) => {
     const {hook, data, item} = JSON.parse(json);
@@ -168,7 +103,7 @@ socket.addEventListener("message", (({data: json}) => {
             break;
         case "room":
         case "solo":
-            menu.close();
+            lobby.close();
             break;
         case "drag":
             gsap.to(child, data);

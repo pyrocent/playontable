@@ -6,25 +6,20 @@
     <link rel = "author" href = "humans.txt">
     <link rel = "manifest" href = "manifest.json">
     <meta name = "theme-color" content = "#000000">
-    <meta property = "og:title" content = "PlayOnTable">
-    <meta property = "og:site_name" content = "PlayOnTable">
     <link rel = "canonical" href = "https://playontable.com/">
-    <meta property = "og:url" content = "https://playontable.com/">
     <link rel = "preload" href = "static/style/index.css" as = "style">
     <link rel = "preconnect" href = "https://cdn.jsdelivr.net" crossorigin>
     <link rel = "icon" href = "static/assets/other/icons/favicon/favicon.ico">
     <link rel = "icon" href = "static/assets/other/icons/favicon/favicon.webp">
     <noscript><link rel = "stylesheet" href = "static/style/index.css"></noscript>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-    <meta property = "og:image" content = "static/assets/other/icons/icon1200x1200.webp">
     <meta name = "description" content = "Let's play any game on a virtual realtime multiplayer table!">
     <link rel = "stylesheet" href = "static/style/index.css" media = "print" onload = "this.media = 'all'">
-    <meta property = "og:description" content = "Let's play any game on a virtual realtime multiplayer table!">
     <script>if ("serviceWorker" in navigator) window.addEventListener("load", () => {navigator.serviceWorker.register("sw.js");});</script>
 </head>
     <body oncontextmenu = "return false">
         <main>
-            <dialog id = "menu">
+            <dialog id = "lobby">
                 <span><h3 id = "code"></h3><img id = "send" src = "static/assets/other/share.webp" alt = "send"></span>
                 <button id = "room" class = "play">START ROOM</button>
                 <span><hr><h6>OR</h6><hr></span>
@@ -92,7 +87,7 @@
                 <button id = "draw">DRAW</button>
                 <button id = "roll">ROLL</button>
                 <button id = "flip">FLIP</button>
-                <img id = "trash" src = "static/assets/other/trash.webp" alt = "trash">
+                <img id = "wipe" src = "static/assets/other/wipe.webp" alt = "wipe">
             </div>
         </main>
         <script src = "static/js/index.js" type = "module"></script>
