@@ -8,15 +8,22 @@ const {
 ));
 
 const socket = new WebSocket("wss://api.playontable.com/websocket/");
-
-gsap.registerPlugin(Draggable);
-Draggable.create("#table > *", {
+const config = {
     bounds: {top: 10, left: 10},
     onClick() {
-        if (this.target.classList.contains("clone")) {
+        if (this.target.classList.contains("copy")) {
             table.querySelectorAll(".selected").forEach(item => item.classList.remove("selected"));
             this.target.classList.add("selected");
             panel.className = this.target.className;
+        }
+    },
+    onRelease() {
+        if (!this.target.classList.contains("copy")) {
+            socket.send(JSON.stringify({
+                hook: "copy",
+                data: {x: this.startX, y: this.startY},
+                item: Array.from(table.children).indexOf(this.target)
+            }));
         }
     },
     onDrag() {
@@ -26,17 +33,12 @@ Draggable.create("#table > *", {
             item: Array.from(table.children).indexOf(this.target)
         }));
     },
-    onDragStart() {
-        this.target.classList.add("dragging");
-        if (!this.target.classList.contains("clone")) {
-            const clone = this.target.cloneNode(true);
-            table.prepend(clone);
-            Draggable.create(clone, this.vars);
-            this.target.classList.add("clone");
-        }
-    },
+    onDragStart() {this.target.classList.add("dragging");},
     onDragEnd() {this.target.classList.remove("dragging");}
-});
+}
+
+gsap.registerPlugin(Draggable);
+Draggable.create("#table > *", config);
 
 lobby.showModal();
 lobby.addEventListener("keydown", (event) => {if (event.key === "Escape") event.preventDefault();});
@@ -104,6 +106,13 @@ socket.addEventListener("message", (({data: json}) => {
         case "room":
         case "solo":
             lobby.close();
+            break;
+        case "copy":
+            const clone = child.cloneNode(true);
+            clone.classList.add("copy");
+            table.append(clone);
+            gsap.to(child, data);
+            Draggable.create(clone, config);
             break;
         case "drag":
             gsap.to(child, data);
