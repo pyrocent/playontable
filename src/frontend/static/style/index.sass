@@ -98,14 +98,21 @@ main
             border-radius: 5px
             font-family: Outfit-Bold, sans-serif
 
+        #draw
+            h6
+                margin: 0
+                display: none
+                text-align: center
+                font-family: Outfit-Bold, sans-serif
+
         #wipe
             cursor: pointer
 
-        &[class]:not(.hand) #hand, &.hand #fall, &.decks #draw, &.dices #roll, &.cards #flip
+        &[class]:not(.hand) #hand, &.hand #fall, &.decks #draw, &.dices #roll, &.cards #flip, &.decks.fra:not(.jolly) #draw > h6:nth-child(1), &.decks.fra.jolly #draw > h6:nth-child(2)
             display: block
 
         &[class]
-            flex: 0.05
+            flex: 0.065
             display: flex
 
     #table
