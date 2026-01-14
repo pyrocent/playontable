@@ -1,2 +1,4 @@
+uvloop
 fastapi
+httptools
 uvicorn[standard]

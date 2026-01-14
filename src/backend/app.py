@@ -31,4 +31,4 @@ async def handle(current_user, message = None, /):
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
     async with User(websocket) as user:
-        while True: await handle(user, await websocket.receive_json())
+        async for message in websocket.iter_json(): await handle(user, message)
