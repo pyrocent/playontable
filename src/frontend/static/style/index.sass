@@ -19,7 +19,7 @@ main
     flex-direction: column
     height: calc(100vh - 20px)
 
-    #menu:open
+    #lobby:open
         border: none
         width: 250px
         padding: 10px
@@ -98,7 +98,7 @@ main
             border-radius: 5px
             font-family: Outfit-Bold, sans-serif
 
-        #trash
+        #wipe
             cursor: pointer
 
         &[class]:not(.hand) #hand, &.hand #fall, &.decks #draw, &.dices #roll, &.cards #flip
@@ -236,7 +236,7 @@ main
             border-radius: 90px
             background: rgb(204, 204, 204)
 
-        #trash:hover
+        #wipe:hover
             animation: tada 1.5s ease-in-out
 
 @keyframes shake
