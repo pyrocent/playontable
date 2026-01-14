@@ -126,7 +126,7 @@ socket.addEventListener("message", (({data: json}) => {
             }
             break;
         case "roll":
-            child.setAttribute("src", `static/assets/table/dices/${child.classList[1]}/${data}.webp`);
+            child.setAttribute("src", `static/assets/table/dices/${child.classList[0]}/${data}.webp`);
             break;
         case "flip":
             break;
