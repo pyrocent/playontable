@@ -32,9 +32,9 @@ main
         justify-content: space-between
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
 
-        #room.shake
+        #room.jolt
             will-change: transform
-            animation: shake 1.5s linear
+            animation: jolt 1.5s linear
             background: rgb(255, 102, 102)
 
         #join
@@ -231,7 +231,7 @@ main
 
 @media (hover: hover) and (pointer: fine)
     #menu:open
-        .play:hover:not(.shake)
+        .play:hover:not(.jolt)
             border-radius: 90px
             background: rgb(15, 80, 55)
 
@@ -246,7 +246,7 @@ main
         #wipe:hover
             animation: tada 1.5s ease-in-out
 
-@keyframes shake
+@keyframes jolt
     0%
         transform: translateX(5px)
     10%
