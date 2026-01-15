@@ -10,7 +10,6 @@ const toggleHandAndSend = (hook) => {
     panel.className = child.className;
     socket.send(JSON.stringify({hook, index: Array.from(table.children).indexOf(child)}));
 };
-const rollAnimation = setInterval(() => {socket.send(JSON.stringify({hook: "roll", data: Math.floor(Math.random() * 6) + 1, index: Array.from(table.children).indexOf(getSelectedChild())}));}, 100);
 const config = {
     bounds: {top: 10, left: 10},
     onDragStart() {this.target.classList.add("dragging");},
@@ -35,7 +34,7 @@ hand.addEventListener("click", () => toggleHandAndSend("hand"));
 fall.addEventListener("click", () => toggleHandAndSend("fall"));
 draw.addEventListener("click", () => {});
 flip.addEventListener("click", () => {});
-roll.addEventListener("click", () => {setTimeout(() => {clearInterval(rollAnimation);}, 1000);});
+roll.addEventListener("click", () => {const rollAnimation = setInterval(() => {socket.send(JSON.stringify({hook: "roll", data: Math.floor(Math.random() * 6) + 1, index: Array.from(table.children).indexOf(getSelectedChild())}));}, 100); setTimeout(() => {clearInterval(rollAnimation);}, 1000);});
 wipe.addEventListener("click", () => {getSelectedChild().remove(); panel.removeAttribute("class");});
 
 socket.addEventListener("message", (({data: json}) => {
