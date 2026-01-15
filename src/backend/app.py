@@ -23,10 +23,10 @@ class User:
 
     async def broadcast(self, json, /, *, exclude = None): await self.websocket.send_json({"hook": "fail"}) if json.get("hook") == "room" and len(self.room) <= 1 else await gather(*(user.websocket.send_json(json) for user in self.room if user is not exclude), return_exceptions = True)
 
-async def handle(current_user, json = None, /):
-    if (hook := json.get("hook")) != "join": await current_user.broadcast(json, exclude = current_user if hook in {"drag", "hand", "fall"} else None)
-    elif (host := users.get(json.get("data"))) is not None and host is not current_user:
-        for user in (merged := current_user.room | host.room): user.room = merged
+async def handle(user, json = None, /):
+    if (hook := json.get("hook")) != "join": await user.broadcast(json, exclude = user if hook in {"drag", "hand", "fall"} else None)
+    elif (host := users.get(json.get("data"))) is not None and host is not user:
+        for user in (merged := user.room | host.room): user.room = merged
 
 @(app := FastAPI(openapi_url = None)).websocket("/websocket/")
 async def websocket(websocket: WebSocket):
