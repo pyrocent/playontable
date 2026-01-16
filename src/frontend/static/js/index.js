@@ -35,7 +35,7 @@ fall.addEventListener("click", () => toggleHandAndSend("fall"));
 draw.addEventListener("click", () => {});
 flip.addEventListener("click", () => {});
 roll.addEventListener("click", () => {const rollAnimation = setInterval(() => {socket.send(JSON.stringify({hook: "roll", data: Math.floor(Math.random() * 6) + 1, index: Array.from(table.children).indexOf(getSelectedChild())}));}, 100); setTimeout(() => {clearInterval(rollAnimation);}, 1000);});
-wipe.addEventListener("click", () => {getSelectedChild().remove(); panel.removeAttribute("class");});
+wipe.addEventListener("click", () => {socket.send(JSON.stringify({hook: "wipe", index: Array.from(table.children).indexOf(getSelectedChild())}));});
 
 socket.addEventListener("message", (({data: json}) => {
     const {hook, data, index} = JSON.parse(json);
@@ -84,6 +84,8 @@ socket.addEventListener("message", (({data: json}) => {
             child.setAttribute("src", `static/assets/table/dices/${child.classList[0]}/${data}.webp`);
             break;
         case "wipe":
+            child.remove();
+            panel.removeAttribute("class");
             break;
     }
 }));
