@@ -76,10 +76,14 @@ socket.addEventListener("message", (({data: json}) => {
                 child.classList.remove("selected");
             }
             break;
+        case "draw":
+            break;
+        case "flip":
+            break;
         case "roll":
             child.setAttribute("src", `static/assets/table/dices/${child.classList[0]}/${data}.webp`);
             break;
-        case "flip":
+        case "wipe":
             break;
     }
 }));

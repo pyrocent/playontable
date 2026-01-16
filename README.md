@@ -1,4 +1,6 @@
-# [![](src/frontend/static/assets/other/icons/icon40x40.png)](https://playontable.com/) Play Any Game Now! [PlayOnTable](https://playontable.com/)
+# [![](src/frontend/static/assets/other/icons/icon40x40.png)](https://playontable.com/) Play Any Game! [PlayOnTable.com](https://playontable.com/)
+
+Let's play any game on a virtual realtime multiplayer table with PlayOnTable.com
 
 ## Codebase
 
