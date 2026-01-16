@@ -1,4 +1,4 @@
-from user import User
+from .user import User
 from fastapi import FastAPI, WebSocket
 from contextlib import asynccontextmanager
 
