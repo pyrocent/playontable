@@ -1,4 +1,4 @@
-# [![](src/frontend/static/assets/other/icons/icon40x40.png)](https://playontable.com/) Play Any Game! [PlayOnTable.com](https://playontable.com/)
+# <a href = "https://playontable.com/"><img src = "https://playontable.com/static/assets/other/icons/icon192x192.png" width = "20" height = "20" alt = "icon"></a> Play Any Game! [PlayOnTable.com](https://playontable.com/)
 
 Let's play any game on a virtual realtime multiplayer table with PlayOnTable.com
 
