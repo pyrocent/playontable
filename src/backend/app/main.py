@@ -19,5 +19,5 @@ async def websocket(websocket: WebSocket):
     async with User(websocket, app.state.users) as user:
         async for json in websocket.iter_json(): await handle(app.state.users, user, json)
 
-@app.get()
+@app.get("/")
 async def status(): return {"status": "okay"}
