@@ -11,7 +11,7 @@ const toggleHandAndSend = (hook) => {
     socket.send(JSON.stringify({hook, index: Array.from(table.children).indexOf(child)}));
 };
 const config = {
-    bounds: {top: 10, left: 10},
+    onPress() {this.applyBounds({top: 10 - table.scrollTop, left: 10 - table.scrollLeft});},
     onDragStart() {socket.send(JSON.stringify({hook: "drop", index: Array.from(table.children).indexOf(this.target)}));},
     onDrag() {socket.send(JSON.stringify({hook: "drag", data: {x: this.x, y: this.y, zIndex: parseInt(getComputedStyle(this.target).zIndex, 10)}, index: Array.from(table.children).indexOf(this.target)}));},
     onClick() {if (this.target.classList.contains("copy")) {table.querySelectorAll(".selected").forEach(child => child.classList.remove("selected")); this.target.classList.add("selected"); panel.className = this.target.className;}},
