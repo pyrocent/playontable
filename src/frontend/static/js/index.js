@@ -12,11 +12,10 @@ const toggleHandAndSend = (hook) => {
 };
 const config = {
     bounds: {top: 10, left: 10},
-    onDragStart() {this.target.classList.add("dragging");},
-    onDragEnd() {this.target.classList.remove("dragging");},
+    onDragStart() {socket.send(JSON.stringify({hook: "drop", index: Array.from(table.children).indexOf(this.target)}));},
     onDrag() {socket.send(JSON.stringify({hook: "drag", data: {x: this.x, y: this.y, zIndex: parseInt(getComputedStyle(this.target).zIndex, 10)}, index: Array.from(table.children).indexOf(this.target)}));},
-    onRelease() {if (!this.target.classList.contains("copy")) socket.send(JSON.stringify({hook: "copy", data: {startX: this.startX, startY: this.startY}, index: Array.from(table.children).indexOf(this.target)}));},
     onClick() {if (this.target.classList.contains("copy")) {table.querySelectorAll(".selected").forEach(child => child.classList.remove("selected")); this.target.classList.add("selected"); panel.className = this.target.className;}},
+    onDragEnd() {socket.send(JSON.stringify({hook: "drop", index: Array.from(table.children).indexOf(this.target)})); if (!this.target.classList.contains("copy")) socket.send(JSON.stringify({hook: "copy", data: {startX: this.startX, startY: this.startY}, index: Array.from(table.children).indexOf(this.target)}));}
 }
 
 gsap.registerPlugin(Draggable);
@@ -65,16 +64,16 @@ socket.addEventListener("message", (({data: json}) => {
             Draggable.create(clone, config);
             gsap.to(child, {x: data.startX, y: data.startY, duration: 0});
             break;
+        case "drop":
+            child.classList.toggle("dragging");
+            break;
         case "drag":
             gsap.to(child, {x: data.x, y: data.y, zIndex: data.zIndex, duration: 0});
             break;
         case "hand":
         case "fall":
             child.classList.toggle("hide");
-            if (child === getSelectedChild()) {
-                panel.removeAttribute("class");
-                child.classList.remove("selected");
-            }
+            if (child === getSelectedChild()) {panel.removeAttribute("class"); child.classList.remove("selected");}
             break;
         case "draw":
             break;
