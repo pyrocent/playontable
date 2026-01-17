@@ -29,10 +29,10 @@ Frontend depends on 1 JavaScript library delivered from [jsDelivr](https://www.j
 
 ## Production
 
-PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)).
+PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as the frontend, as PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps))
 
-It's also available on Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build with [PWABuilder](https://www.pwabuilder.com/).
+It's also available on Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build with [PWABuilder](https://www.pwabuilder.com/)
 
-The "_.com_" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS).
+The "_.com_" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS)
 
-Furthermore, it's possible to check the service on the [PlayOnTable Status Page](https://status.playontable.com), powered by [Upptime](https://upptime.js.org/).
+Furthermore, it's possible to check the live service on the [PlayOnTable Status Page](https://status.playontable.com), powered by [Upptime](https://upptime.js.org/)
