@@ -1,10 +1,12 @@
 owner: pyrocent
 repo: playontable
 sites:
-    - name: PlayOnTable
+    - name: PlayOnTable Backend
+      url: https://api.playontable.com
+    - name: PlayOnTable Frontend
       url: https://playontable.com
 status-website:
     cname: status.playontable.com
     name: PlayOnTable Status Page
-    logoUrl: https://playontable.com/favicon.ico
-    favicon: https://playontable.com/favicon.ico
+    logoUrl: https://playontable.com/static/assets/other/icons/favicon/favicon.ico
+    favicon: https://playontable.com/static/assets/other/icons/favicon/favicon.ico
