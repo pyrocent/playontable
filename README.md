@@ -6,11 +6,11 @@ Let's play any game on a virtual realtime multiplayer table with PlayOnTable.com
 
 PlayOnTable was developed using the following programming/markup languages:
 
-*For the **backend***
+\*For the **backend\***
 
 - **Python**
 
-*For the **frontend***
+\*For the **frontend\***
 
 - **SASS**
 - **HTML**
@@ -33,4 +33,4 @@ PlayOnTable.com backend is deployed on [Render](https://render.com/) as well as 
 
 It's also available on Android on [Google Play Store](https://play.google.com/store/apps/details?id=com.playontable.app) as TWA ([Trusted Web Activity](https://developer.android.com/develop/ui/views/layout/webapps/trusted-web-activities)), build with [PWABuilder](https://www.pwabuilder.com/).
 
-The "*.com*" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS).
+The "_.com_" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS).
