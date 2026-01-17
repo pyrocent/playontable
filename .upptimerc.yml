@@ -7,3 +7,4 @@ status-website:
     cname: status.playontable.com
     name: PlayOnTable Status Page
     logoUrl: https://playontable.com/favicon.ico
+    favicon: https://playontable.com/favicon.ico
