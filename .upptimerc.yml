@@ -1,0 +1,8 @@
+owner: pyrocent
+repo: playontable
+sites:
+    name: PlayOnTable
+    url: https://playontable.com
+status-website:
+    cname: status.playontable.com
+    name: PlayOnTable | Status
