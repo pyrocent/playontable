@@ -35,4 +35,4 @@ It's also available on Android on [Google Play Store](https://play.google.com/st
 
 The "_.com_" TLD web domain is registered on [Ionos](https://www.ionos.it/) (it's possible to check [there](https://who.is/whois/playontable.com) PlayOnTable.com WHOIS).
 
-Furthermore, it's possible to check the service on the [PlayOnTable Status Page](https//status.playontable.com), powered by [Upptime](https://upptime.js.org/).
+Furthermore, it's possible to check the service on the [PlayOnTable Status Page](https://status.playontable.com), powered by [Upptime](https://upptime.js.org/).
