@@ -1,0 +1,20 @@
+[
+  {
+    "name": "PlayOnTable",
+    "url": "https://playontable.com",
+    "icon": "https://icons.duckduckgo.com/ip3/playontable.com.ico",
+    "slug": "play-on-table",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 300,
+    "timeDay": 300,
+    "timeWeek": 300,
+    "timeMonth": 300,
+    "timeYear": 300,
+    "dailyMinutesDown": {}
+  }
+]
