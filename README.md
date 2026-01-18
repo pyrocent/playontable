@@ -4,13 +4,13 @@
 
 ## Codebase
 
-PlayOnTable was developed using the following programming/markup languages:
+PlayOnTable was developed using the following GPL/DSL languages:
 
-\*For the **backend\***
+*For the **backend***
 
 - **Python**
 
-\*For the **frontend\***
+*For the **frontend***
 
 - **SASS**
 - **HTML**
